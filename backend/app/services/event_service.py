@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import logging
+import time
 from datetime import datetime
 from uuid import UUID
 
@@ -10,6 +13,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.llm import get_llm_provider
 from app.models.asset import Asset
 from app.models.event_asset_link import EventAssetLink
+from app.models.llm_run_log import LLMRunLog
 from app.models.market_event import MarketEvent
 from app.models.research_hypothesis import ResearchHypothesis
 from app.scoring import score_event
@@ -115,6 +119,31 @@ class EventService:
 
         return items, total
 
+    async def _record_llm_run_log(
+        self,
+        session: AsyncSession,
+        task_type: str,
+        model_name: str,
+        prompt_version: str,
+        input_data: dict,
+        output_json: dict | None,
+        error_message: str | None,
+        latency_ms: int,
+    ) -> None:
+        input_hash = hashlib.sha256(
+            json.dumps(input_data, sort_keys=True, ensure_ascii=False).encode()
+        ).hexdigest()
+        log = LLMRunLog(
+            task_type=task_type,
+            model_name=model_name,
+            prompt_version=prompt_version,
+            input_hash=input_hash,
+            output_json=output_json,
+            error_message=error_message,
+            latency_ms=latency_ms,
+        )
+        session.add(log)
+
     async def extract_from_document(
         self, session: AsyncSession, document_id: UUID
     ) -> MarketEvent | None:
@@ -141,11 +170,23 @@ class EventService:
 
         try:
             llm = get_llm_provider()
+            input_data = {
+                "title": doc.title,
+                "content": doc.content,
+                "source": doc.source,
+                "published_at": published_at_str,
+            }
+            start = time.monotonic()
             extracted = await llm.extract_event(
                 title=doc.title,
                 content=doc.content,
                 source=doc.source,
                 published_at=published_at_str,
+            )
+            latency_ms = int((time.monotonic() - start) * 1000)
+            await self._record_llm_run_log(
+                session, "extract_event", llm.model_name, "v1",
+                input_data, extracted.model_dump(), None, latency_ms,
             )
 
             event = MarketEvent(
@@ -174,7 +215,12 @@ class EventService:
             )
             return event
 
-        except Exception:
+        except Exception as exc:
+            latency_ms = int((time.monotonic() - start) * 1000)
+            await self._record_llm_run_log(
+                session, "extract_event", llm.model_name, "v1",
+                input_data, None, str(exc), latency_ms,
+            )
             logger.exception(
                 "Failed to extract event from document %s", document_id
             )
@@ -216,11 +262,23 @@ class EventService:
 
         try:
             llm = get_llm_provider()
+            input_data = {
+                "event_summary": event.event_summary,
+                "event_type": event.event_type,
+                "primary_entity": event.primary_entity or "",
+                "assets": asset_dicts,
+            }
+            start = time.monotonic()
             mapping = await llm.map_event_to_assets(
                 event_summary=event.event_summary,
                 event_type=event.event_type,
                 primary_entity=event.primary_entity or "",
                 assets=asset_dicts,
+            )
+            latency_ms = int((time.monotonic() - start) * 1000)
+            await self._record_llm_run_log(
+                session, "map_assets", llm.model_name, "v1",
+                input_data, mapping.model_dump(), None, latency_ms,
             )
 
             # Build a lookup map: symbol -> Asset
@@ -255,7 +313,12 @@ class EventService:
             )
             return links
 
-        except Exception:
+        except Exception as exc:
+            latency_ms = int((time.monotonic() - start) * 1000)
+            await self._record_llm_run_log(
+                session, "map_assets", llm.model_name, "v1",
+                input_data, None, str(exc), latency_ms,
+            )
             logger.exception("Failed to map assets for event %s", event_id)
             return []
 
@@ -311,10 +374,21 @@ class EventService:
 
         try:
             llm = get_llm_provider()
+            input_data = {
+                "event_summary": event.event_summary,
+                "event_type": event.event_type,
+                "linked_assets": linked_asset_dicts,
+            }
+            start = time.monotonic()
             hypothesis_output = await llm.generate_hypothesis(
                 event_summary=event.event_summary,
                 event_type=event.event_type,
                 linked_assets=linked_asset_dicts,
+            )
+            latency_ms = int((time.monotonic() - start) * 1000)
+            await self._record_llm_run_log(
+                session, "generate_hypothesis", llm.model_name, "v1",
+                input_data, hypothesis_output.model_dump(), None, latency_ms,
             )
 
             hypothesis = ResearchHypothesis(
@@ -345,7 +419,12 @@ class EventService:
             )
             return hypothesis
 
-        except Exception:
+        except Exception as exc:
+            latency_ms = int((time.monotonic() - start) * 1000)
+            await self._record_llm_run_log(
+                session, "generate_hypothesis", llm.model_name, "v1",
+                input_data, None, str(exc), latency_ms,
+            )
             logger.exception(
                 "Failed to generate hypothesis for event %s", event_id
             )

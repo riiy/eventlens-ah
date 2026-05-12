@@ -18,3 +18,7 @@ class LLMRunLog(SQLModel, table=True):
     error_message: str | None = Field(default=None, sa_column=Column(Text))
     latency_ms: int | None = Field(default=None, sa_column=Column(Integer))
     created_at: datetime = Field(default_factory=datetime.utcnow, sa_column=Column(DateTime(timezone=True)))
+
+    @property
+    def success(self) -> bool:
+        return self.error_message is None

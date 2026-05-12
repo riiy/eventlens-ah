@@ -13,9 +13,11 @@ from app.api.deps import (
     get_hypothesis_service,
 )
 from app.models.event_asset_link import EventAssetLink
+from app.models.llm_run_log import LLMRunLog
 from app.schemas.common import PaginatedResponse
 from app.schemas.event_asset_link import EventAssetLinkResponse
 from app.schemas.event_price_reaction import EventPriceReactionResponse
+from app.schemas.llm_run_log import LLMRunLogResponse
 from app.schemas.market_event import (
     ExtractEventsRequest,
     MarketEventResponse,
@@ -307,3 +309,33 @@ async def generate_mock_price_reactions(
     return [
         EventPriceReactionResponse.model_validate(r) for r in reactions
     ]
+
+
+@router.get(
+    "/{event_id}/llm-runs",
+    response_model=list[LLMRunLogResponse],
+)
+async def get_event_llm_runs(
+    event_id: UUID,
+    session: AsyncSession = Depends(get_db),
+    event_service: EventService = Depends(get_event_service),
+):
+    """Get all LLM run logs related to an event's pipeline execution."""
+    event = await event_service.get(session, event_id)
+    if event is None:
+        raise HTTPException(status_code=404, detail="Event not found")
+
+    from datetime import timedelta
+    window_start = event.created_at - timedelta(seconds=10)
+    window_end = event.created_at + timedelta(seconds=30)
+
+    result = await session.execute(
+        select(LLMRunLog)
+        .where(
+            LLMRunLog.created_at >= window_start,
+            LLMRunLog.created_at <= window_end,
+        )
+        .order_by(LLMRunLog.created_at.asc())
+    )
+    logs = list(result.scalars().all())
+    return [LLMRunLogResponse.model_validate(l) for l in logs]

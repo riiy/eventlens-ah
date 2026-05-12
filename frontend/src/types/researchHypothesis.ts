@@ -2,7 +2,7 @@ export interface ResearchHypothesis {
   id: string;
   event_id: string;
   hypothesis_text: string;
-  impact_chain: unknown;
+  impact_chain: string[] | null;
   supporting_evidence: string[];
   counter_evidence: string[];
   trigger_conditions: string[];

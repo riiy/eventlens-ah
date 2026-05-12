@@ -1,0 +1,843 @@
+[
+  {
+    "id": "sample_001",
+    "category": "a_share",
+    "event_type_hint": "earnings_surprise",
+    "document": {
+      "source": "证券时报",
+      "source_type": "news",
+      "title": "贵州茅台宣布上调飞天茅台出厂价20% 时隔6年首次提价",
+      "content": "贵州茅台酒股份有限公司今日发布公告，自2024年1月1日起上调飞天茅台出厂价约20%，这是时隔6年后的首次提价。分析人士认为此举将显著提振茅台2024年业绩，利好白酒板块。中信证券研报指出，提价后茅台2024年净利润有望增长15%-18%，对应市盈率将降至25倍左右，估值具备吸引力。不过也有分析师提醒，当前消费需求偏弱，提价能否顺利传导至终端仍需观察。",
+      "language": "zh",
+      "published_at": "2024-01-01T00:00:00",
+      "credibility_score": 0.92
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "earnings_surprise",
+      "allowed_event_types": ["earnings_surprise", "policy_change", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "A_SHARE",
+      "expected_assets": ["600519.SH"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_002",
+    "category": "a_share",
+    "event_type_hint": "regulatory_action",
+    "document": {
+      "source": "证监会发布",
+      "source_type": "official",
+      "title": "证监会对某上市公司信息披露违规立案调查",
+      "content": "中国证监会今日发布公告，因涉嫌信息披露违法违规，决定对某创业板上市公司立案调查。该公司此前被质疑虚增收入，2023年年报被审计师出具保留意见。受此消息影响，该公司股价今日开盘跌停。分析人士指出，近期监管层对财务造假保持高压态势，此类立案调查可能引发连锁反应，相关板块或面临估值压力。深交所已对该公司股票实施特别处理，股票简称变更为ST。",
+      "language": "zh",
+      "published_at": "2024-01-05T00:00:00",
+      "credibility_score": 0.95
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "regulatory_action",
+      "allowed_event_types": ["regulatory_action", "market_anomaly"],
+      "expected_direction": "NEGATIVE",
+      "expected_market_scope": "A_SHARE",
+      "expected_assets": [],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "high",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_003",
+    "category": "a_share",
+    "event_type_hint": "merger_acquisition",
+    "document": {
+      "source": "上海证券报",
+      "source_type": "news",
+      "title": "宁德时代拟收购锂矿企业 锁定上游资源",
+      "content": "据上海证券报报道，宁德时代新能源科技股份有限公司正在洽谈收购一家澳大利亚锂矿企业的控股权，交易金额预计超过20亿美元。此次收购旨在锁定上游锂资源供应，降低原材料成本波动风险。业内人士表示，随着全球锂价企稳回升，头部电池企业纷纷向上游延伸，此举有助于宁德时代巩固成本优势。花旗银行分析认为，若收购成功，宁德时代2025年毛利率有望提升2-3个百分点。截至目前，宁德时代未对此消息置评。",
+      "language": "zh",
+      "published_at": "2024-02-10T00:00:00",
+      "credibility_score": 0.75
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "merger_acquisition",
+      "allowed_event_types": ["merger_acquisition", "industry_disruption", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "A_SHARE",
+      "expected_assets": ["300750.SZ"],
+      "credibility_level": "medium",
+      "materiality_level": "high",
+      "novelty_level": "medium",
+      "risk_level": "medium",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_004",
+    "category": "a_share",
+    "event_type_hint": "policy_change",
+    "document": {
+      "source": "新华社",
+      "source_type": "official",
+      "title": "国务院发布促进新能源汽车产业发展新政策",
+      "content": "国务院办公厅今日发布《关于进一步促进新能源汽车产业高质量发展的若干意见》，提出到2027年新能源汽车销量占比达到50%以上的目标。政策包括：延续新能源汽车购置税减免至2027年底、加大对充电基础设施的财政支持、推动公共领域车辆全面电动化、支持动力电池回收利用产业发展。工信部相关负责人在新闻发布会上表示，将协同有关部门加快落实，预计撬动社会投资超过5000亿元。受此消息影响，新能源汽车板块集体走强。",
+      "language": "zh",
+      "published_at": "2024-03-01T00:00:00",
+      "credibility_score": 0.98
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "policy_change",
+      "allowed_event_types": ["policy_change", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "A_SHARE",
+      "expected_assets": ["300750.SZ", "002594.SZ"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_005",
+    "category": "a_share",
+    "event_type_hint": "industry_disruption",
+    "document": {
+      "source": "财联社",
+      "source_type": "news",
+      "title": "全球芯片供应短缺加剧 台积电通知客户涨价",
+      "content": "据半导体产业链消息，台积电已通知多家中国大陆IC设计客户，自2024年第二季度起将7nm及以下先进制程代工价格上调10%-15%，理由是产能持续紧张及原材料成本上涨。受此影响，国内多家芯片设计公司股价承压。中芯国际等国产替代概念股则逆势上涨。分析师认为，此次涨价将加速国内芯片产业链自主化进程，利好半导体设备和材料板块，但对依赖先进制程的手机和AI芯片公司构成成本压力。",
+      "language": "zh",
+      "published_at": "2024-03-15T00:00:00",
+      "credibility_score": 0.82
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "industry_disruption",
+      "allowed_event_types": ["industry_disruption", "geopolitical", "other"],
+      "expected_direction": "MIXED",
+      "expected_market_scope": "BOTH",
+      "expected_assets": [],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "medium",
+      "risk_level": "medium",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_006",
+    "category": "a_share",
+    "event_type_hint": "management_change",
+    "document": {
+      "source": "证券日报",
+      "source_type": "news",
+      "title": "万科董事长突然宣布辞职 公司股价大幅波动",
+      "content": "万科企业股份有限公司今日公告，公司董事长因个人原因辞去董事长及董事会相关职务，由现任总裁暂代董事长职责。公告称此次人事变动不会影响公司正常经营。消息公布后，万科A股股价下跌逾5%，港股下跌约3%。有分析人士猜测，此次辞职或与公司近期面临的流动性压力有关。惠誉此前下调了万科的信用评级展望至负面。万科方面未就市场猜测作出进一步回应。",
+      "language": "zh",
+      "published_at": "2024-04-10T00:00:00",
+      "credibility_score": 0.88
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "management_change",
+      "allowed_event_types": ["management_change", "other"],
+      "expected_direction": "NEGATIVE",
+      "expected_market_scope": "BOTH",
+      "expected_assets": ["000002.SZ"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "high",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_007",
+    "category": "a_share",
+    "event_type_hint": "product_launch",
+    "document": {
+      "source": "IT之家",
+      "source_type": "news",
+      "title": "华为发布新一代AI芯片昇腾910C 算力较上代翻倍",
+      "content": "华为技术有限公司今日在深圳举行新品发布会，正式推出新一代AI训练芯片昇腾910C。该芯片采用7nm工艺，FP16算力达到640 TFLOPS，较上一代昇腾910B提升约100%，能效比提升50%。华为轮值董事长在发布会上表示，昇腾910C已与多家国内大模型企业完成适配，将在全国多个智算中心部署。分析认为，在美国持续收紧芯片出口管制的背景下，昇腾910C的发布对于国内AI产业链自主可控具有重要意义。",
+      "language": "zh",
+      "published_at": "2024-05-01T00:00:00",
+      "credibility_score": 0.90
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "product_launch",
+      "allowed_event_types": ["product_launch", "policy_change", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "A_SHARE",
+      "expected_assets": [],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_008",
+    "category": "a_share",
+    "event_type_hint": "market_anomaly",
+    "document": {
+      "source": "东方财富",
+      "source_type": "news",
+      "title": "某AI概念股连续7日涨停 深交所下发关注函",
+      "content": "某人工智能概念股近期股价异动，连续7个交易日涨停，累计涨幅达95%。今日该股成交额突破50亿元，换手率超过30%，龙虎榜显示多家知名游资席位现身买入。深交所已向该公司下发关注函，要求说明是否存在应披露而未披露的重大信息，并核查内幕信息知情人是否存在交易行为。市场人士提醒，近期AI概念炒作情绪高涨，投资者应警惕短期过热风险，关注基本面支撑。该公司主营AI服务器组装，2023年净利润仅2000万元，市盈率已超500倍。",
+      "language": "zh",
+      "published_at": "2024-06-01T00:00:00",
+      "credibility_score": 0.85
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "market_anomaly",
+      "allowed_event_types": ["market_anomaly", "regulatory_action", "other"],
+      "expected_direction": "MIXED",
+      "expected_market_scope": "A_SHARE",
+      "expected_assets": [],
+      "credibility_level": "medium",
+      "materiality_level": "medium",
+      "novelty_level": "medium",
+      "risk_level": "high",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_009",
+    "category": "a_share",
+    "event_type_hint": "earnings_surprise",
+    "document": {
+      "source": "每日经济新闻",
+      "source_type": "news",
+      "title": "比亚迪2023年净利润超预期 突破300亿元大关",
+      "content": "比亚迪股份有限公司今日发布2023年度业绩快报，全年营业收入约6000亿元，同比增长约42%；归属于上市公司股东的净利润305亿元，同比增长约81%，超出市场预期的280亿元。公告显示，公司全年新能源汽车销量超过300万辆，同比增长62%，市场份额进一步提升至35%以上。海外市场销量达到25万辆，同比增长超过300%。多家券商上调比亚迪目标价，认为公司规模效应持续释放，盈利能力仍有提升空间。",
+      "language": "zh",
+      "published_at": "2024-01-20T00:00:00",
+      "credibility_score": 0.93
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "earnings_surprise",
+      "allowed_event_types": ["earnings_surprise", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "BOTH",
+      "expected_assets": ["002594.SZ"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "medium",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_010",
+    "category": "a_share",
+    "event_type_hint": "other",
+    "document": {
+      "source": "36氪",
+      "source_type": "news",
+      "title": "字节跳动旗下火山引擎发布企业级大模型服务平台",
+      "content": "字节跳动旗下云计算品牌火山引擎今日举办产品发布会，推出企业级大模型服务平台。该平台支持企业基于开源大模型进行私有化部署和微调，提供从数据标注、模型训练到推理部署的全流程服务。火山引擎负责人表示，目前已与金融、医疗、教育等行业的数十家企业达成合作意向。不过字节跳动尚未上市，该消息对A股市场直接影响有限。分析认为，此举将加剧国内AI云服务市场竞争，阿里云、腾讯云等可能跟进类似产品。",
+      "language": "zh",
+      "published_at": "2024-07-01T00:00:00",
+      "credibility_score": 0.78
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "other",
+      "allowed_event_types": ["other", "product_launch", "industry_disruption"],
+      "expected_direction": "NEUTRAL",
+      "expected_market_scope": "A_SHARE",
+      "expected_assets": [],
+      "credibility_level": "medium",
+      "materiality_level": "medium",
+      "novelty_level": "medium",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_011",
+    "category": "hk_share",
+    "event_type_hint": "regulatory_action",
+    "document": {
+      "source": "香港经济日报",
+      "source_type": "news",
+      "title": "香港证监会就某地产公司涉嫌内幕交易展开调查",
+      "content": "香港证监会今日宣布，正就某大型地产发展商涉嫌内幕交易展开调查。据悉，该公司高管在公司发布盈利预警公告前大量减持股份，涉及金额约5亿港元。香港证监会已要求相关金融机构提供交易记录，并对涉案个人实施离境限制。分析称，此次调查是香港证监会加强市场监管力度的一部分，可能对香港地产板块短期情绪产生负面影响。近月已有数家地产公司发布盈利预警，反映高息环境下行业面临的压力。",
+      "language": "zh",
+      "published_at": "2024-02-01T00:00:00",
+      "credibility_score": 0.87
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "regulatory_action",
+      "allowed_event_types": ["regulatory_action", "other"],
+      "expected_direction": "NEGATIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": [],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "high",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_012",
+    "category": "hk_share",
+    "event_type_hint": "product_launch",
+    "document": {
+      "source": "星岛日报",
+      "source_type": "news",
+      "title": "腾讯发布混元大模型企业版 对标海外头部产品",
+      "content": "腾讯控股今日在香港举办数字生态大会，正式推出混元大模型企业版，支持文本、图像、代码等多种模态的生成和理解。腾讯云总裁表示，混元大模型在中文理解、逻辑推理等多项基准测试中表现达到国际一流水平，已在腾讯内部超过200个业务场景中应用。企业版提供API调用和私有化部署两种方案，价格较海外同类产品低40%-60%。受此消息提振，腾讯股价午后涨幅扩大至3%。",
+      "language": "zh",
+      "published_at": "2024-03-10T00:00:00",
+      "credibility_score": 0.89
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "product_launch",
+      "allowed_event_types": ["product_launch", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": ["0700.HK"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "medium",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_013",
+    "category": "hk_share",
+    "event_type_hint": "earnings_surprise",
+    "document": {
+      "source": "香港信报",
+      "source_type": "news",
+      "title": "友邦保险上半年新业务价值增长逊预期 股价承压",
+      "content": "友邦保险控股有限公司公布2024年上半年业绩，新业务价值同比增长8%至19.8亿美元，低于市场预期的11%增长。其中中国内地市场新业务价值增长放缓至5%，主要受储蓄型产品需求下降影响。集团首席执行官表示，下半年将调整产品策略，加大保障型产品推广力度。花旗下调友邦目标价至85港元，认为内地市场复苏进度慢于预期。业绩公布后，友邦股价下跌约4%。",
+      "language": "zh",
+      "published_at": "2024-08-01T00:00:00",
+      "credibility_score": 0.91
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "earnings_surprise",
+      "allowed_event_types": ["earnings_surprise", "other"],
+      "expected_direction": "NEGATIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": ["1299.HK"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "medium",
+      "risk_level": "medium",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_014",
+    "category": "hk_share",
+    "event_type_hint": "merger_acquisition",
+    "document": {
+      "source": "彭博社",
+      "source_type": "news",
+      "title": "传美团考虑收购东南亚外卖平台Foodpanda部分业务",
+      "content": "据彭博社援引知情人士报道，美团正在考虑收购德国Delivery Hero旗下Foodpanda在东南亚的部分业务，以拓展海外市场。消息称谈判处于早期阶段，交易估值可能超过10亿美元。美团此前已通过旗下KeeTa品牌进入香港外卖市场，取得约30%市场份额。分析认为，东南亚外卖市场竞争激烈，Grab和ShopeeFood均为强劲对手，此次收购能否成功存在较大不确定性。美团官方对市场传闻不予置评。",
+      "language": "zh",
+      "published_at": "2024-04-15T00:00:00",
+      "credibility_score": 0.55
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "merger_acquisition",
+      "allowed_event_types": ["merger_acquisition", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": ["3690.HK"],
+      "credibility_level": "low",
+      "materiality_level": "medium",
+      "novelty_level": "medium",
+      "risk_level": "high",
+      "is_rumor": true,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_015",
+    "category": "hk_share",
+    "event_type_hint": "management_change",
+    "document": {
+      "source": "明报",
+      "source_type": "news",
+      "title": "汇丰控股宣布CEO意外离职 继任人选未定",
+      "content": "汇丰控股有限公司今日突然宣布，集团行政总裁已向董事会递交辞呈，将在三个月过渡期后离任。董事会已启动全球范围继任人选遴选程序，暂由首席财务官代理CEO职责。汇丰未详细说明此次离职原因，仅表示是个人职业规划决定。消息公布后，汇丰港股盘中一度下跌3%，伦敦股价下跌2.5%。分析师对此次意外变更表示担忧，认为可能影响集团正在推进的亚洲业务重组计划。",
+      "language": "zh",
+      "published_at": "2024-05-20T00:00:00",
+      "credibility_score": 0.90
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "management_change",
+      "allowed_event_types": ["management_change", "other"],
+      "expected_direction": "NEGATIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": ["0005.HK"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "high",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_016",
+    "category": "hk_share",
+    "event_type_hint": "market_anomaly",
+    "document": {
+      "source": "经济通",
+      "source_type": "news",
+      "title": "商汤科技股价单日暴跌30% 成交量创历史天量",
+      "content": "商汤科技集团今日股价出现异常波动，盘中最大跌幅达35%，最终收跌30%，成交额突破200亿港元，为公司上市以来最大单日成交。此前的连续5个交易日，该股已累计上涨超过80%，市场猜测与AI概念炒作有关。港交所盘后数据显示，部分早期投资者通过大宗交易减持。有分析指出，公司2023年仍处于亏损状态，收入增速放缓，当前估值缺乏基本面支撑。港交所暂未就此次股价异动发布公告。",
+      "language": "zh",
+      "published_at": "2024-06-15T00:00:00",
+      "credibility_score": 0.86
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "market_anomaly",
+      "allowed_event_types": ["market_anomaly", "other"],
+      "expected_direction": "NEGATIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": ["0020.HK"],
+      "credibility_level": "medium",
+      "materiality_level": "medium",
+      "novelty_level": "high",
+      "risk_level": "high",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_017",
+    "category": "hk_share",
+    "event_type_hint": "regulatory_action",
+    "document": {
+      "source": "香港经济日报",
+      "source_type": "news",
+      "title": "金管局推出新一轮楼市逆周期措施 放宽按揭成数",
+      "content": "香港金融管理局今日宣布新一轮宏观审慎监管措施，将自用住宅物业按揭成数上限由五成放宽至六成，非住宅物业由四成放宽至五成，并于即日起生效。金管局总裁表示，香港楼市已从2021年高位调整逾20%，适度放宽措施有助于市场平稳发展，不会带来过热风险。地产代理业界对此表示欢迎，预期将激活成交。本地地产股午后集体走高，新鸿基地产涨幅达5%，长实集团上涨4%。",
+      "language": "zh",
+      "published_at": "2024-07-15T00:00:00",
+      "credibility_score": 0.97
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "regulatory_action",
+      "allowed_event_types": ["regulatory_action", "policy_change", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": ["0016.HK", "1113.HK"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_018",
+    "category": "hk_share",
+    "event_type_hint": "product_launch",
+    "document": {
+      "source": "信报财经新闻",
+      "source_type": "news",
+      "title": "比亚迪在香港推出新款纯电动的士 续航达500公里",
+      "content": "比亚迪股份宣布在香港市场推出专为的士行业设计的新款纯电动车型，NEDC续航里程达500公里，快充30分钟可行驶300公里，起售价28万港元。公司已与香港三家主要的士车行签订合作协议，首批500辆将于下月交付。运输署表示将对采用纯电动的士提供每辆最高15万港元的资助。分析称，目前香港约有1.8万辆的士，电动化替换空间巨大。比亚迪股价今日上涨约2%。",
+      "language": "zh",
+      "published_at": "2024-08-10T00:00:00",
+      "credibility_score": 0.88
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "product_launch",
+      "allowed_event_types": ["product_launch", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": ["1211.HK"],
+      "credibility_level": "high",
+      "materiality_level": "medium",
+      "novelty_level": "medium",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_019",
+    "category": "hk_share",
+    "event_type_hint": "policy_change",
+    "document": {
+      "source": "香港政府新闻处",
+      "source_type": "official",
+      "title": "港府发布虚拟资产发展政策宣言 拟发放更多交易平台牌照",
+      "content": "香港特区政府财经事务及库务局今日发布《香港虚拟资产发展政策宣言》，明确将香港打造为全球虚拟资产中心的定位。政策包括：加快虚拟资产交易平台发牌程序、允许零售投资者交易主流虚拟资产、研究代币化证券发行规则、探索稳定币监管框架。证监会同时发布虚拟资产交易平台监管指引修订稿。市场对此反应积极，香港虚拟资产概念股普遍上涨，BC科技集团等涨幅超过10%。分析认为此举将吸引更多加密货币企业落户香港。",
+      "language": "zh",
+      "published_at": "2024-05-01T00:00:00",
+      "credibility_score": 0.96
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "policy_change",
+      "allowed_event_types": ["policy_change", "regulatory_action", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": [],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "medium",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_020",
+    "category": "hk_share",
+    "event_type_hint": "industry_disruption",
+    "document": {
+      "source": "香港01",
+      "source_type": "news",
+      "title": "李嘉诚旗下长和系出售欧洲电讯资产 获利逾百亿",
+      "content": "长江和记实业有限公司公告，已与一家欧洲私募基金达成协议，以约120亿港元出售旗下部分欧洲电讯塔资产。长和表示，交易将产生超过80亿港元的一次性收益，资金将用于降低负债和回购股份。里昂证券分析认为，此次资产出售有助长和优化资产组合，释放价值，料对股价形成支撑。长和系其他上市公司也可能受益。这一举动被视为李嘉诚家族继续调整全球资产配置的信号。",
+      "language": "zh",
+      "published_at": "2024-09-01T00:00:00",
+      "credibility_score": 0.90
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "other",
+      "allowed_event_types": ["other", "merger_acquisition"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "HK_SHARE",
+      "expected_assets": ["0001.HK"],
+      "credibility_level": "high",
+      "materiality_level": "medium",
+      "novelty_level": "medium",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_021",
+    "category": "cross_market",
+    "event_type_hint": "geopolitical",
+    "document": {
+      "source": "路透社",
+      "source_type": "news",
+      "title": "美国宣布对中国电动车加征100%关税 中方强烈反对",
+      "content": "美国政府今日宣布，基于301条款调查结果，将对中国制造的电动汽车加征100%的进口关税，同时将对中国动力电池加征25%关税，新关税将于下月起生效。中国商务部就此发表声明表示强烈反对，称此举是典型的贸易保护主义行为，将采取必要措施维护中国企业合法权益。受此影响，比亚迪美股ADR盘前下跌5%，港股汽车板块今日集体下挫。分析认为，虽然中国电动车对美直接出口量不大，但此举可能引发欧盟等市场效仿，对行业出口前景构成压力。",
+      "language": "zh",
+      "published_at": "2024-06-01T00:00:00",
+      "credibility_score": 0.95
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "geopolitical",
+      "allowed_event_types": ["geopolitical", "regulatory_action", "policy_change"],
+      "expected_direction": "NEGATIVE",
+      "expected_market_scope": "BOTH",
+      "expected_assets": ["1211.HK", "002594.SZ"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "high",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_022",
+    "category": "cross_market",
+    "event_type_hint": "policy_change",
+    "document": {
+      "source": "人民银行官网",
+      "source_type": "official",
+      "title": "央行宣布全面降准0.5个百分点 释放流动性约1万亿",
+      "content": "中国人民银行今日宣布，决定自下周一起下调金融机构存款准备金率0.5个百分点（不含已执行5%存款准备金率的金融机构）。此次降准预计释放长期资金约1万亿元，旨在支持实体经济发展，保持流动性合理充裕。央行表示，将继续实施稳健的货币政策，不搞大水漫灌。本次降准是2024年首次，超出部分市场预期。A股和港股金融板块双双走强，沪深300指数上涨1.5%，恒生指数上涨1.2%。利率敏感的地产股和券商股涨幅居前。",
+      "language": "zh",
+      "published_at": "2024-04-01T00:00:00",
+      "credibility_score": 0.98
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "policy_change",
+      "allowed_event_types": ["policy_change", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "BOTH",
+      "expected_assets": [],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_023",
+    "category": "cross_market",
+    "event_type_hint": "regulatory_action",
+    "document": {
+      "source": "银保监会官网",
+      "source_type": "official",
+      "title": "金融监管总局出台保险公司偿付能力新规 强化风险管理",
+      "content": "国家金融监督管理总局今日发布《保险公司偿付能力监管规则（修订版）》，大幅提升权益类资产和房地产相关资产的风险因子，自2025年1月1日起实施。新规将普通股票风险因子从0.35上调至0.45，将非自用不动产风险因子从0.15上调至0.25。这意味着保险公司投资A股和房地产需要更多的资本金支撑。保险业内分析称，大型寿险公司权益类投资比例可能因此降低3-5个百分点。A股和港股保险板块普遍下跌，中国平安A股下跌3%、港股下跌4%。",
+      "language": "zh",
+      "published_at": "2024-08-15T00:00:00",
+      "credibility_score": 0.97
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "regulatory_action",
+      "allowed_event_types": ["regulatory_action", "policy_change"],
+      "expected_direction": "NEGATIVE",
+      "expected_market_scope": "BOTH",
+      "expected_assets": ["601318.SH", "2318.HK"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "high",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_024",
+    "category": "cross_market",
+    "event_type_hint": "geopolitical",
+    "document": {
+      "source": "环球时报",
+      "source_type": "news",
+      "title": "中美关系出现缓和信号 两国元首同意恢复高层对话",
+      "content": "据外交部消息，中美两国元首在通话中同意恢复高层战略沟通渠道，包括重启经济、贸易和气候变化领域的工作组对话。美国国家安全顾问表示，美方不寻求对华脱钩，愿在共同利益领域开展合作。这个消息为近期紧张的中美关系带来了些许缓和信号。受此提振，A股三大指数今日悉数上涨，港股同样走强。在美上市中概股盘前普遍上涨。分析师表示，中美关系缓和有助于降低市场的地缘政治风险溢价，但双方在技术和贸易领域的结构性分歧短期难以弥合。",
+      "language": "zh",
+      "published_at": "2024-07-01T00:00:00",
+      "credibility_score": 0.92
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "geopolitical",
+      "allowed_event_types": ["geopolitical", "policy_change", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "BOTH",
+      "expected_assets": [],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "medium",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_025",
+    "category": "cross_market",
+    "event_type_hint": "industry_disruption",
+    "document": {
+      "source": "财联社",
+      "source_type": "news",
+      "title": "马士基宣布恢复红海航线 全球航运价格预期回落",
+      "content": "全球航运巨头马士基集团今日宣布，在多国海军护航下将逐步恢复红海航线运输。此前因也门胡塞武装袭击商船，多家航运公司被迫绕行好望角，导致全球航运价格飙升300%以上。马士基表示，首批护航船队已安全通过红海，后续将根据安全形势扩大运力投放。消息公布后，集运指数应声下跌8%。分析认为，红海航线恢复将缓解全球供应链紧张局势，利好出口导向型企业，但对集运公司构成利润下行压力。中远海控A股和港股今日双双下跌。",
+      "language": "zh",
+      "published_at": "2024-03-20T00:00:00",
+      "credibility_score": 0.94
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "industry_disruption",
+      "allowed_event_types": ["industry_disruption", "geopolitical", "other"],
+      "expected_direction": "MIXED",
+      "expected_market_scope": "BOTH",
+      "expected_assets": ["601919.SH", "1919.HK"],
+      "credibility_level": "high",
+      "materiality_level": "high",
+      "novelty_level": "high",
+      "risk_level": "medium",
+      "is_rumor": false,
+      "is_noise": false
+    }
+  },
+  {
+    "id": "sample_026",
+    "category": "noise",
+    "event_type_hint": "noise",
+    "document": {
+      "source": "新浪娱乐",
+      "source_type": "entertainment",
+      "title": "某知名艺人演唱会门票3秒售罄 二手价格炒至万元",
+      "content": "某华语乐坛知名歌手今日在上海举办巡回演唱会，官方售票平台开售仅3秒即告售罄。据悉，此次演唱会座位数约3万个，但购票用户超过200万人次。二手票务平台上，原价1280元的内场票已被炒至万元以上。演出行业人士表示，2024年线下演出市场持续火爆，热门艺人演唱会溢价普遍在3-5倍。该艺人有代言A股某消费品牌，但对股价影响有限。文化演出市场与股市相关性较弱。",
+      "language": "zh",
+      "published_at": "2024-05-10T00:00:00",
+      "credibility_score": 0.80
+    },
+    "annotations": {
+      "should_generate_event": false,
+      "expected_event_type": null,
+      "allowed_event_types": [],
+      "expected_direction": "NEUTRAL",
+      "expected_market_scope": "UNKNOWN",
+      "expected_assets": [],
+      "credibility_level": "medium",
+      "materiality_level": "low",
+      "novelty_level": "low",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": true
+    }
+  },
+  {
+    "id": "sample_027",
+    "category": "noise",
+    "event_type_hint": "noise",
+    "document": {
+      "source": "体育周刊",
+      "source_type": "sports",
+      "title": "中超联赛新赛季开幕 多个城市申办2026年国际赛事",
+      "content": "2024赛季中超联赛今日在广州天河体育场正式开幕，揭幕战由广州队对阵上海海港队。中国足协主席在开幕式上表示，新赛季将加强联赛管理，提升比赛质量。同时，上海、成都、深圳等多个城市已联合向国际足联提交2026年俱乐部世界杯承办申请。体育产业是国民经济重要组成部分，但其短期对资本市场影响有限。体育赛事相关赞助商包括多家上市公司，不过此类事件通常不构成独立的投资研究事件。",
+      "language": "zh",
+      "published_at": "2024-03-01T00:00:00",
+      "credibility_score": 0.85
+    },
+    "annotations": {
+      "should_generate_event": false,
+      "expected_event_type": null,
+      "allowed_event_types": [],
+      "expected_direction": "NEUTRAL",
+      "expected_market_scope": "UNKNOWN",
+      "expected_assets": [],
+      "credibility_level": "medium",
+      "materiality_level": "low",
+      "novelty_level": "low",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": true
+    }
+  },
+  {
+    "id": "sample_028",
+    "category": "noise",
+    "event_type_hint": "noise",
+    "document": {
+      "source": "中国天气网",
+      "source_type": "weather",
+      "title": "台风橙色预警：强台风将在广东沿海登陆 多地停课停工",
+      "content": "中央气象台今日发布台风橙色预警，今年第3号强台风预计将于明日上午在广东阳江至湛江一带沿海登陆，中心最大风力达14级。广东省防汛防旱防风总指挥部已启动防台风二级应急响应，珠海、江门、阳江、茂名四市已宣布中小学停课、工厂停工。部分港口已暂停集装箱作业，琼州海峡全线停航。天气预报预计台风登陆后将减弱并向西北方向移动。此类天气事件可能对当地上市公司运营造成短期影响，但其作用通常已经体现在了保险和工程类企业中。",
+      "language": "zh",
+      "published_at": "2024-07-20T00:00:00",
+      "credibility_score": 0.95
+    },
+    "annotations": {
+      "should_generate_event": false,
+      "expected_event_type": null,
+      "allowed_event_types": [],
+      "expected_direction": "NEUTRAL",
+      "expected_market_scope": "UNKNOWN",
+      "expected_assets": [],
+      "credibility_level": "high",
+      "materiality_level": "medium",
+      "novelty_level": "low",
+      "risk_level": "medium",
+      "is_rumor": false,
+      "is_noise": true
+    }
+  },
+  {
+    "id": "sample_029",
+    "category": "noise",
+    "event_type_hint": "rumor",
+    "document": {
+      "source": "社交媒体",
+      "source_type": "social_media",
+      "title": "股吧热帖：某上市公司即将被借壳 股价将翻倍",
+      "content": "今日在多个股票论坛和微信群中流传一条消息，称某中小市值上市公司即将被一家知名科技企业借壳上市，股价至少翻倍。该帖子未提供具体信息来源，仅以据内部人士透露的口吻描述。经查证，相关上市公司并未发布任何重大事项公告，交易所也未收到有关的停牌申请。该消息在社交媒体上大量转发，相关股票尾盘突然拉升，涨幅超过5%。证监会此前曾明确表示对此类利用不实信息操纵市场的行为予以严厉打击。投资人士指出，此类信息是典型的传闻，可信度极低。",
+      "language": "zh",
+      "published_at": "2024-09-01T00:00:00",
+      "credibility_score": 0.30
+    },
+    "annotations": {
+      "should_generate_event": false,
+      "expected_event_type": null,
+      "allowed_event_types": ["other"],
+      "expected_direction": "NEUTRAL",
+      "expected_market_scope": "A_SHARE",
+      "expected_assets": [],
+      "credibility_level": "low",
+      "materiality_level": "low",
+      "novelty_level": "low",
+      "risk_level": "high",
+      "is_rumor": true,
+      "is_noise": true
+    }
+  },
+  {
+    "id": "sample_030",
+    "category": "noise",
+    "event_type_hint": "duplicate",
+    "document": {
+      "source": "财经网",
+      "source_type": "news",
+      "title": "贵州茅台提价获市场看好 多家券商上调目标价",
+      "content": "继昨日贵州茅台宣布上调出厂价20%之后，今日多家券商发布研报跟进。中信证券将茅台目标价上调至2200元，维持买入评级；国泰君安认为提价效应将在2024年第二季度开始体现。茅台昨日公告提价后股价已经上涨约3%，今日高开低走。市场对于提价效果的争论仍在继续，有分析指出当前白酒行业库存水平偏高，终端价格能否同步提升存疑。此事件与昨日的信息来源不同但核心内容基本重合，应被视为同一事件的后续发酵。",
+      "language": "zh",
+      "published_at": "2024-01-02T00:00:00",
+      "credibility_score": 0.91
+    },
+    "annotations": {
+      "should_generate_event": true,
+      "expected_event_type": "earnings_surprise",
+      "allowed_event_types": ["earnings_surprise", "other"],
+      "expected_direction": "POSITIVE",
+      "expected_market_scope": "A_SHARE",
+      "expected_assets": ["600519.SH"],
+      "credibility_level": "high",
+      "materiality_level": "medium",
+      "novelty_level": "low",
+      "risk_level": "low",
+      "is_rumor": false,
+      "is_noise": false,
+      "is_duplicate": true
+    }
+  }
+]

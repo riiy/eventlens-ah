@@ -14,10 +14,12 @@ const EVENT_TYPES = [
 ];
 const MARKETS = ["A_SHARE", "HK_SHARE", "BOTH", "UNKNOWN"];
 const DIRECTIONS = ["POSITIVE", "NEGATIVE", "NEUTRAL", "MIXED", "UNKNOWN"];
+const STATUSES = ["EXTRACTED", "SCORED", "MAPPED", "HYPOTHESIZED", "ERROR"];
 const SORT_OPTIONS = [
   { label: "Alpha Score", value: "event_alpha_score" },
   { label: "Created At", value: "created_at" },
   { label: "Materiality", value: "materiality_score" },
+  { label: "Risk", value: "risk_score" },
 ];
 
 export default function EventListPage() {
@@ -58,6 +60,7 @@ export default function EventListPage() {
           <Col><Select placeholder="Event Type" allowClear style={{ width: 160 }} options={EVENT_TYPES.map((t) => ({ label: t, value: t }))} onChange={(v) => updateFilter("event_type", v)} /></Col>
           <Col><Select placeholder="Market" allowClear style={{ width: 130 }} options={MARKETS.map((m) => ({ label: m, value: m }))} onChange={(v) => updateFilter("market_scope", v)} /></Col>
           <Col><Select placeholder="Direction" allowClear style={{ width: 130 }} options={DIRECTIONS.map((d) => ({ label: d, value: d }))} onChange={(v) => updateFilter("direction", v)} /></Col>
+          <Col><Select placeholder="Status" allowClear style={{ width: 140 }} options={STATUSES.map((s) => ({ label: s, value: s }))} onChange={(v) => updateFilter("status", v)} /></Col>
           <Col><Select placeholder="Sort By" style={{ width: 140 }} options={SORT_OPTIONS} value={params.sort_by} onChange={(v) => updateFilter("sort_by", v)} /></Col>
           <Col><Select placeholder="Order" style={{ width: 100 }} options={[{ label: "Desc", value: "desc" }, { label: "Asc", value: "asc" }]} value={params.sort_order} onChange={(v) => updateFilter("sort_order", v)} /></Col>
         </Row>

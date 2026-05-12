@@ -86,7 +86,7 @@ class TestHypothesisOutput:
     def test_valid_output(self):
         data = {
             "hypothesis_text": "The policy change will benefit sector X",
-            "impact_chain": "Policy → Sector Growth → Stock Appreciation",
+            "impact_chain": ["Policy", "Sector Growth", "Stock Appreciation"],
             "supporting_evidence": ["Historical precedent A", "Expert opinion B"],
             "counter_evidence": ["Regulatory uncertainty"],
             "trigger_conditions": ["Policy implementation confirmed"],

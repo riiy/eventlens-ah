@@ -4,6 +4,8 @@ import type { PaginatedResponse } from "@/types/common";
 import type { EventAssetLink } from "@/types/eventAssetLink";
 import type { ResearchHypothesis } from "@/types/researchHypothesis";
 import type { EventPriceReaction } from "@/types/eventPriceReaction";
+import type { RawDocument } from "@/types/rawDocument";
+import type { LLMRunLog } from "@/types/llmRunLog";
 
 export const fetchEvents = (params?: MarketEventListParams) =>
   apiClient.get<PaginatedResponse<MarketEvent>>("/events", params as Record<string, unknown>);
@@ -28,3 +30,9 @@ export const fetchEventHypotheses = (eventId: string) =>
 
 export const fetchEventPriceReactions = (eventId: string) =>
   apiClient.get<EventPriceReaction[]>(`/events/${eventId}/price-reactions`);
+
+export const fetchDocument = (documentId: string) =>
+  apiClient.get<RawDocument>(`/raw-documents/${documentId}`);
+
+export const fetchEventLLMRunLogs = (eventId: string) =>
+  apiClient.get<LLMRunLog[]>(`/events/${eventId}/llm-runs`);

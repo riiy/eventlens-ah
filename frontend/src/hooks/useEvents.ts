@@ -8,6 +8,8 @@ import {
   fetchEventAssets,
   fetchEventHypotheses,
   fetchEventPriceReactions,
+  fetchDocument,
+  fetchEventLLMRunLogs,
 } from "@/api/events";
 import type { MarketEventListParams } from "@/types/marketEvent";
 
@@ -76,6 +78,22 @@ export function useEventPriceReactions(eventId: string | undefined) {
   return useQuery({
     queryKey: ["event-price-reactions", eventId],
     queryFn: () => fetchEventPriceReactions(eventId!),
+    enabled: !!eventId,
+  });
+}
+
+export function useEventDocument(documentId: string | undefined) {
+  return useQuery({
+    queryKey: ["document", documentId],
+    queryFn: () => fetchDocument(documentId!),
+    enabled: !!documentId,
+  });
+}
+
+export function useEventLLMRunLogs(eventId: string | undefined) {
+  return useQuery({
+    queryKey: ["event-llm-runs", eventId],
+    queryFn: () => fetchEventLLMRunLogs(eventId!),
     enabled: !!eventId,
   });
 }
