@@ -1,0 +1,83 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: eventlens
+      POSTGRES_USER: eventlens
+      POSTGRES_PASSWORD: eventlens
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U eventlens"]
+      interval: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://eventlens:eventlens@postgres:5432/eventlens
+      DATABASE_URL_SYNC: postgresql+psycopg2://eventlens:eventlens@postgres:5432/eventlens
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      MOCK_LLM_ENABLED: "true"
+      LLM_PROVIDER: mock
+      SEED_ON_STARTUP: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+
+  celery-worker:
+    build:
+      context: ./backend
+    command: celery -A app.workers.celery_app worker --loglevel=info
+    environment:
+      DATABASE_URL: postgresql+asyncpg://eventlens:eventlens@postgres:5432/eventlens
+      DATABASE_URL_SYNC: postgresql+psycopg2://eventlens:eventlens@postgres:5432/eventlens
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      MOCK_LLM_ENABLED: "true"
+      LLM_PROVIDER: mock
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      BACKEND_URL: http://backend:8000
+    command: npm run dev -- --host 0.0.0.0
+
+volumes:
+  pgdata:

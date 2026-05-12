@@ -1,0 +1,150 @@
+import { useParams, Link } from "react-router-dom";
+import {
+  Card, Descriptions, Tag, Tabs, Typography, Table, Spin, Button, Space, Progress,
+  Alert, List, Empty, Collapse,
+} from "antd";
+import { useEvent, useEventAssets, useEventHypotheses, useEventPriceReactions, useGenerateHypothesis, useScoreEvent } from "@/hooks/useEvents";
+import ScoreTag from "@/components/ScoreTag";
+import DirectionTag from "@/components/DirectionTag";
+
+const { Title, Text, Paragraph } = Typography;
+
+export default function EventDetailPage() {
+  const { eventId } = useParams<{ eventId: string }>();
+  const { data: event, isLoading } = useEvent(eventId);
+  const { data: assets } = useEventAssets(eventId);
+  const { data: hypotheses } = useEventHypotheses(eventId);
+  const { data: priceReactions } = useEventPriceReactions(eventId);
+  const scoreMutation = useScoreEvent();
+  const hypothesisMutation = useGenerateHypothesis();
+
+  if (isLoading) return <Spin size="large" style={{ display: "block", margin: "100px auto" }} />;
+  if (!event) return <Empty description="Event not found" />;
+
+  const assetColumns = [
+    { title: "Symbol", dataIndex: "symbol", render: (s: string, r: any) => <Link to={`/assets/${r.asset_id}`}>{s}</Link> },
+    { title: "Name", dataIndex: "name" },
+    { title: "Impact", dataIndex: "impact_direction", render: (d: string) => <DirectionTag direction={d} /> },
+    { title: "Strength", dataIndex: "impact_strength", render: (s: number) => <Progress percent={Math.round(s * 100)} size="small" /> },
+    { title: "Confidence", dataIndex: "confidence_score", render: (s: number) => <ScoreTag score={s} /> },
+    { title: "Reason", dataIndex: "reason", ellipsis: true },
+  ];
+
+  const priceColumns = [
+    { title: "Asset", dataIndex: "asset_id", render: (id: string) => id.slice(0, 8) },
+    { title: "1D Return", dataIndex: "return_1d", render: (v: number | null) => v != null ? <Text style={{ color: v >= 0 ? "#52c41a" : "#ff4d4f" }}>{(v * 100).toFixed(2)}%</Text> : "-" },
+    { title: "5D Return", dataIndex: "return_5d", render: (v: number | null) => v != null ? <Text style={{ color: v >= 0 ? "#52c41a" : "#ff4d4f" }}>{(v * 100).toFixed(2)}%</Text> : "-" },
+    { title: "20D Return", dataIndex: "return_20d", render: (v: number | null) => v != null ? <Text style={{ color: v >= 0 ? "#52c41a" : "#ff4d4f" }}>{(v * 100).toFixed(2)}%</Text> : "-" },
+    { title: "Max DD", dataIndex: "max_drawdown", render: (v: number | null) => v != null ? `${(v * 100).toFixed(2)}%` : "-" },
+    { title: "Excess Ret", dataIndex: "excess_return", render: (v: number | null) => v != null ? <Text style={{ color: v >= 0 ? "#52c41a" : "#ff4d4f" }}>{(v * 100).toFixed(2)}%</Text> : "-" },
+  ];
+
+  const scoreItems = [
+    { label: "Event Alpha", value: event.event_alpha_score },
+    { label: "Materiality", value: event.materiality_score },
+    { label: "Novelty", value: event.novelty_score },
+    { label: "Credibility", value: event.credibility_score },
+    { label: "Urgency", value: event.urgency_score },
+    { label: "Confidence", value: event.confidence_score },
+    { label: "Risk", value: event.risk_score },
+  ];
+
+  return (
+    <div>
+      <Space style={{ marginBottom: 16 }}>
+        <Title level={4} style={{ margin: 0 }}>{event.event_summary}</Title>
+      </Space>
+
+      <Card size="small" style={{ marginBottom: 16 }}>
+        <Descriptions column={4} size="small">
+          <Descriptions.Item label="Type"><Tag>{event.event_type}</Tag></Descriptions.Item>
+          <Descriptions.Item label="Market">{event.market_scope}</Descriptions.Item>
+          <Descriptions.Item label="Direction"><DirectionTag direction={event.direction} /></Descriptions.Item>
+          <Descriptions.Item label="Status"><Tag>{event.status}</Tag></Descriptions.Item>
+          <Descriptions.Item label="Primary Entity">{event.primary_entity || "-"}</Descriptions.Item>
+          <Descriptions.Item label="First Seen">{new Date(event.first_seen_at).toLocaleString("zh-CN")}</Descriptions.Item>
+        </Descriptions>
+        <Space>
+          <Button onClick={() => scoreMutation.mutate(event.id)} loading={scoreMutation.isPending}>
+            Re-Score Event
+          </Button>
+          <Button type="primary" onClick={() => hypothesisMutation.mutate(event.id)} loading={hypothesisMutation.isPending}>
+            Generate Hypothesis
+          </Button>
+        </Space>
+      </Card>
+
+      <Tabs
+        defaultActiveKey="scores"
+        items={[
+          {
+            key: "scores",
+            label: "Scores",
+            children: (
+              <Card>
+                {scoreItems.map((s) => (
+                  <div key={s.label} style={{ marginBottom: 12 }}>
+                    <Space style={{ width: "100%", justifyContent: "space-between" }}>
+                      <Text>{s.label}</Text>
+                      <ScoreTag score={s.value} />
+                    </Space>
+                    <Progress percent={Math.round(s.value * 100)} size="small"
+                      strokeColor={s.value >= 0.7 ? "#52c41a" : s.value >= 0.4 ? "#faad14" : "#ff4d4f"} />
+                  </div>
+                ))}
+                <Alert type="info" showIcon style={{ marginTop: 16 }}
+                  message="Score Formula"
+                  description="Alpha = 0.20×Novelty + 0.20×Materiality + 0.15×Credibility + 0.15×Urgency + 0.10×Confidence + 0.10×Tradability + 0.10×Liquidity − 0.20×Risk" />
+              </Card>
+            ),
+          },
+          {
+            key: "assets",
+            label: `Linked Assets (${assets?.length || 0})`,
+            children: (
+              <Table dataSource={assets || []} columns={assetColumns} rowKey="id" size="small"
+                pagination={false} locale={{ emptyText: "No linked assets. Generate a hypothesis to map assets." }} />
+            ),
+          },
+          {
+            key: "hypotheses",
+            label: `Hypotheses (${hypotheses?.length || 0})`,
+            children: hypotheses && hypotheses.length > 0 ? (
+              <Collapse items={hypotheses.map((h, i) => ({
+                key: h.id,
+                label: <Space><Tag>{h.status}</Tag> {h.hypothesis_text.slice(0, 80)}...</Space>,
+                children: (
+                  <div>
+                    <Paragraph><Text strong>Hypothesis:</Text> {h.hypothesis_text}</Paragraph>
+                    <Paragraph><Text strong>Time Horizon:</Text> {h.time_horizon}</Paragraph>
+                    <Paragraph><Text strong>Risk Notes:</Text> {h.risk_notes || "N/A"}</Paragraph>
+                    <Card size="small" title="Supporting Evidence" style={{ marginBottom: 8 }}>
+                      <List dataSource={h.supporting_evidence || []} renderItem={(item: string) => <List.Item><Text style={{ color: "#52c41a" }}>{item}</Text></List.Item>} />
+                    </Card>
+                    <Card size="small" title="Counter Evidence" style={{ marginBottom: 8 }}>
+                      <List dataSource={h.counter_evidence || []} renderItem={(item: string) => <List.Item><Text style={{ color: "#ff4d4f" }}>{item}</Text></List.Item>} />
+                    </Card>
+                    <Card size="small" title="Trigger Conditions">
+                      <List dataSource={h.trigger_conditions || []} renderItem={(item: string) => <List.Item>{item}</List.Item>} />
+                    </Card>
+                    <Card size="small" title="Invalidation Conditions">
+                      <List dataSource={h.invalidation_conditions || []} renderItem={(item: string) => <List.Item>{item}</List.Item>} />
+                    </Card>
+                  </div>
+                ),
+              }))} />
+            ) : <Empty description="No hypotheses yet. Click 'Generate Hypothesis' to create one." />,
+          },
+          {
+            key: "price",
+            label: "Price Reaction",
+            children: (
+              <Table dataSource={priceReactions || []} columns={priceColumns} rowKey="id" size="small"
+                pagination={false} locale={{ emptyText: "No price reaction data available yet." }} />
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
