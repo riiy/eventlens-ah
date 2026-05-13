@@ -20,3 +20,5 @@ class EventPriceReactionResponse(BaseModel):
     excess_return: float | None
     notes: str | None
     created_at: datetime
+    asset_name: str
+    asset_symbol: str

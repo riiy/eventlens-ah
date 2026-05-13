@@ -21,3 +21,5 @@ class EventPriceReaction(SQLModel, table=True):
     excess_return: float | None = Field(default=None, sa_column=Column(Float))
     notes: str | None = Field(default=None, sa_column=Column(Text))
     created_at: datetime = Field(default_factory=datetime.utcnow, sa_column=Column(DateTime(timezone=True)))
+    asset_name: str = Field(default="", sa_column=Column(String(255)))
+    asset_symbol: str = Field(default="", sa_column=Column(String(50)))

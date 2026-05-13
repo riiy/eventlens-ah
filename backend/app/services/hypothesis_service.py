@@ -66,6 +66,8 @@ class HypothesisService:
                 benchmark_return=round(base_return * 0.3 + random.uniform(-0.01, 0.01), 4),
                 excess_return=round(base_return - base_return * 0.3, 4),
                 notes=f"Mock reaction for {link.impact_direction} impact (strength: {link.impact_strength})",
+                asset_name=link.asset_name,
+                asset_symbol=link.asset_symbol,
             )
             session.add(reaction)
             reactions.append(reaction)

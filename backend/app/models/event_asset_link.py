@@ -19,3 +19,5 @@ class EventAssetLink(SQLModel, table=True):
     reason: str = Field(sa_column=Column(Text))
     confidence_score: float = Field(default=0.0, sa_column=Column(Float))
     created_at: datetime = Field(default_factory=datetime.utcnow, sa_column=Column(DateTime(timezone=True)))
+    asset_name: str = Field(default="", sa_column=Column(String(255)))
+    asset_symbol: str = Field(default="", sa_column=Column(String(50)))

@@ -33,7 +33,8 @@ export default function EventDetailPage() {
   ];
 
   const priceColumns = [
-    { title: "Asset", dataIndex: "asset_id", render: (id: string) => id.slice(0, 8) },
+    { title: "Symbol", dataIndex: "asset_symbol", render: (s: string, r: any) => <Link to={`/assets/${r.asset_id}`}>{s}</Link> },
+    { title: "Asset", dataIndex: "asset_name"},
     { title: "1D Return", dataIndex: "return_1d", render: (v: number | null) => v != null ? <Text style={{ color: v >= 0 ? "#52c41a" : "#ff4d4f" }}>{(v * 100).toFixed(2)}%</Text> : "-" },
     { title: "5D Return", dataIndex: "return_5d", render: (v: number | null) => v != null ? <Text style={{ color: v >= 0 ? "#52c41a" : "#ff4d4f" }}>{(v * 100).toFixed(2)}%</Text> : "-" },
     { title: "20D Return", dataIndex: "return_20d", render: (v: number | null) => v != null ? <Text style={{ color: v >= 0 ? "#52c41a" : "#ff4d4f" }}>{(v * 100).toFixed(2)}%</Text> : "-" },

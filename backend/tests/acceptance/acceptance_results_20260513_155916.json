@@ -1,0 +1,3951 @@
+{
+  "report_type": "EventLens AH MVP Acceptance Test",
+  "generated_at": "2026-05-13T07:59:16.772995+00:00",
+  "api_base": "http://localhost:8000",
+  "thresholds_used": {
+    "json_parse_success_rate": 0.95,
+    "field_completeness_rate": 0.95,
+    "wrong_asset_mapping_rate": 0.15,
+    "buy_sell_recommendation_count": 0,
+    "noise_flagged_as_high_score_rate": 0.1,
+    "core_pipeline_completion_rate": 0.9
+  },
+  "summary": {
+    "total_samples": 30,
+    "step_pass_rates": {
+      "ingest": 1.0,
+      "extract": 1.0,
+      "map": 1.0,
+      "hypothesis": 1.0,
+      "score": 1.0,
+      "price": 0.0
+    },
+    "step_pass_counts": {
+      "ingest": 30,
+      "extract": 30,
+      "map": 30,
+      "hypothesis": 30,
+      "score": 30,
+      "price": 0
+    },
+    "json_parse_rate": 1.0,
+    "field_completeness_rate": 1.0,
+    "buy_sell_count": 3,
+    "wrong_asset_count": 27,
+    "wrong_asset_checked_count": 17,
+    "core_completion_rate": 1.0,
+    "noise_count": 4,
+    "noise_high_score_count": 2,
+    "noise_high_score_rate": 0.5,
+    "hypothesis_with_counter_evidence": 30,
+    "hypothesis_total": 30,
+    "errors_by_type": {},
+    "all_thresholds_pass": false
+  },
+  "threshold_checks": {
+    "json_parse": true,
+    "field_completeness": true,
+    "wrong_asset": false,
+    "buy_sell": false,
+    "noise": false,
+    "core_completion": true
+  },
+  "all_thresholds_pass": false,
+  "per_sample": [
+    {
+      "sample_id": "sample_001",
+      "index": 0,
+      "title": "贵州茅台宣布上调飞天茅台出厂价20% 时隔6年首次提价",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "3728724b-0354-4917-a560-c994980394b4"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "28d338f9-8786-4b08-922a-abaaa02442b9",
+          "event": {
+            "id": "28d338f9-8786-4b08-922a-abaaa02442b9",
+            "raw_document_id": "3728724b-0354-4917-a560-c994980394b4",
+            "event_type": "earnings_surprise",
+            "event_summary": "[业绩变动] 贵州茅台宣布上调飞天茅台出厂价20% 时隔6年首次提价：贵州茅台宣布上调飞天茅台出厂价20% 时隔6年首次提价 贵州茅台酒股份有限公司今日发布公告，自2024年1月1日起上调飞天茅台出厂价约20%，这是时隔6年后的首次提价。分析人士认为此举将显著提振茅台2024年业绩，利好白酒板块。中信证券研报...",
+            "primary_entity": "贵州茅台酒股份有限公司",
+            "related_entities": [
+              "利好白酒板块"
+            ],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.7794,
+            "novelty_score": 0.742,
+            "urgency_score": 0.8364,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7194,
+            "risk_score": 0.2602,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:08.653833Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:08.653874Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 3,
+          "links": [
+            {
+              "id": "47acebfc-c5cf-4c55-98a9-809a530baaba",
+              "event_id": "28d338f9-8786-4b08-922a-abaaa02442b9",
+              "asset_id": "c94bd865-e1b5-427d-9271-2c7ee0074ea6",
+              "symbol": "600519.SH",
+              "name": "贵州茅台",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 1.0,
+              "reason": "基于行业分析和供应链关系，贵州茅台与事件描述中的关键主体高度相关，事件对其经营环境产生POSITIVE影响。",
+              "confidence_score": 0.8859,
+              "created_at": "2026-05-13T07:59:08.730002"
+            },
+            {
+              "id": "90911f17-780c-476a-a810-e95769a84fce",
+              "event_id": "28d338f9-8786-4b08-922a-abaaa02442b9",
+              "asset_id": "7b52c485-cf88-46ce-8d22-56792889ce49",
+              "symbol": "09999.HK",
+              "name": "恒通证券",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.3951,
+              "reason": "恒通证券所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出POSITIVE反应。",
+              "confidence_score": 0.4363,
+              "created_at": "2026-05-13T07:59:08.730228"
+            },
+            {
+              "id": "460b34f7-d298-4645-a37c-fbe31c2f5e65",
+              "event_id": "28d338f9-8786-4b08-922a-abaaa02442b9",
+              "asset_id": "6e70d113-c5d8-4e58-8a1e-a95827f93997",
+              "symbol": "02333.HK",
+              "name": "中港汽车",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.4064,
+              "reason": "基于行业分析和供应链关系，中港汽车与事件描述中的关键主体高度相关，事件对其经营环境产生POSITIVE影响。",
+              "confidence_score": 0.3075,
+              "created_at": "2026-05-13T07:59:08.730506"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "b0513272-c896-4f50-a336-6968831c50fc",
+            "event_id": "28d338f9-8786-4b08-922a-abaaa02442b9",
+            "hypothesis_text": "提价逻辑驱动贵州茅台、恒通证券、中港汽车盈利能力改善，全年业绩有望上调，中期配置价值凸显。",
+            "impact_chain": [
+              "产品提价",
+              "毛利率提升",
+              "盈利预测上修",
+              "贵州茅台、恒通证券、中港汽车估值中枢抬升",
+              "资金持续流入"
+            ],
+            "supporting_evidence": [
+              "公司产品具有较强品牌溢价，提价后销量下滑风险可控",
+              "成本端原材料价格回落，利润弹性加大",
+              "机构调研频次增加，关注度持续提升",
+              "历史提价周期中股价平均涨幅20%+"
+            ],
+            "counter_evidence": [
+              "终端消费疲软可能导致提价效果打折扣",
+              "竞品未跟进提价，市场份额存在流失风险"
+            ],
+            "trigger_conditions": [
+              "公司发布正式调价函",
+              "月度经营数据验证提价传导顺畅",
+              "卖方发布深度报告上调目标价"
+            ],
+            "invalidation_conditions": [
+              "提价后出货量大幅下降",
+              "竞品降价抢夺市场份额"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "提价效应需2-3个季度才能在报表充分体现，短期股价博弈情绪较重。消费环境变化可能影响提价传导效果。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:08.797670Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.65964
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "02333.HK",
+          "09999.HK"
+        ],
+        "wrong_asset_count": 2,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_002",
+      "index": 1,
+      "title": "证监会对某上市公司信息披露违规立案调查",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "c611a7fe-1cc4-4a3f-9741-5aba6bb90585"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "6d4eb2df-59e5-4c87-844f-b1386b1426e1",
+          "event": {
+            "id": "6d4eb2df-59e5-4c87-844f-b1386b1426e1",
+            "raw_document_id": "c611a7fe-1cc4-4a3f-9741-5aba6bb90585",
+            "event_type": "regulatory_action",
+            "event_summary": "[监管行动] 证监会对某上市公司信息披露违规立案调查：证监会对某上市公司信息披露违规立案调查 中国证监会今日发布公告，因涉嫌信息披露违法违规，决定对某创业板上市公司立案调查。该公司此前被质疑虚增收入，2023年年报被审计师出具保留意见。受此消息影响，该公司股价今日开盘跌停。分析人士指出，近期监...",
+            "primary_entity": "证监会对某上市公司",
+            "related_entities": [
+              "相关板块"
+            ],
+            "market_scope": "A_SHARE",
+            "direction": "NEGATIVE",
+            "materiality_score": 0.8677,
+            "novelty_score": 0.726,
+            "urgency_score": 0.8987,
+            "credibility_score": 0.5,
+            "confidence_score": 0.8569,
+            "risk_score": 0.7556,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:08.904908Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:08.904939Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "e0b1736a-ad6f-48f8-b824-b868c33b9a79",
+              "event_id": "6d4eb2df-59e5-4c87-844f-b1386b1426e1",
+              "asset_id": "68df5d40-c76c-40e0-881e-841d51eb0fdd",
+              "symbol": "601318.SH",
+              "name": "中国平安",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.5658,
+              "reason": "综合分析中国平安的业务构成与市场定位，该事件对其营收和估值将产生NEGATIVE影响，建议关注。",
+              "confidence_score": 0.4881,
+              "created_at": "2026-05-13T07:59:08.971857"
+            },
+            {
+              "id": "da97c7ce-cb14-4eaa-a2e5-a0e048cfb473",
+              "event_id": "6d4eb2df-59e5-4c87-844f-b1386b1426e1",
+              "asset_id": "7b52c485-cf88-46ce-8d22-56792889ce49",
+              "symbol": "09999.HK",
+              "name": "恒通证券",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.2971,
+              "reason": "综合分析恒通证券的业务构成与市场定位，该事件对其营收和估值将产生NEGATIVE影响，建议关注。",
+              "confidence_score": 0.3281,
+              "created_at": "2026-05-13T07:59:08.972034"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "25b2a9c9-92c2-41b8-90d3-02520edf2daa",
+            "event_id": "6d4eb2df-59e5-4c87-844f-b1386b1426e1",
+            "hypothesis_text": "监管趋严背景下，不合规的中国平安、恒通证券面临出清风险，行业龙头合规优势凸显，建议向头部集中。",
+            "impact_chain": [
+              "监管新规",
+              "中小公司退出",
+              "中国平安、恒通证券（龙头）承接市场份额",
+              "行业集中度提升",
+              "龙头溢价"
+            ],
+            "supporting_evidence": [
+              "行业合规成本大幅上升，中小企业难以承受",
+              "龙头企业已提前布局合规体系，成本影响可控",
+              "海外市场类似监管周期中龙头超额收益显著"
+            ],
+            "counter_evidence": [
+              "合规成本最终转嫁为全社会成本，行业增速放缓",
+              "监管不确定性本身压制板块估值"
+            ],
+            "trigger_conditions": [
+              "中小竞争对手宣布退出",
+              "行业准入门槛正式提高"
+            ],
+            "invalidation_conditions": [
+              "监管政策出现重大调整或松绑",
+              "新技术路线绕开监管壁垒"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "监管是双刃剑，既是龙头护城河也可能变成创新枷锁。需持续跟踪政策动态和行业边际变化。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:09.044413Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.598115
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_003",
+      "index": 2,
+      "title": "宁德时代拟收购锂矿企业 锁定上游资源",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "89a82025-2d34-442e-b939-ff57aaaed4e6"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "75281562-8147-46fc-994d-236d67f3e296",
+          "event": {
+            "id": "75281562-8147-46fc-994d-236d67f3e296",
+            "raw_document_id": "89a82025-2d34-442e-b939-ff57aaaed4e6",
+            "event_type": "merger_acquisition",
+            "event_summary": "[并购重组] 宁德时代拟收购锂矿企业 锁定上游资源：宁德时代拟收购锂矿企业 锁定上游资源 据上海证券报报道，宁德时代新能源科技股份有限公司正在洽谈收购一家澳大利亚锂矿企业的控股权，交易金额预计超过20亿美元。此次收购旨在锁定上游锂资源供应，降低原材料成本波动风险。业内人士表示，随着全球锂价企...",
+            "primary_entity": "据上海证券",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "MIXED",
+            "materiality_score": 0.8567,
+            "novelty_score": 0.8456,
+            "urgency_score": 0.6544,
+            "credibility_score": 0.5,
+            "confidence_score": 0.8206,
+            "risk_score": 0.4354,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:09.175594Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:09.175636Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 1,
+          "links": [
+            {
+              "id": "b158692e-65fd-4350-95af-ffc0043ca53d",
+              "event_id": "75281562-8147-46fc-994d-236d67f3e296",
+              "asset_id": "2e4fea93-85f1-43e9-adce-b59a09aeb376",
+              "symbol": "300750.SZ",
+              "name": "宁德时代",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.9515,
+              "reason": "通过业务标签匹配，宁德时代的核心业务与事件驱动因素高度重合，影响方向预计为NEGATIVE。",
+              "confidence_score": 0.9117,
+              "created_at": "2026-05-13T07:59:09.253269"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "b9313826-6bf8-4b7d-a593-fd04c4cd0cec",
+            "event_id": "75281562-8147-46fc-994d-236d67f3e296",
+            "hypothesis_text": "并购整合将产生显著协同效应，宁德时代价值重估在即，建议关注套利机会。",
+            "impact_chain": [
+              "并购公告",
+              "市场重估整合价值",
+              "宁德时代股价向要约价收敛",
+              "套利空间缩小",
+              "整合落地验证"
+            ],
+            "supporting_evidence": [
+              "并购标的与收购方业务高度互补，协同效应明确",
+              "交易估值合理，未出现溢价过高的情况",
+              "大股东承诺参与，交易确定性较高",
+              "监管部门审批通过概率大"
+            ],
+            "counter_evidence": [
+              "整合执行风险不可忽视，历史成功率约50%",
+              "换股收购可能导致原股东权益稀释"
+            ],
+            "trigger_conditions": [
+              "反垄断审查无条件通过",
+              "股东大会高票批准",
+              "整合方案细节披露超预期"
+            ],
+            "invalidation_conditions": [
+              "监管否决或附加苛刻条件",
+              "竞购方出现引发价格战"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "并购套利需关注审批风险和时间成本，现金收购和换股收购风险特征不同。整合效果需3-5年验证。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:09.328614Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.6436
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "direction_match": false,
+        "direction_expected": "POSITIVE",
+        "direction_actual": "MIXED",
+        "wrong_assets": [],
+        "wrong_asset_count": 0,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_004",
+      "index": 3,
+      "title": "国务院发布促进新能源汽车产业发展新政策",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "475d17d2-e75e-4316-8ea1-8c0d03670176"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "4c705bbb-7440-4e7f-b0e2-de7403114b73",
+          "event": {
+            "id": "4c705bbb-7440-4e7f-b0e2-de7403114b73",
+            "raw_document_id": "475d17d2-e75e-4316-8ea1-8c0d03670176",
+            "event_type": "policy_change",
+            "event_summary": "[政策变动] 国务院发布促进新能源汽车产业发展新政策：国务院发布促进新能源汽车产业发展新政策 国务院办公厅今日发布《关于进一步促进新能源汽车产业高质量发展的若干意见》，提出到2027年新能源汽车销量占比达到50%以上的目标。政策包括：延续新能源汽车购置税减免至2027年底、加大对充电基础设施的...",
+            "primary_entity": "国务院发布促进新能源汽车",
+            "related_entities": [
+              "新能源汽车板块"
+            ],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.9036,
+            "novelty_score": 0.5423,
+            "urgency_score": 0.6448,
+            "credibility_score": 0.5,
+            "confidence_score": 0.8381,
+            "risk_score": 0.4867,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:09.439193Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:09.439226Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "6d584827-40fb-40b1-8474-9edc81f4f0aa",
+              "event_id": "4c705bbb-7440-4e7f-b0e2-de7403114b73",
+              "asset_id": "800772e8-85fe-4aa5-a397-5cc78e2026f5",
+              "symbol": "600002.SH",
+              "name": "新能电池",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.612,
+              "reason": "新能电池（600002.SH）为policy_change事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到NEUTRAL影响。",
+              "confidence_score": 0.6207,
+              "created_at": "2026-05-13T07:59:09.514313"
+            },
+            {
+              "id": "f5aef3be-d70f-4fb2-ae94-6260b7728855",
+              "event_id": "4c705bbb-7440-4e7f-b0e2-de7403114b73",
+              "asset_id": "6e70d113-c5d8-4e58-8a1e-a95827f93997",
+              "symbol": "02333.HK",
+              "name": "中港汽车",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.3144,
+              "reason": "中港汽车（02333.HK）为policy_change事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到NEUTRAL影响。",
+              "confidence_score": 0.3949,
+              "created_at": "2026-05-13T07:59:09.514813"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "74a79a67-6bcc-46b2-a1be-6474049c7c3f",
+            "event_id": "4c705bbb-7440-4e7f-b0e2-de7403114b73",
+            "hypothesis_text": "政策红利驱动新能电池、中港汽车进入新一轮增长周期，中长期配置价值突出，建议超配。",
+            "impact_chain": [
+              "顶层设计定调",
+              "产业规划落地",
+              "需求爆发",
+              "新能电池、中港汽车收入加速",
+              "戴维斯双击"
+            ],
+            "supporting_evidence": [
+              "写入五年规划/政府工作报告，政策优先级最高",
+              "国际比较显示国内渗透率提升空间大",
+              "产业链上下游配套日渐成熟，形成正向循环",
+              "地方政府积极响应，招商引资力度加大"
+            ],
+            "counter_evidence": [
+              "技术路线存在不确定性，可能出现替代方案",
+              "产能扩张过快可能导致阶段性过剩"
+            ],
+            "trigger_conditions": [
+              "重大示范项目开标或投产",
+              "行业技术标准正式发布",
+              "关键成本突破使商业模式跑通"
+            ],
+            "invalidation_conditions": [
+              "技术路线被颠覆",
+              "国际环境变化导致供应链受阻"
+            ],
+            "time_horizon": "LONG_TERM",
+            "risk_notes": "长期逻辑确定性较高但过程波动较大，适合在调整时分批建仓。政策节奏和力度变化需持续跟踪。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:09.589551Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.58237
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "02333.HK",
+          "600002.SH"
+        ],
+        "wrong_asset_count": 2,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "建仓",
+          "long"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_005",
+      "index": 4,
+      "title": "全球芯片供应短缺加剧 台积电通知客户涨价",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "c1dc93c1-0ee5-48db-a1c1-538c57cd7cf3"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "227f34a7-16fd-4bf6-a925-0be24dab52c2",
+          "event": {
+            "id": "227f34a7-16fd-4bf6-a925-0be24dab52c2",
+            "raw_document_id": "c1dc93c1-0ee5-48db-a1c1-538c57cd7cf3",
+            "event_type": "earnings_surprise",
+            "event_summary": "[业绩变动] 全球芯片供应短缺加剧 台积电通知客户涨价：全球芯片供应短缺加剧 台积电通知客户涨价 据半导体产业链消息，台积电已通知多家中国大陆IC设计客户，自2024年第二季度起将7nm及以下先进制程代工价格上调10%-15%，理由是产能持续紧张及原材料成本上涨。受此影响，国内多家芯片设计公司股...",
+            "primary_entity": "全球芯片",
+            "related_entities": [
+              "际等国产替代概念",
+              "体设备和材料板块"
+            ],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.8284,
+            "novelty_score": 0.7539,
+            "urgency_score": 0.8117,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7771,
+            "risk_score": 0.3523,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:09.719331Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:09.719373Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "55f5062f-3845-4738-8e95-26c803ceb7cf",
+              "event_id": "227f34a7-16fd-4bf6-a925-0be24dab52c2",
+              "asset_id": "c6b81579-28fd-4da4-9c27-20e6dee9fc90",
+              "symbol": "688002.SH",
+              "name": "芯链半导体",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.7175,
+              "reason": "综合分析芯链半导体的业务构成与市场定位，该事件对其营收和估值将产生POSITIVE影响，建议关注。",
+              "confidence_score": 0.6792,
+              "created_at": "2026-05-13T07:59:09.796006"
+            },
+            {
+              "id": "6a8350f6-64c1-4fd5-867c-7a8d16f48328",
+              "event_id": "227f34a7-16fd-4bf6-a925-0be24dab52c2",
+              "asset_id": "68df5d40-c76c-40e0-881e-841d51eb0fdd",
+              "symbol": "601318.SH",
+              "name": "中国平安",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.5192,
+              "reason": "基于行业分析和供应链关系，中国平安与事件描述中的关键主体高度相关，事件对其经营环境产生POSITIVE影响。",
+              "confidence_score": 0.4751,
+              "created_at": "2026-05-13T07:59:09.796436"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "11a4d4e4-6210-4b7d-af39-f783bfd0d932",
+            "event_id": "227f34a7-16fd-4bf6-a925-0be24dab52c2",
+            "hypothesis_text": "芯链半导体、中国平安业绩拐点已现，周期反转逻辑成立，建议在回调中逐步布局。",
+            "impact_chain": [
+              "行业底部确认",
+              "龙头企业率先复苏",
+              "芯链半导体、中国平安订单回暖",
+              "估值修复",
+              "盈利兑现"
+            ],
+            "supporting_evidence": [
+              "行业库存周期见底，补库需求逐步释放",
+              "公司PB估值处于历史10%分位以下，安全边际充足",
+              "产业链调研显示订单可见度改善",
+              "政策端持续释放稳增长信号"
+            ],
+            "counter_evidence": [
+              "需求复苏斜率可能不及预期",
+              "产能出清不彻底或延后反转时点"
+            ],
+            "trigger_conditions": [
+              "月度PMI/行业数据验证复苏趋势",
+              "公司预告业绩大幅改善",
+              "产业资本或大股东增持"
+            ],
+            "invalidation_conditions": [
+              "宏观经济大幅下行",
+              "行业二次探底"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "周期反转判断具有较大不确定性，左侧布局需控制仓位和耐心。建议等待右侧确认信号再加仓。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:09.870874Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.655465
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "direction_match": false,
+        "direction_expected": "MIXED",
+        "direction_actual": "POSITIVE",
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "加仓"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_006",
+      "index": 5,
+      "title": "万科董事长突然宣布辞职 公司股价大幅波动",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "8079720e-c958-4362-a401-37f187547a5d"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "100763fc-73e1-47d7-8c7b-92e495bca85d",
+          "event": {
+            "id": "100763fc-73e1-47d7-8c7b-92e495bca85d",
+            "raw_document_id": "8079720e-c958-4362-a401-37f187547a5d",
+            "event_type": "management_change",
+            "event_summary": "[管理层变动] 万科董事长突然宣布辞职 公司股价大幅波动：万科董事长突然宣布辞职 公司股价大幅波动 万科企业股份有限公司今日公告，公司董事长因个人原因辞去董事长及董事会相关职务，由现任总裁暂代董事长职责。公告称此次人事变动不会影响公司正常经营。消息公布后，万科A股股价下跌逾5%，港股下跌约3%。有...",
+            "primary_entity": "万科企业股份有限公司",
+            "related_entities": [],
+            "market_scope": "BOTH",
+            "direction": "NEGATIVE",
+            "materiality_score": 0.555,
+            "novelty_score": 0.6216,
+            "urgency_score": 0.4965,
+            "credibility_score": 0.5,
+            "confidence_score": 0.6524,
+            "risk_score": 0.4728,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:09.998949Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:09.998990Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 3,
+          "links": [
+            {
+              "id": "38ad9807-d437-4327-abfd-b44802cce4df",
+              "event_id": "100763fc-73e1-47d7-8c7b-92e495bca85d",
+              "asset_id": "b395d2d3-55b5-491b-a504-74dd04266c79",
+              "symbol": "601001.SH",
+              "name": "华夏消费",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.3649,
+              "reason": "通过业务标签匹配，华夏消费的核心业务与事件驱动因素高度重合，影响方向预计为NEGATIVE。",
+              "confidence_score": 0.3543,
+              "created_at": "2026-05-13T07:59:10.075344"
+            },
+            {
+              "id": "b3ff9838-d4a1-4253-8fc1-8d7277c99995",
+              "event_id": "100763fc-73e1-47d7-8c7b-92e495bca85d",
+              "asset_id": "0b81fde6-e16b-436e-a97c-d4cbf26dfd29",
+              "symbol": "688001.SH",
+              "name": "华算科技",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.2722,
+              "reason": "通过业务标签匹配，华算科技的核心业务与事件驱动因素高度重合，影响方向预计为NEGATIVE。",
+              "confidence_score": 0.3503,
+              "created_at": "2026-05-13T07:59:10.075746"
+            },
+            {
+              "id": "91ea48c6-1021-4526-a34a-b7d3f4137222",
+              "event_id": "100763fc-73e1-47d7-8c7b-92e495bca85d",
+              "asset_id": "283244b7-e353-4171-86f9-4472b1204af0",
+              "symbol": "09888.HK",
+              "name": "港云智能",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.3078,
+              "reason": "港云智能（09888.HK）为management_change事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到NEGATIVE影响。",
+              "confidence_score": 0.3,
+              "created_at": "2026-05-13T07:59:10.076149"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "909d7c17-7733-4d08-9bc9-a0c7e64c7700",
+            "event_id": "100763fc-73e1-47d7-8c7b-92e495bca85d",
+            "hypothesis_text": "新管理层有望带来经营变革，华夏消费、华算科技、港云智能或迎来拐点性机会，但需要1-2个季度验证。",
+            "impact_chain": [
+              "高管变更",
+              "市场预期调整",
+              "华夏消费、华算科技、港云智能战略调整",
+              "业务指标验证",
+              "估值重估"
+            ],
+            "supporting_evidence": [
+              "新任管理者在过往任职履历中业绩出色",
+              "公司近年经营疲弱，变革动力和空间都较大",
+              "新任管理者可能带来新的战略资源和业务关系"
+            ],
+            "counter_evidence": [
+              "管理层变动初期存在团队磨合和战略不确定性",
+              "历史数据显示高管变更后一年内跑赢概率约55%"
+            ],
+            "trigger_conditions": [
+              "新管理层发布战略规划",
+              "组织架构或核心岗位调整完成"
+            ],
+            "invalidation_conditions": [
+              "新管理层与董事会产生重大分歧",
+              "核心骨干跟随前管理层离职"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "管理层变更是典型的高不确定性事件，建议等待1-2季度经营数据验证方向后再做判断。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:10.152216Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.510475
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "09888.HK",
+          "601001.SH",
+          "688001.SH"
+        ],
+        "wrong_asset_count": 3,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_007",
+      "index": 6,
+      "title": "华为发布新一代AI芯片昇腾910C 算力较上代翻倍",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "a8427a62-801e-4b14-8b55-713f81c89ac8"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "d7556bd3-3df6-454f-8ef6-00bcbae451cf",
+          "event": {
+            "id": "d7556bd3-3df6-454f-8ef6-00bcbae451cf",
+            "raw_document_id": "a8427a62-801e-4b14-8b55-713f81c89ac8",
+            "event_type": "product_launch",
+            "event_summary": "[产品发布] 华为发布新一代AI芯片昇腾910C 算力较上代翻倍：华为发布新一代AI芯片昇腾910C 算力较上代翻倍 华为技术有限公司今日在深圳举行新品发布会，正式推出新一代AI训练芯片昇腾910C。该芯片采用7nm工艺，FP16算力达到640 TFLOPS，较上一代昇腾910B提升约100%，能效比提升...",
+            "primary_entity": "华为技术有限公司",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.6324,
+            "novelty_score": 0.8586,
+            "urgency_score": 0.6361,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7569,
+            "risk_score": 0.2214,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:10.281555Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:10.281597Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 3,
+          "links": [
+            {
+              "id": "d6d3ed64-c98e-46b9-acdd-6834b9ed48f2",
+              "event_id": "d7556bd3-3df6-454f-8ef6-00bcbae451cf",
+              "asset_id": "0b81fde6-e16b-436e-a97c-d4cbf26dfd29",
+              "symbol": "688001.SH",
+              "name": "华算科技",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.6052,
+              "reason": "华算科技所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出POSITIVE反应。",
+              "confidence_score": 0.6308,
+              "created_at": "2026-05-13T07:59:10.357803"
+            },
+            {
+              "id": "543cda17-e34c-4711-beda-32a86b9c13b1",
+              "event_id": "d7556bd3-3df6-454f-8ef6-00bcbae451cf",
+              "asset_id": "800772e8-85fe-4aa5-a397-5cc78e2026f5",
+              "symbol": "600002.SH",
+              "name": "新能电池",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.483,
+              "reason": "基于行业分析和供应链关系，新能电池与事件描述中的关键主体高度相关，事件对其经营环境产生POSITIVE影响。",
+              "confidence_score": 0.4109,
+              "created_at": "2026-05-13T07:59:10.358222"
+            },
+            {
+              "id": "d742e2c3-0e8e-4e5c-a9a6-02af7996d559",
+              "event_id": "d7556bd3-3df6-454f-8ef6-00bcbae451cf",
+              "asset_id": "b395d2d3-55b5-491b-a504-74dd04266c79",
+              "symbol": "601001.SH",
+              "name": "华夏消费",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.3961,
+              "reason": "基于行业分析和供应链关系，华夏消费与事件描述中的关键主体高度相关，事件对其经营环境产生POSITIVE影响。",
+              "confidence_score": 0.3317,
+              "created_at": "2026-05-13T07:59:10.358607"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "a70fd4b0-96a2-4e0b-af34-401d94c80337",
+            "event_id": "d7556bd3-3df6-454f-8ef6-00bcbae451cf",
+            "hypothesis_text": "华算科技、新能电池、华夏消费产品矩阵完善夯实竞争优势，有望复制成功产品的增长曲线。",
+            "impact_chain": [
+              "新品补充产品线",
+              "交叉销售机会",
+              "华算科技、新能电池、华夏消费客单价提升",
+              "ARPU增长",
+              "估值上移"
+            ],
+            "supporting_evidence": [
+              "新品与现有产品形成良好互补，不相互蚕食",
+              "品牌认知度高，新品推广成本低",
+              "渠道复用程度高，新品可快速铺开"
+            ],
+            "counter_evidence": [
+              "产品线过度扩张可能导致资源分散",
+              "新品可能蚕食原有高端产品份额"
+            ],
+            "trigger_conditions": [
+              "新品首季销售数据公布",
+              "获得行业权威评测认可"
+            ],
+            "invalidation_conditions": [
+              "新品市场反响平平",
+              "出现定价失误或定位模糊"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "产品发布到业绩兑现存在半年以上的滞后，股价炒作可能提前透支。关注首发用户的真实反馈。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:10.433699Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.635025
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_008",
+      "index": 7,
+      "title": "某AI概念股连续7日涨停 深交所下发关注函",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "008a0321-0b8b-40e7-845c-f960a1ebd362"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "9a71069c-aaa2-4482-bc13-327f0237578f",
+          "event": {
+            "id": "9a71069c-aaa2-4482-bc13-327f0237578f",
+            "raw_document_id": "008a0321-0b8b-40e7-845c-f960a1ebd362",
+            "event_type": "market_anomaly",
+            "event_summary": "[市场异动] 某AI概念股连续7日涨停 深交所下发关注函：某AI概念股连续7日涨停 深交所下发关注函 某人工智能概念股近期股价异动，连续7个交易日涨停，累计涨幅达95%。今日该股成交额突破50亿元，换手率超过30%，龙虎榜显示多家知名游资席位现身买入。深交所已向该公司下发关注函，要求说明是否存在应...",
+            "primary_entity": "深交所已向该公司",
+            "related_entities": [
+              "某人工智能概念"
+            ],
+            "market_scope": "A_SHARE",
+            "direction": "MIXED",
+            "materiality_score": 0.5904,
+            "novelty_score": 0.856,
+            "urgency_score": 0.8474,
+            "credibility_score": 0.5,
+            "confidence_score": 0.6674,
+            "risk_score": 0.6155,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:10.562046Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:10.562087Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "985f9a4b-47e8-4ee8-b16f-3be41b29b1ce",
+              "event_id": "9a71069c-aaa2-4482-bc13-327f0237578f",
+              "asset_id": "283244b7-e353-4171-86f9-4472b1204af0",
+              "symbol": "09888.HK",
+              "name": "港云智能",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.49,
+              "reason": "港云智能（09888.HK）为market_anomaly事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到POSITIVE影响。",
+              "confidence_score": 0.4933,
+              "created_at": "2026-05-13T07:59:10.636937"
+            },
+            {
+              "id": "ec8922fe-d78f-419b-9fde-617e82215bf7",
+              "event_id": "9a71069c-aaa2-4482-bc13-327f0237578f",
+              "asset_id": "6e3802c1-5705-43b1-8e94-3f46e0a8579e",
+              "symbol": "9988.HK",
+              "name": "阿里巴巴",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.4284,
+              "reason": "阿里巴巴（9988.HK）为market_anomaly事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到POSITIVE影响。",
+              "confidence_score": 0.375,
+              "created_at": "2026-05-13T07:59:10.637365"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "96c72126-756c-4aa1-b0de-572fa6219737",
+            "event_id": "9a71069c-aaa2-4482-bc13-327f0237578f",
+            "hypothesis_text": "港云智能、阿里巴巴出现交易异动，可能是资金提前布局的迹象，建议跟踪但暂勿追高。",
+            "impact_chain": [
+              "异动信号",
+              "市场关注度提升",
+              "港云智能、阿里巴巴短线博弈",
+              "真实逻辑浮现或证伪",
+              "方向性行情"
+            ],
+            "supporting_evidence": [
+              "龙虎榜显示机构席位参与，非游资主导",
+              "成交量放大伴随价格突破关键均线",
+              "板块效应明显，同行业多只个股同步异动"
+            ],
+            "counter_evidence": [
+              "纯资金驱动的行情缺乏基本面支撑，回落速度快",
+              "异动可能是主力出货的前兆"
+            ],
+            "trigger_conditions": [
+              "公司发布异动公告或澄清",
+              "成交量持续放大且股价站稳新高"
+            ],
+            "invalidation_conditions": [
+              "异动后成交量快速萎缩",
+              "公司公告否定市场传闻"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "市场异动分析具有较高不确定性，可能是噪音而非信号。建议等待基本面或消息面验证。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:10.712470Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.57003
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [
+          "买入"
+        ],
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_009",
+      "index": 8,
+      "title": "比亚迪2023年净利润超预期 突破300亿元大关",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "4e4ecd78-266f-4a50-8f23-d8f494d6d65a"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "165feb06-7334-4562-be43-a52739ea8674",
+          "event": {
+            "id": "165feb06-7334-4562-be43-a52739ea8674",
+            "raw_document_id": "4e4ecd78-266f-4a50-8f23-d8f494d6d65a",
+            "event_type": "product_launch",
+            "event_summary": "[产品发布] 比亚迪2023年净利润超预期 突破300亿元大关：比亚迪2023年净利润超预期 突破300亿元大关 比亚迪股份有限公司今日发布2023年度业绩快报，全年营业收入约6000亿元，同比增长约42%；归属于上市公司股东的净利润305亿元，同比增长约81%，超出市场预期的280亿元。公告显示，公司...",
+            "primary_entity": "比亚迪股份有限公司",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.6801,
+            "novelty_score": 0.9004,
+            "urgency_score": 0.619,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7468,
+            "risk_score": 0.2137,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:10.840700Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:10.840757Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 1,
+          "links": [
+            {
+              "id": "2c204c3c-6ad9-4cab-a77a-f289eb1d3ff5",
+              "event_id": "165feb06-7334-4562-be43-a52739ea8674",
+              "asset_id": "efbe9569-6e97-46f9-8923-ad0a5ee777e4",
+              "symbol": "002594.SZ",
+              "name": "比亚迪",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.5896,
+              "reason": "综合分析比亚迪的业务构成与市场定位，该事件对其营收和估值将产生POSITIVE影响，建议关注。",
+              "confidence_score": 0.6496,
+              "created_at": "2026-05-13T07:59:10.917151"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "d797d24a-c600-4477-92ed-232146d2dd29",
+            "event_id": "165feb06-7334-4562-be43-a52739ea8674",
+            "hypothesis_text": "重磅新品打开比亚迪成长空间，产品周期驱动业绩加速，建议在量产爬坡阶段布局。",
+            "impact_chain": [
+              "新品发布",
+              "预订/订单数据验证需求",
+              "比亚迪产能爬坡",
+              "收入增量兑现",
+              "估值切换"
+            ],
+            "supporting_evidence": [
+              "新品性能/价格相比竞品有明显优势",
+              "市场空间测算显示增量收入可达当前营收的30%+",
+              "供应链储备充足，量产爬坡确定性较高",
+              "客户反馈积极，首批预订数据超预期"
+            ],
+            "counter_evidence": [
+              "新品爬坡存在技术和良率风险",
+              "竞品可能快速跟进推出类似产品"
+            ],
+            "trigger_conditions": [
+              "首批交付完成且口碑发酵",
+              "月度产销数据持续超预期",
+              "获得重大客户认证或订单"
+            ],
+            "invalidation_conditions": [
+              "良率迟迟未达经济性水平",
+              "出现严重质量问题或召回"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "新产品放量节奏是影响股价的关键变量，需逐月跟踪。警惕PPT产品（仅发布不落地）。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:10.991564Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.65089
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [],
+        "wrong_asset_count": 0,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_010",
+      "index": 9,
+      "title": "字节跳动旗下火山引擎发布企业级大模型服务平台",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "65d3e0a2-a76f-493f-8723-3c5f8492bf19"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "e4947662-09b5-49a9-bd2e-a9649707c539",
+          "event": {
+            "id": "e4947662-09b5-49a9-bd2e-a9649707c539",
+            "raw_document_id": "65d3e0a2-a76f-493f-8723-3c5f8492bf19",
+            "event_type": "product_launch",
+            "event_summary": "[产品发布] 字节跳动旗下火山引擎发布企业级大模型服务平台：字节跳动旗下火山引擎发布企业级大模型服务平台 字节跳动旗下云计算品牌火山引擎今日举办产品发布会，推出企业级大模型服务平台。该平台支持企业基于开源大模型进行私有化部署和微调，提供从数据标注、模型训练到推理部署的全流程服务。火山引擎负责人表示，...",
+            "primary_entity": "未识别主体",
+            "related_entities": [
+              "教育等行业"
+            ],
+            "market_scope": "BOTH",
+            "direction": "POSITIVE",
+            "materiality_score": 0.6961,
+            "novelty_score": 0.8645,
+            "urgency_score": 0.553,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7123,
+            "risk_score": 0.227,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:11.109749Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:11.109807Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "45675dc0-d298-42bd-9541-e3931822e19d",
+              "event_id": "e4947662-09b5-49a9-bd2e-a9649707c539",
+              "asset_id": "251db5f6-699d-48c5-a037-3deb9ae11e6b",
+              "symbol": "300001.SZ",
+              "name": "东方数据",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.7067,
+              "reason": "东方数据（300001.SZ）为product_launch事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到POSITIVE影响。",
+              "confidence_score": 0.6508,
+              "created_at": "2026-05-13T07:59:11.182674"
+            },
+            {
+              "id": "287c3b09-ce3e-4a63-b5fa-8ac43f47a410",
+              "event_id": "e4947662-09b5-49a9-bd2e-a9649707c539",
+              "asset_id": "5c5909e4-8920-4932-bed0-12f1d54d7e05",
+              "symbol": "0700.HK",
+              "name": "腾讯控股",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.278,
+              "reason": "基于行业分析和供应链关系，腾讯控股与事件描述中的关键主体高度相关，事件对其经营环境产生POSITIVE影响。",
+              "confidence_score": 0.3728,
+              "created_at": "2026-05-13T07:59:11.183072"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "eb012486-aebc-45ac-91e4-8df849a81c10",
+            "event_id": "e4947662-09b5-49a9-bd2e-a9649707c539",
+            "hypothesis_text": "重磅新品打开东方数据、腾讯控股成长空间，产品周期驱动业绩加速，建议在量产爬坡阶段布局。",
+            "impact_chain": [
+              "新品发布",
+              "预订/订单数据验证需求",
+              "东方数据、腾讯控股产能爬坡",
+              "收入增量兑现",
+              "估值切换"
+            ],
+            "supporting_evidence": [
+              "新品性能/价格相比竞品有明显优势",
+              "市场空间测算显示增量收入可达当前营收的30%+",
+              "供应链储备充足，量产爬坡确定性较高",
+              "客户反馈积极，首批预订数据超预期"
+            ],
+            "counter_evidence": [
+              "新品爬坡存在技术和良率风险",
+              "竞品可能快速跟进推出类似产品"
+            ],
+            "trigger_conditions": [
+              "首批交付完成且口碑发酵",
+              "月度产销数据持续超预期",
+              "获得重大客户认证或订单"
+            ],
+            "invalidation_conditions": [
+              "良率迟迟未达经济性水平",
+              "出现严重质量问题或召回"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "新产品放量节奏是影响股价的关键变量，需逐月跟踪。警惕PPT产品（仅发布不落地）。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:11.258698Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.6509
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "direction_match": false,
+        "direction_expected": "NEUTRAL",
+        "direction_actual": "POSITIVE",
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_011",
+      "index": 10,
+      "title": "香港证监会就某地产公司涉嫌内幕交易展开调查",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "37c7b373-41aa-44df-a373-d1f1078f27ea"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "b74f3e8e-f6b3-4f8a-b742-8ebefeaa04c3",
+          "event": {
+            "id": "b74f3e8e-f6b3-4f8a-b742-8ebefeaa04c3",
+            "raw_document_id": "37c7b373-41aa-44df-a373-d1f1078f27ea",
+            "event_type": "regulatory_action",
+            "event_summary": "[监管行动] 香港证监会就某地产公司涉嫌内幕交易展开调查：香港证监会就某地产公司涉嫌内幕交易展开调查 香港证监会今日宣布，正就某大型地产发展商涉嫌内幕交易展开调查。据悉，该公司高管在公司发布盈利预警公告前大量减持股份，涉及金额约5亿港元。香港证监会已要求相关金融机构提供交易记录，并对涉案个人实施离...",
+            "primary_entity": "香港证监会就某地产公司",
+            "related_entities": [
+              "能对香港地产板块",
+              "映高息环境下行业"
+            ],
+            "market_scope": "A_SHARE",
+            "direction": "NEGATIVE",
+            "materiality_score": 0.8055,
+            "novelty_score": 0.6771,
+            "urgency_score": 0.8763,
+            "credibility_score": 0.5,
+            "confidence_score": 0.8259,
+            "risk_score": 0.8283,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:11.386836Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:11.386876Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "196dfd16-8786-4a16-b678-d10c50a3f34a",
+              "event_id": "b74f3e8e-f6b3-4f8a-b742-8ebefeaa04c3",
+              "asset_id": "2f60b7e3-98aa-4279-963f-6b05cabaa48b",
+              "symbol": "01234.HK",
+              "name": "亚洲地产服务",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.3765,
+              "reason": "通过业务标签匹配，亚洲地产服务的核心业务与事件驱动因素高度重合，影响方向预计为NEGATIVE。",
+              "confidence_score": 0.5035,
+              "created_at": "2026-05-13T07:59:11.462616"
+            },
+            {
+              "id": "680228bb-152f-4e38-bfec-42acb0afc7e8",
+              "event_id": "b74f3e8e-f6b3-4f8a-b742-8ebefeaa04c3",
+              "asset_id": "7b52c485-cf88-46ce-8d22-56792889ce49",
+              "symbol": "09999.HK",
+              "name": "恒通证券",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.4335,
+              "reason": "通过业务标签匹配，恒通证券的核心业务与事件驱动因素高度重合，影响方向预计为NEGATIVE。",
+              "confidence_score": 0.3968,
+              "created_at": "2026-05-13T07:59:11.463013"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "b510b5c6-240f-403f-8d69-e33482fb4aa9",
+            "event_id": "b74f3e8e-f6b3-4f8a-b742-8ebefeaa04c3",
+            "hypothesis_text": "监管处罚对亚洲地产服务、恒通证券短期冲击明显，但中长期不改变公司基本面，超跌后或有布局机会。",
+            "impact_chain": [
+              "处罚公告",
+              "恐慌性抛售",
+              "亚洲地产服务、恒通证券超跌",
+              "市场消化利空",
+              "基本面驱动的修复"
+            ],
+            "supporting_evidence": [
+              "历史类似处罚案例中，公司在6个月内平均反弹15%",
+              "处罚金额相对公司利润规模有限，非毁灭性打击",
+              "公司业务护城河深厚，客户粘性高"
+            ],
+            "counter_evidence": [
+              "连续处罚可能引发连锁反应（大客户解约/银行抽贷）",
+              "声誉损失难以量化但可能持久影响业务"
+            ],
+            "trigger_conditions": [
+              "公司整改方案公布",
+              "业务数据验证影响可控",
+              "机构资金逢低入场"
+            ],
+            "invalidation_conditions": [
+              "发现新的违规问题",
+              "处罚升级为业务暂停或牌照吊销"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "监管处罚的不确定性高，建议等待事件充分消化后再评估。如果涉及业务资质受影响则是性质变化。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:11.537149Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.554895
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_012",
+      "index": 11,
+      "title": "腾讯发布混元大模型企业版 对标海外头部产品",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "87b48b91-a0af-4df4-9fa3-8825d1bc1dd1"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "81ca5e1c-df88-4587-8864-cbc11cdf3d03",
+          "event": {
+            "id": "81ca5e1c-df88-4587-8864-cbc11cdf3d03",
+            "raw_document_id": "87b48b91-a0af-4df4-9fa3-8825d1bc1dd1",
+            "event_type": "merger_acquisition",
+            "event_summary": "[并购重组] 腾讯发布混元大模型企业版 对标海外头部产品：腾讯发布混元大模型企业版 对标海外头部产品 腾讯控股今日在香港举办数字生态大会，正式推出混元大模型企业版，支持文本、图像、代码等多种模态的生成和理解。腾讯云总裁表示，混元大模型在中文理解、逻辑推理等多项基准测试中表现达到国际一流水平，已在腾...",
+            "primary_entity": "未识别主体",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.8819,
+            "novelty_score": 0.8062,
+            "urgency_score": 0.7027,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7646,
+            "risk_score": 0.3292,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:11.662645Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:11.662686Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 3,
+          "links": [
+            {
+              "id": "b33f6170-6f79-457d-87fe-7ce8e9597320",
+              "event_id": "81ca5e1c-df88-4587-8864-cbc11cdf3d03",
+              "asset_id": "5c5909e4-8920-4932-bed0-12f1d54d7e05",
+              "symbol": "0700.HK",
+              "name": "腾讯控股",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.8081,
+              "reason": "通过业务标签匹配，腾讯控股的核心业务与事件驱动因素高度重合，影响方向预计为POSITIVE。",
+              "confidence_score": 0.6621,
+              "created_at": "2026-05-13T07:59:11.739970"
+            },
+            {
+              "id": "f536c99c-450c-4ffd-b9c1-4417a4234bea",
+              "event_id": "81ca5e1c-df88-4587-8864-cbc11cdf3d03",
+              "asset_id": "68df5d40-c76c-40e0-881e-841d51eb0fdd",
+              "symbol": "601318.SH",
+              "name": "中国平安",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.6292,
+              "reason": "中国平安所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出POSITIVE反应。",
+              "confidence_score": 0.6096,
+              "created_at": "2026-05-13T07:59:11.740432"
+            },
+            {
+              "id": "957567b6-682d-4d0e-a41e-fe30f8d852a7",
+              "event_id": "81ca5e1c-df88-4587-8864-cbc11cdf3d03",
+              "asset_id": "6e70d113-c5d8-4e58-8a1e-a95827f93997",
+              "symbol": "02333.HK",
+              "name": "中港汽车",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.4675,
+              "reason": "中港汽车（02333.HK）为merger_acquisition事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到POSITIVE影响。",
+              "confidence_score": 0.4446,
+              "created_at": "2026-05-13T07:59:11.740821"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "4c44058a-c28a-4b86-8345-e8ad3020acc0",
+            "event_id": "81ca5e1c-df88-4587-8864-cbc11cdf3d03",
+            "hypothesis_text": "并购标的质地优良，腾讯控股、中国平安、中港汽车通过此次收购打开第二增长曲线，成长空间大幅拓宽。",
+            "impact_chain": [
+              "跨界收购",
+              "进入新市场",
+              "腾讯控股、中国平安、中港汽车业务多元化",
+              "估值体系切换",
+              "长期市值增长"
+            ],
+            "supporting_evidence": [
+              "标的公司处于高景气赛道，行业增速30%+",
+              "收购方具备赋能能力（渠道/技术/资金）",
+              "对标海外同业，多元业务公司享有估值溢价"
+            ],
+            "counter_evidence": [
+              "跨界整合难度大，文化冲突是常见陷阱",
+              "管理层精力分散可能拖累原有业务"
+            ],
+            "trigger_conditions": [
+              "新业务首单落地或大客户签约",
+              "协同项目取得阶段性成果"
+            ],
+            "invalidation_conditions": [
+              "新业务进展严重低于预期",
+              "商誉减值风险暴露"
+            ],
+            "time_horizon": "LONG_TERM",
+            "risk_notes": "跨界收购风险高于同业整合，商誉减值是最常见的地雷。建议密切跟踪新业务独立经营数据。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:11.815812Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.663645
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "601318.SH",
+          "02333.HK"
+        ],
+        "wrong_asset_count": 2,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "long"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_013",
+      "index": 12,
+      "title": "友邦保险上半年新业务价值增长逊预期 股价承压",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "560b66c9-716d-4b60-9497-8de754ff433b"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "409582a6-e8bf-4d7c-bb02-f4bea8209d55",
+          "event": {
+            "id": "409582a6-e8bf-4d7c-bb02-f4bea8209d55",
+            "raw_document_id": "560b66c9-716d-4b60-9497-8de754ff433b",
+            "event_type": "merger_acquisition",
+            "event_summary": "[并购重组] 友邦保险上半年新业务价值增长逊预期 股价承压：友邦保险上半年新业务价值增长逊预期 股价承压 友邦保险控股有限公司公布2024年上半年业绩，新业务价值同比增长8%至19.8亿美元，低于市场预期的11%增长。其中中国内地市场新业务价值增长放缓至5%，主要受储蓄型产品需求下降影响。集团首席执...",
+            "primary_entity": "友邦保险",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "NEGATIVE",
+            "materiality_score": 0.845,
+            "novelty_score": 0.8545,
+            "urgency_score": 0.647,
+            "credibility_score": 0.5,
+            "confidence_score": 0.8156,
+            "risk_score": 0.3779,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:11.945312Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:11.945391Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 1,
+          "links": [
+            {
+              "id": "2cf99d49-ee3e-48d4-80c9-d710e867495c",
+              "event_id": "409582a6-e8bf-4d7c-bb02-f4bea8209d55",
+              "asset_id": "333d2edb-cd41-4354-a91a-2c05d434d4c8",
+              "symbol": "000333.SZ",
+              "name": "美的集团",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.6756,
+              "reason": "综合分析美的集团的业务构成与市场定位，该事件对其营收和估值将产生NEUTRAL影响，建议关注。",
+              "confidence_score": 0.6711,
+              "created_at": "2026-05-13T07:59:12.021973"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "43bd36ec-4ac8-4beb-87e2-1421cac41052",
+            "event_id": "409582a6-e8bf-4d7c-bb02-f4bea8209d55",
+            "hypothesis_text": "并购整合将产生显著协同效应，美的集团价值重估在即，建议关注套利机会。",
+            "impact_chain": [
+              "并购公告",
+              "市场重估整合价值",
+              "美的集团股价向要约价收敛",
+              "套利空间缩小",
+              "整合落地验证"
+            ],
+            "supporting_evidence": [
+              "并购标的与收购方业务高度互补，协同效应明确",
+              "交易估值合理，未出现溢价过高的情况",
+              "大股东承诺参与，交易确定性较高",
+              "监管部门审批通过概率大"
+            ],
+            "counter_evidence": [
+              "整合执行风险不可忽视，历史成功率约50%",
+              "换股收购可能导致原股东权益稀释"
+            ],
+            "trigger_conditions": [
+              "反垄断审查无条件通过",
+              "股东大会高票批准",
+              "整合方案细节披露超预期"
+            ],
+            "invalidation_conditions": [
+              "监管否决或附加苛刻条件",
+              "竞购方出现引发价格战"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "并购套利需关注审批风险和时间成本，现金收购和换股收购风险特征不同。整合效果需3-5年验证。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:12.096065Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.65293
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "000333.SZ"
+        ],
+        "wrong_asset_count": 1,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_014",
+      "index": 13,
+      "title": "传美团考虑收购东南亚外卖平台Foodpanda部分业务",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "72de41ec-b555-4c76-b48c-a99865267285"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "84312144-66f0-40c9-bbd8-1e2d74cbbe1b",
+          "event": {
+            "id": "84312144-66f0-40c9-bbd8-1e2d74cbbe1b",
+            "raw_document_id": "72de41ec-b555-4c76-b48c-a99865267285",
+            "event_type": "merger_acquisition",
+            "event_summary": "[并购重组] 传美团考虑收购东南亚外卖平台Foodpanda部分业务：传美团考虑收购东南亚外卖平台Foodpanda部分业务 据彭博社援引知情人士报道，美团正在考虑收购德国Delivery Hero旗下Foodpanda在东南亚的部分业务，以拓展海外市场。消息称谈判处于早期阶段，交易估值可能超过10亿美元。美...",
+            "primary_entity": "未识别主体",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "NEUTRAL",
+            "materiality_score": 0.8439,
+            "novelty_score": 0.7791,
+            "urgency_score": 0.7027,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7652,
+            "risk_score": 0.2946,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:12.208955Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:12.208997Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "f29543a8-ff61-46b3-b4ee-6ad13151e963",
+              "event_id": "84312144-66f0-40c9-bbd8-1e2d74cbbe1b",
+              "asset_id": "23d473f2-8b70-40bd-abc2-d89827a4fbea",
+              "symbol": "3690.HK",
+              "name": "美团",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.5716,
+              "reason": "基于行业分析和供应链关系，美团与事件描述中的关键主体高度相关，事件对其经营环境产生NEUTRAL影响。",
+              "confidence_score": 0.644,
+              "created_at": "2026-05-13T07:59:12.285019"
+            },
+            {
+              "id": "33111f13-3828-44d8-8582-fc1a9db8c2f0",
+              "event_id": "84312144-66f0-40c9-bbd8-1e2d74cbbe1b",
+              "asset_id": "333d2edb-cd41-4354-a91a-2c05d434d4c8",
+              "symbol": "000333.SZ",
+              "name": "美的集团",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.6947,
+              "reason": "美的集团所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出NEUTRAL反应。",
+              "confidence_score": 0.6249,
+              "created_at": "2026-05-13T07:59:12.285443"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "19f65c9c-e624-4243-9917-8b63d1211746",
+            "event_id": "84312144-66f0-40c9-bbd8-1e2d74cbbe1b",
+            "hypothesis_text": "并购整合将产生显著协同效应，美团、美的集团价值重估在即，建议关注套利机会。",
+            "impact_chain": [
+              "并购公告",
+              "市场重估整合价值",
+              "美团、美的集团股价向要约价收敛",
+              "套利空间缩小",
+              "整合落地验证"
+            ],
+            "supporting_evidence": [
+              "并购标的与收购方业务高度互补，协同效应明确",
+              "交易估值合理，未出现溢价过高的情况",
+              "大股东承诺参与，交易确定性较高",
+              "监管部门审批通过概率大"
+            ],
+            "counter_evidence": [
+              "整合执行风险不可忽视，历史成功率约50%",
+              "换股收购可能导致原股东权益稀释"
+            ],
+            "trigger_conditions": [
+              "反垄断审查无条件通过",
+              "股东大会高票批准",
+              "整合方案细节披露超预期"
+            ],
+            "invalidation_conditions": [
+              "监管否决或附加苛刻条件",
+              "竞购方出现引发价格战"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "并购套利需关注审批风险和时间成本，现金收购和换股收购风险特征不同。整合效果需3-5年验证。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:12.360352Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.657605
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "direction_match": false,
+        "direction_expected": "POSITIVE",
+        "direction_actual": "NEUTRAL",
+        "wrong_assets": [
+          "000333.SZ"
+        ],
+        "wrong_asset_count": 1,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_015",
+      "index": 14,
+      "title": "汇丰控股宣布CEO意外离职 继任人选未定",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "86f19703-79a2-45a1-9ab7-748c068e72d7"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "29b9ec35-94a6-4cd6-a9ff-a902fde1dc2d",
+          "event": {
+            "id": "29b9ec35-94a6-4cd6-a9ff-a902fde1dc2d",
+            "raw_document_id": "86f19703-79a2-45a1-9ab7-748c068e72d7",
+            "event_type": "merger_acquisition",
+            "event_summary": "[并购重组] 汇丰控股宣布CEO意外离职 继任人选未定：汇丰控股宣布CEO意外离职 继任人选未定 汇丰控股有限公司今日突然宣布，集团行政总裁已向董事会递交辞呈，将在三个月过渡期后离任。董事会已启动全球范围继任人选遴选程序，暂由首席财务官代理CEO职责。汇丰未详细说明此次离职原因，仅表示是个人职业...",
+            "primary_entity": "汇丰控股有限公司",
+            "related_entities": [],
+            "market_scope": "BOTH",
+            "direction": "NEGATIVE",
+            "materiality_score": 0.8766,
+            "novelty_score": 0.7952,
+            "urgency_score": 0.7213,
+            "credibility_score": 0.5,
+            "confidence_score": 0.8154,
+            "risk_score": 0.4675,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:12.485731Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:12.485772Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 1,
+          "links": [
+            {
+              "id": "0bce0c2a-7fd5-4e31-9683-b290d5b1d8d3",
+              "event_id": "29b9ec35-94a6-4cd6-a9ff-a902fde1dc2d",
+              "asset_id": "01562991-ccb4-4919-9519-f84bcc5c7b28",
+              "symbol": "1810.HK",
+              "name": "小米集团",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.5057,
+              "reason": "综合分析小米集团的业务构成与市场定位，该事件对其营收和估值将产生NEUTRAL影响，建议关注。",
+              "confidence_score": 0.4246,
+              "created_at": "2026-05-13T07:59:12.561731"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "3e9170ee-ada6-4f89-89b7-1c0c582c37ef",
+            "event_id": "29b9ec35-94a6-4cd6-a9ff-a902fde1dc2d",
+            "hypothesis_text": "行业整合加速，小米集团作为龙头受益于集中度提升，市场份额和议价能力双升。",
+            "impact_chain": [
+              "并购落地",
+              "竞争格局优化",
+              "小米集团市占率提升",
+              "定价权增强",
+              "盈利超预期"
+            ],
+            "supporting_evidence": [
+              "行业CR3集中度将提升至70%以上，竞争趋缓",
+              "采购和研发协同降低成本，规模效应显现",
+              "行业低效产能出清，龙头议价能力增强"
+            ],
+            "counter_evidence": [
+              "反垄断风险，监管可能关注过高集中度",
+              "整合期管理精力分散影响主业"
+            ],
+            "trigger_conditions": [
+              "整合完成后首份财报超预期",
+              "市场份额数据验证集中度提升",
+              "新任管理团队释放整合顺利信号"
+            ],
+            "invalidation_conditions": [
+              "整合不顺核心人才流失",
+              "竞争对手借机抢夺客户"
+            ],
+            "time_horizon": "LONG_TERM",
+            "risk_notes": "行业整合是大趋势但过程曲折，短期内面临整合阵痛。建议关注整合关键节点的经营数据。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:12.635320Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.660595
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "1810.HK"
+        ],
+        "wrong_asset_count": 1,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "long"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_016",
+      "index": 15,
+      "title": "商汤科技股价单日暴跌30% 成交量创历史天量",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "169c40d6-44c1-4e2d-a0e0-d9dc917ac878"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "5d581620-744a-4394-890e-aaa937d5a921",
+          "event": {
+            "id": "5d581620-744a-4394-890e-aaa937d5a921",
+            "raw_document_id": "169c40d6-44c1-4e2d-a0e0-d9dc917ac878",
+            "event_type": "product_launch",
+            "event_summary": "[产品发布] 商汤科技股价单日暴跌30% 成交量创历史天量：商汤科技股价单日暴跌30% 成交量创历史天量 商汤科技集团今日股价出现异常波动，盘中最大跌幅达35%，最终收跌30%，成交额突破200亿港元，为公司上市以来最大单日成交。此前的连续5个交易日，该股已累计上涨超过80%，市场猜测与AI概念炒作...",
+            "primary_entity": "商汤科技",
+            "related_entities": [],
+            "market_scope": "HK_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.6581,
+            "novelty_score": 0.8871,
+            "urgency_score": 0.6553,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7087,
+            "risk_score": 0.2207,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:12.761487Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:12.761529Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 3,
+          "links": [
+            {
+              "id": "b900c74d-31c3-485f-9257-82825e7c5b43",
+              "event_id": "5d581620-744a-4394-890e-aaa937d5a921",
+              "asset_id": "333d2edb-cd41-4354-a91a-2c05d434d4c8",
+              "symbol": "000333.SZ",
+              "name": "美的集团",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.4872,
+              "reason": "美的集团（000333.SZ）为product_launch事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到POSITIVE影响。",
+              "confidence_score": 0.6031,
+              "created_at": "2026-05-13T07:59:12.836633"
+            },
+            {
+              "id": "b773f4ef-9474-4f89-a3a4-0cfdc0780c00",
+              "event_id": "5d581620-744a-4394-890e-aaa937d5a921",
+              "asset_id": "6e70d113-c5d8-4e58-8a1e-a95827f93997",
+              "symbol": "02333.HK",
+              "name": "中港汽车",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.4683,
+              "reason": "基于行业分析和供应链关系，中港汽车与事件描述中的关键主体高度相关，事件对其经营环境产生POSITIVE影响。",
+              "confidence_score": 0.4967,
+              "created_at": "2026-05-13T07:59:12.837032"
+            },
+            {
+              "id": "9dd0ac99-7116-4a16-a71f-ec3182d0e02f",
+              "event_id": "5d581620-744a-4394-890e-aaa937d5a921",
+              "asset_id": "0b81fde6-e16b-436e-a97c-d4cbf26dfd29",
+              "symbol": "688001.SH",
+              "name": "华算科技",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.5425,
+              "reason": "通过业务标签匹配，华算科技的核心业务与事件驱动因素高度重合，影响方向预计为POSITIVE。",
+              "confidence_score": 0.4987,
+              "created_at": "2026-05-13T07:59:12.837437"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "0b9d6b15-df40-4631-a2e2-a744c97c40e4",
+            "event_id": "5d581620-744a-4394-890e-aaa937d5a921",
+            "hypothesis_text": "重磅新品打开美的集团、中港汽车、华算科技成长空间，产品周期驱动业绩加速，建议在量产爬坡阶段布局。",
+            "impact_chain": [
+              "新品发布",
+              "预订/订单数据验证需求",
+              "美的集团、中港汽车、华算科技产能爬坡",
+              "收入增量兑现",
+              "估值切换"
+            ],
+            "supporting_evidence": [
+              "新品性能/价格相比竞品有明显优势",
+              "市场空间测算显示增量收入可达当前营收的30%+",
+              "供应链储备充足，量产爬坡确定性较高",
+              "客户反馈积极，首批预订数据超预期"
+            ],
+            "counter_evidence": [
+              "新品爬坡存在技术和良率风险",
+              "竞品可能快速跟进推出类似产品"
+            ],
+            "trigger_conditions": [
+              "首批交付完成且口碑发酵",
+              "月度产销数据持续超预期",
+              "获得重大客户认证或订单"
+            ],
+            "invalidation_conditions": [
+              "良率迟迟未达经济性水平",
+              "出现严重质量问题或召回"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "新产品放量节奏是影响股价的关键变量，需逐月跟踪。警惕PPT产品（仅发布不落地）。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:12.911042Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.644065
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "direction_match": false,
+        "direction_expected": "NEGATIVE",
+        "direction_actual": "POSITIVE",
+        "wrong_assets": [
+          "000333.SZ",
+          "02333.HK",
+          "688001.SH"
+        ],
+        "wrong_asset_count": 3,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_017",
+      "index": 16,
+      "title": "金管局推出新一轮楼市逆周期措施 放宽按揭成数",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "85d8f626-9be5-4448-b7bb-d0681f97027a"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "28c123ce-08b2-403b-842e-198af9af717c",
+          "event": {
+            "id": "28c123ce-08b2-403b-842e-198af9af717c",
+            "raw_document_id": "85d8f626-9be5-4448-b7bb-d0681f97027a",
+            "event_type": "regulatory_action",
+            "event_summary": "[监管行动] 金管局推出新一轮楼市逆周期措施 放宽按揭成数：金管局推出新一轮楼市逆周期措施 放宽按揭成数 香港金融管理局今日宣布新一轮宏观审慎监管措施，将自用住宅物业按揭成数上限由五成放宽至六成，非住宅物业由四成放宽至五成，并于即日起生效。金管局总裁表示，香港楼市已从2021年高位调整逾20%，适度...",
+            "primary_entity": "本地地产",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "NEGATIVE",
+            "materiality_score": 0.8597,
+            "novelty_score": 0.7069,
+            "urgency_score": 0.8714,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7726,
+            "risk_score": 0.7411,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:13.041989Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:13.042030Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "64908096-67db-4d10-9505-109c7156ee28",
+              "event_id": "28c123ce-08b2-403b-842e-198af9af717c",
+              "asset_id": "2f60b7e3-98aa-4279-963f-6b05cabaa48b",
+              "symbol": "01234.HK",
+              "name": "亚洲地产服务",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.58,
+              "reason": "亚洲地产服务（01234.HK）为regulatory_action事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到NEGATIVE影响。",
+              "confidence_score": 0.5311,
+              "created_at": "2026-05-13T07:59:13.117485"
+            },
+            {
+              "id": "55ae8c19-3a23-4342-9d3b-0e137efe5c7d",
+              "event_id": "28c123ce-08b2-403b-842e-198af9af717c",
+              "asset_id": "283244b7-e353-4171-86f9-4472b1204af0",
+              "symbol": "09888.HK",
+              "name": "港云智能",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.2641,
+              "reason": "基于行业分析和供应链关系，港云智能与事件描述中的关键主体高度相关，事件对其经营环境产生NEGATIVE影响。",
+              "confidence_score": 0.3581,
+              "created_at": "2026-05-13T07:59:13.117886"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "daa47aab-b415-4530-a4be-52ff04bc8729",
+            "event_id": "28c123ce-08b2-403b-842e-198af9af717c",
+            "hypothesis_text": "监管处罚对亚洲地产服务、港云智能短期冲击明显，但中长期不改变公司基本面，超跌后或有布局机会。",
+            "impact_chain": [
+              "处罚公告",
+              "恐慌性抛售",
+              "亚洲地产服务、港云智能超跌",
+              "市场消化利空",
+              "基本面驱动的修复"
+            ],
+            "supporting_evidence": [
+              "历史类似处罚案例中，公司在6个月内平均反弹15%",
+              "处罚金额相对公司利润规模有限，非毁灭性打击",
+              "公司业务护城河深厚，客户粘性高"
+            ],
+            "counter_evidence": [
+              "连续处罚可能引发连锁反应（大客户解约/银行抽贷）",
+              "声誉损失难以量化但可能持久影响业务"
+            ],
+            "trigger_conditions": [
+              "公司整改方案公布",
+              "业务数据验证影响可控",
+              "机构资金逢低入场"
+            ],
+            "invalidation_conditions": [
+              "发现新的违规问题",
+              "处罚升级为业务暂停或牌照吊销"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "监管处罚的不确定性高，建议等待事件充分消化后再评估。如果涉及业务资质受影响则是性质变化。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:13.191273Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.58307
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "direction_match": false,
+        "direction_expected": "POSITIVE",
+        "direction_actual": "NEGATIVE",
+        "wrong_assets": [
+          "09888.HK",
+          "01234.HK"
+        ],
+        "wrong_asset_count": 2,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_018",
+      "index": 17,
+      "title": "比亚迪在香港推出新款纯电动的士 续航达500公里",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "bb6ebc75-43eb-465a-a564-517fbf77e3bb"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "58d1ef92-815f-4c07-8982-e9bdf09aebd1",
+          "event": {
+            "id": "58d1ef92-815f-4c07-8982-e9bdf09aebd1",
+            "raw_document_id": "bb6ebc75-43eb-465a-a564-517fbf77e3bb",
+            "event_type": "product_launch",
+            "event_summary": "[产品发布] 比亚迪在香港推出新款纯电动的士 续航达500公里：比亚迪在香港推出新款纯电动的士 续航达500公里 比亚迪股份宣布在香港市场推出专为的士行业设计的新款纯电动车型，NEDC续航里程达500公里，快充30分钟可行驶300公里，起售价28万港元。公司已与香港三家主要的士车行签订合作协议，首批50...",
+            "primary_entity": "比亚迪股份",
+            "related_entities": [
+              "推出专为的士行业"
+            ],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.6784,
+            "novelty_score": 0.8235,
+            "urgency_score": 0.5418,
+            "credibility_score": 0.5,
+            "confidence_score": 0.6753,
+            "risk_score": 0.2368,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:13.320594Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:13.320662Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 3,
+          "links": [
+            {
+              "id": "35d57331-c2aa-4a94-a42c-029081a9c682",
+              "event_id": "58d1ef92-815f-4c07-8982-e9bdf09aebd1",
+              "asset_id": "efbe9569-6e97-46f9-8923-ad0a5ee777e4",
+              "symbol": "002594.SZ",
+              "name": "比亚迪",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.5709,
+              "reason": "通过业务标签匹配，比亚迪的核心业务与事件驱动因素高度重合，影响方向预计为POSITIVE。",
+              "confidence_score": 0.5981,
+              "created_at": "2026-05-13T07:59:13.396785"
+            },
+            {
+              "id": "c519eb3e-0718-456c-98d2-ab544fed51b4",
+              "event_id": "58d1ef92-815f-4c07-8982-e9bdf09aebd1",
+              "asset_id": "6e70d113-c5d8-4e58-8a1e-a95827f93997",
+              "symbol": "02333.HK",
+              "name": "中港汽车",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.5706,
+              "reason": "中港汽车（02333.HK）为product_launch事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到POSITIVE影响。",
+              "confidence_score": 0.4941,
+              "created_at": "2026-05-13T07:59:13.397209"
+            },
+            {
+              "id": "3aa17677-436a-4f5b-94e4-23362cdd6bcc",
+              "event_id": "58d1ef92-815f-4c07-8982-e9bdf09aebd1",
+              "asset_id": "800772e8-85fe-4aa5-a397-5cc78e2026f5",
+              "symbol": "600002.SH",
+              "name": "新能电池",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.3697,
+              "reason": "通过业务标签匹配，新能电池的核心业务与事件驱动因素高度重合，影响方向预计为POSITIVE。",
+              "confidence_score": 0.4429,
+              "created_at": "2026-05-13T07:59:13.397596"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "0c9e3f8d-9b9c-4b7b-bbb2-cfe47e1f8bac",
+            "event_id": "58d1ef92-815f-4c07-8982-e9bdf09aebd1",
+            "hypothesis_text": "重磅新品打开比亚迪、中港汽车、新能电池成长空间，产品周期驱动业绩加速，建议在量产爬坡阶段布局。",
+            "impact_chain": [
+              "新品发布",
+              "预订/订单数据验证需求",
+              "比亚迪、中港汽车、新能电池产能爬坡",
+              "收入增量兑现",
+              "估值切换"
+            ],
+            "supporting_evidence": [
+              "新品性能/价格相比竞品有明显优势",
+              "市场空间测算显示增量收入可达当前营收的30%+",
+              "供应链储备充足，量产爬坡确定性较高",
+              "客户反馈积极，首批预订数据超预期"
+            ],
+            "counter_evidence": [
+              "新品爬坡存在技术和良率风险",
+              "竞品可能快速跟进推出类似产品"
+            ],
+            "trigger_conditions": [
+              "首批交付完成且口碑发酵",
+              "月度产销数据持续超预期",
+              "获得重大客户认证或订单"
+            ],
+            "invalidation_conditions": [
+              "良率迟迟未达经济性水平",
+              "出现严重质量问题或召回"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "新产品放量节奏是影响股价的关键变量，需逐月跟踪。警惕PPT产品（仅发布不落地）。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:13.472638Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.61182
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "02333.HK",
+          "002594.SZ",
+          "600002.SH"
+        ],
+        "wrong_asset_count": 3,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_019",
+      "index": 18,
+      "title": "港府发布虚拟资产发展政策宣言 拟发放更多交易平台牌照",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "9ec317be-a20e-406b-9d6c-aff9f39fc3f9"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "7ff57123-320b-4694-93bf-1c1c20b89793",
+          "event": {
+            "id": "7ff57123-320b-4694-93bf-1c1c20b89793",
+            "raw_document_id": "9ec317be-a20e-406b-9d6c-aff9f39fc3f9",
+            "event_type": "regulatory_action",
+            "event_summary": "[监管行动] 港府发布虚拟资产发展政策宣言 拟发放更多交易平台牌照：港府发布虚拟资产发展政策宣言 拟发放更多交易平台牌照 香港特区政府财经事务及库务局今日发布《香港虚拟资产发展政策宣言》，明确将香港打造为全球虚拟资产中心的定位。政策包括：加快虚拟资产交易平台发牌程序、允许零售投资者交易主流虚拟资产、研究代币...",
+            "primary_entity": "研究代币化证券",
+            "related_entities": [
+              "香港虚拟资产概念"
+            ],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.8474,
+            "novelty_score": 0.7115,
+            "urgency_score": 0.8061,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7513,
+            "risk_score": 0.7759,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:13.600760Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:13.600802Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "ee0425d8-92a9-4c35-a380-f6d432a9e5f2",
+              "event_id": "7ff57123-320b-4694-93bf-1c1c20b89793",
+              "asset_id": "7b52c485-cf88-46ce-8d22-56792889ce49",
+              "symbol": "09999.HK",
+              "name": "恒通证券",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.5535,
+              "reason": "通过业务标签匹配，恒通证券的核心业务与事件驱动因素高度重合，影响方向预计为NEGATIVE。",
+              "confidence_score": 0.5025,
+              "created_at": "2026-05-13T07:59:13.676805"
+            },
+            {
+              "id": "c81331b3-e91a-4403-93d2-11954407af46",
+              "event_id": "7ff57123-320b-4694-93bf-1c1c20b89793",
+              "asset_id": "6e70d113-c5d8-4e58-8a1e-a95827f93997",
+              "symbol": "02333.HK",
+              "name": "中港汽车",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.4281,
+              "reason": "基于行业分析和供应链关系，中港汽车与事件描述中的关键主体高度相关，事件对其经营环境产生NEGATIVE影响。",
+              "confidence_score": 0.4701,
+              "created_at": "2026-05-13T07:59:13.677219"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "f2a62470-bc9b-4916-b6a6-158e600661fe",
+            "event_id": "7ff57123-320b-4694-93bf-1c1c20b89793",
+            "hypothesis_text": "监管处罚对恒通证券、中港汽车短期冲击明显，但中长期不改变公司基本面，超跌后或有布局机会。",
+            "impact_chain": [
+              "处罚公告",
+              "恐慌性抛售",
+              "恒通证券、中港汽车超跌",
+              "市场消化利空",
+              "基本面驱动的修复"
+            ],
+            "supporting_evidence": [
+              "历史类似处罚案例中，公司在6个月内平均反弹15%",
+              "处罚金额相对公司利润规模有限，非毁灭性打击",
+              "公司业务护城河深厚，客户粘性高"
+            ],
+            "counter_evidence": [
+              "连续处罚可能引发连锁反应（大客户解约/银行抽贷）",
+              "声誉损失难以量化但可能持久影响业务"
+            ],
+            "trigger_conditions": [
+              "公司整改方案公布",
+              "业务数据验证影响可控",
+              "机构资金逢低入场"
+            ],
+            "invalidation_conditions": [
+              "发现新的违规问题",
+              "处罚升级为业务暂停或牌照吊销"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "监管处罚的不确定性高，建议等待事件充分消化后再评估。如果涉及业务资质受影响则是性质变化。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:13.751152Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.562645
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_020",
+      "index": 19,
+      "title": "李嘉诚旗下长和系出售欧洲电讯资产 获利逾百亿",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "d1135f38-2901-4cec-8b47-e5bf45f8bda1"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "deb38fca-b381-476a-83e6-9ad72657c3ba",
+          "event": {
+            "id": "deb38fca-b381-476a-83e6-9ad72657c3ba",
+            "raw_document_id": "d1135f38-2901-4cec-8b47-e5bf45f8bda1",
+            "event_type": "product_launch",
+            "event_summary": "[产品发布] 李嘉诚旗下长和系出售欧洲电讯资产 获利逾百亿：李嘉诚旗下长和系出售欧洲电讯资产 获利逾百亿 长江和记实业有限公司公告，已与一家欧洲私募基金达成协议，以约120亿港元出售旗下部分欧洲电讯塔资产。长和表示，交易将产生超过80亿港元的一次性收益，资金将用于降低负债和回购股份。里昂证券分析认为...",
+            "primary_entity": "长江和记实业有限公司",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.6381,
+            "novelty_score": 0.8976,
+            "urgency_score": 0.6501,
+            "credibility_score": 0.5,
+            "confidence_score": 0.6719,
+            "risk_score": 0.2699,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:13.884560Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:13.884602Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "d005af4c-3a42-4be6-8396-d4b5741392c2",
+              "event_id": "deb38fca-b381-476a-83e6-9ad72657c3ba",
+              "asset_id": "2f60b7e3-98aa-4279-963f-6b05cabaa48b",
+              "symbol": "01234.HK",
+              "name": "亚洲地产服务",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.3945,
+              "reason": "综合分析亚洲地产服务的业务构成与市场定位，该事件对其营收和估值将产生POSITIVE影响，建议关注。",
+              "confidence_score": 0.4684,
+              "created_at": "2026-05-13T07:59:13.959162"
+            },
+            {
+              "id": "3491bd16-8090-4cb7-a9e6-992614e89bc9",
+              "event_id": "deb38fca-b381-476a-83e6-9ad72657c3ba",
+              "asset_id": "7b52c485-cf88-46ce-8d22-56792889ce49",
+              "symbol": "09999.HK",
+              "name": "恒通证券",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.4038,
+              "reason": "恒通证券（09999.HK）为product_launch事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到POSITIVE影响。",
+              "confidence_score": 0.524,
+              "created_at": "2026-05-13T07:59:13.959566"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "fa74f65f-7385-4dde-9ef1-a5788d916270",
+            "event_id": "deb38fca-b381-476a-83e6-9ad72657c3ba",
+            "hypothesis_text": "亚洲地产服务、恒通证券产品矩阵完善夯实竞争优势，有望复制成功产品的增长曲线。",
+            "impact_chain": [
+              "新品补充产品线",
+              "交叉销售机会",
+              "亚洲地产服务、恒通证券客单价提升",
+              "ARPU增长",
+              "估值上移"
+            ],
+            "supporting_evidence": [
+              "新品与现有产品形成良好互补，不相互蚕食",
+              "品牌认知度高，新品推广成本低",
+              "渠道复用程度高，新品可快速铺开"
+            ],
+            "counter_evidence": [
+              "产品线过度扩张可能导致资源分散",
+              "新品可能蚕食原有高端产品份额"
+            ],
+            "trigger_conditions": [
+              "新品首季销售数据公布",
+              "获得行业权威评测认可"
+            ],
+            "invalidation_conditions": [
+              "新品市场反响平平",
+              "出现定价失误或定位模糊"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "产品发布到业绩兑现存在半年以上的滞后，股价炒作可能提前透支。关注首发用户的真实反馈。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:14.032166Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.627865
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "09999.HK",
+          "01234.HK"
+        ],
+        "wrong_asset_count": 2,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_021",
+      "index": 20,
+      "title": "美国宣布对中国电动车加征100%关税 中方强烈反对",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "cd654aa3-5af3-4762-886a-1ae6b71627d1"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "5ad563e4-3849-409d-b593-f49771c300b8",
+          "event": {
+            "id": "5ad563e4-3849-409d-b593-f49771c300b8",
+            "raw_document_id": "cd654aa3-5af3-4762-886a-1ae6b71627d1",
+            "event_type": "regulatory_action",
+            "event_summary": "[监管行动] 美国宣布对中国电动车加征100%关税 中方强烈反对：美国宣布对中国电动车加征100%关税 中方强烈反对 美国政府今日宣布，基于301条款调查结果，将对中国制造的电动汽车加征100%的进口关税，同时将对中国动力电池加征25%关税，新关税将于下月起生效。中国商务部就此发表声明表示强烈反对，称此举...",
+            "primary_entity": "将对中国制造的电动汽车",
+            "related_entities": [
+              "港股汽车板块"
+            ],
+            "market_scope": "BOTH",
+            "direction": "NEGATIVE",
+            "materiality_score": 0.8458,
+            "novelty_score": 0.7772,
+            "urgency_score": 0.8537,
+            "credibility_score": 0.5,
+            "confidence_score": 0.8324,
+            "risk_score": 0.8464,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:14.158502Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:14.158543Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 1,
+          "links": [
+            {
+              "id": "661950ee-c232-4dff-aa17-adfc8328155d",
+              "event_id": "5ad563e4-3849-409d-b593-f49771c300b8",
+              "asset_id": "800772e8-85fe-4aa5-a397-5cc78e2026f5",
+              "symbol": "600002.SH",
+              "name": "新能电池",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.8953,
+              "reason": "综合分析新能电池的业务构成与市场定位，该事件对其营收和估值将产生NEGATIVE影响，建议关注。",
+              "confidence_score": 0.7755,
+              "created_at": "2026-05-13T07:59:14.234868"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "ae9d1db5-6d6e-43c4-829d-51fa7ea5b871",
+            "event_id": "5ad563e4-3849-409d-b593-f49771c300b8",
+            "hypothesis_text": "监管趋严背景下，不合规的新能电池面临出清风险，行业龙头合规优势凸显，建议向头部集中。",
+            "impact_chain": [
+              "监管新规",
+              "中小公司退出",
+              "新能电池（龙头）承接市场份额",
+              "行业集中度提升",
+              "龙头溢价"
+            ],
+            "supporting_evidence": [
+              "行业合规成本大幅上升，中小企业难以承受",
+              "龙头企业已提前布局合规体系，成本影响可控",
+              "海外市场类似监管周期中龙头超额收益显著"
+            ],
+            "counter_evidence": [
+              "合规成本最终转嫁为全社会成本，行业增速放缓",
+              "监管不确定性本身压制板块估值"
+            ],
+            "trigger_conditions": [
+              "中小竞争对手宣布退出",
+              "行业准入门槛正式提高"
+            ],
+            "invalidation_conditions": [
+              "监管政策出现重大调整或松绑",
+              "新技术路线绕开监管壁垒"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "监管是双刃剑，既是龙头护城河也可能变成创新枷锁。需持续跟踪政策动态和行业边际变化。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:14.308279Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.596615
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "600002.SH"
+        ],
+        "wrong_asset_count": 1,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": []
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_022",
+      "index": 21,
+      "title": "央行宣布全面降准0.5个百分点 释放流动性约1万亿",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "ba9f82b6-735a-4372-86ff-76b9f04143d4"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "be3e0fda-5beb-413b-8dd4-ee1971e6175f",
+          "event": {
+            "id": "be3e0fda-5beb-413b-8dd4-ee1971e6175f",
+            "raw_document_id": "ba9f82b6-735a-4372-86ff-76b9f04143d4",
+            "event_type": "policy_change",
+            "event_summary": "[政策变动] 央行宣布全面降准0.5个百分点 释放流动性约1万亿：央行宣布全面降准0.5个百分点 释放流动性约1万亿 中国人民银行今日宣布，决定自下周一起下调金融机构存款准备金率0.5个百分点（不含已执行5%存款准备金率的金融机构）。此次降准预计释放长期资金约1万亿元，旨在支持实体经济发展，保持流动性合理...",
+            "primary_entity": "中国人民银行",
+            "related_entities": [
+              "股和港股金融板块"
+            ],
+            "market_scope": "BOTH",
+            "direction": "POSITIVE",
+            "materiality_score": 0.8749,
+            "novelty_score": 0.5322,
+            "urgency_score": 0.7252,
+            "credibility_score": 0.5,
+            "confidence_score": 0.8086,
+            "risk_score": 0.5253,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:14.432436Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:14.432485Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 3,
+          "links": [
+            {
+              "id": "0c66dcb8-9687-4fda-ba7b-f57326307ac3",
+              "event_id": "be3e0fda-5beb-413b-8dd4-ee1971e6175f",
+              "asset_id": "68df5d40-c76c-40e0-881e-841d51eb0fdd",
+              "symbol": "601318.SH",
+              "name": "中国平安",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.4262,
+              "reason": "通过业务标签匹配，中国平安的核心业务与事件驱动因素高度重合，影响方向预计为POSITIVE。",
+              "confidence_score": 0.4289,
+              "created_at": "2026-05-13T07:59:14.508812"
+            },
+            {
+              "id": "99718de0-89a5-4291-a01c-563ffa42a02a",
+              "event_id": "be3e0fda-5beb-413b-8dd4-ee1971e6175f",
+              "asset_id": "6e70d113-c5d8-4e58-8a1e-a95827f93997",
+              "symbol": "02333.HK",
+              "name": "中港汽车",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.2001,
+              "reason": "通过业务标签匹配，中港汽车的核心业务与事件驱动因素高度重合，影响方向预计为POSITIVE。",
+              "confidence_score": 0.3409,
+              "created_at": "2026-05-13T07:59:14.509234"
+            },
+            {
+              "id": "50cd48eb-0e54-47d6-a396-142aebb5a983",
+              "event_id": "be3e0fda-5beb-413b-8dd4-ee1971e6175f",
+              "asset_id": "d3b11337-08a9-4c39-938c-b260bda22be8",
+              "symbol": "002001.SZ",
+              "name": "通达机器人",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.2055,
+              "reason": "通过业务标签匹配，通达机器人的核心业务与事件驱动因素高度重合，影响方向预计为POSITIVE。",
+              "confidence_score": 0.3027,
+              "created_at": "2026-05-13T07:59:14.509619"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "57f7849a-f1a8-4542-a9c5-1360222db7ed",
+            "event_id": "be3e0fda-5beb-413b-8dd4-ee1971e6175f",
+            "hypothesis_text": "政策红利驱动中国平安、中港汽车、通达机器人进入新一轮增长周期，中长期配置价值突出，建议超配。",
+            "impact_chain": [
+              "顶层设计定调",
+              "产业规划落地",
+              "需求爆发",
+              "中国平安、中港汽车、通达机器人收入加速",
+              "戴维斯双击"
+            ],
+            "supporting_evidence": [
+              "写入五年规划/政府工作报告，政策优先级最高",
+              "国际比较显示国内渗透率提升空间大",
+              "产业链上下游配套日渐成熟，形成正向循环",
+              "地方政府积极响应，招商引资力度加大"
+            ],
+            "counter_evidence": [
+              "技术路线存在不确定性，可能出现替代方案",
+              "产能扩张过快可能导致阶段性过剩"
+            ],
+            "trigger_conditions": [
+              "重大示范项目开标或投产",
+              "行业技术标准正式发布",
+              "关键成本突破使商业模式跑通"
+            ],
+            "invalidation_conditions": [
+              "技术路线被颠覆",
+              "国际环境变化导致供应链受阻"
+            ],
+            "time_horizon": "LONG_TERM",
+            "risk_notes": "长期逻辑确定性较高但过程波动较大，适合在调整时分批建仓。政策节奏和力度变化需持续跟踪。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:14.584922Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.596
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "建仓",
+          "long"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_023",
+      "index": 22,
+      "title": "金融监管总局出台保险公司偿付能力新规 强化风险管理",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "9f92af3c-148c-40d7-b8ef-2148fbaaf175"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "a0ce55f7-a78e-4d80-8b47-447eee016703",
+          "event": {
+            "id": "a0ce55f7-a78e-4d80-8b47-447eee016703",
+            "raw_document_id": "9f92af3c-148c-40d7-b8ef-2148fbaaf175",
+            "event_type": "regulatory_action",
+            "event_summary": "[监管行动] 金融监管总局出台保险公司偿付能力新规 强化风险管理：金融监管总局出台保险公司偿付能力新规 强化风险管理 国家金融监督管理总局今日发布《保险公司偿付能力监管规则（修订版）》，大幅提升权益类资产和房地产相关资产的风险因子，自2025年1月1日起实施。新规将普通股票风险因子从0.35上调至0.45...",
+            "primary_entity": "金融监管总局出台保险公司",
+            "related_entities": [
+              "股和港股保险板块"
+            ],
+            "market_scope": "BOTH",
+            "direction": "NEGATIVE",
+            "materiality_score": 0.7767,
+            "novelty_score": 0.665,
+            "urgency_score": 0.8095,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7671,
+            "risk_score": 0.8066,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:14.706657Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:14.706692Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 1,
+          "links": [
+            {
+              "id": "77e58c47-5540-4225-979c-0e4968e41b74",
+              "event_id": "a0ce55f7-a78e-4d80-8b47-447eee016703",
+              "asset_id": "2f60b7e3-98aa-4279-963f-6b05cabaa48b",
+              "symbol": "01234.HK",
+              "name": "亚洲地产服务",
+              "impact_direction": "NEGATIVE",
+              "impact_strength": 0.4213,
+              "reason": "亚洲地产服务所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出NEGATIVE反应。",
+              "confidence_score": 0.4405,
+              "created_at": "2026-05-13T07:59:14.781461"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "072e01b7-1eef-4741-8295-92f4eee18f2f",
+            "event_id": "a0ce55f7-a78e-4d80-8b47-447eee016703",
+            "hypothesis_text": "监管处罚对亚洲地产服务短期冲击明显，但中长期不改变公司基本面，超跌后或有布局机会。",
+            "impact_chain": [
+              "处罚公告",
+              "恐慌性抛售",
+              "亚洲地产服务超跌",
+              "市场消化利空",
+              "基本面驱动的修复"
+            ],
+            "supporting_evidence": [
+              "历史类似处罚案例中，公司在6个月内平均反弹15%",
+              "处罚金额相对公司利润规模有限，非毁灭性打击",
+              "公司业务护城河深厚，客户粘性高"
+            ],
+            "counter_evidence": [
+              "连续处罚可能引发连锁反应（大客户解约/银行抽贷）",
+              "声誉损失难以量化但可能持久影响业务"
+            ],
+            "trigger_conditions": [
+              "公司整改方案公布",
+              "业务数据验证影响可控",
+              "机构资金逢低入场"
+            ],
+            "invalidation_conditions": [
+              "发现新的违规问题",
+              "处罚升级为业务暂停或牌照吊销"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "监管处罚的不确定性高，建议等待事件充分消化后再评估。如果涉及业务资质受影响则是性质变化。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:14.846823Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.555155
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "01234.HK"
+        ],
+        "wrong_asset_count": 1,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_024",
+      "index": 23,
+      "title": "中美关系出现缓和信号 两国元首同意恢复高层对话",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "c48b29e7-cb9e-461d-9caa-c07b3a3312a2"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "998b1041-d380-4839-b7cf-dbb761b6ba14",
+          "event": {
+            "id": "998b1041-d380-4839-b7cf-dbb761b6ba14",
+            "raw_document_id": "c48b29e7-cb9e-461d-9caa-c07b3a3312a2",
+            "event_type": "product_launch",
+            "event_summary": "[产品发布] 中美关系出现缓和信号 两国元首同意恢复高层对话：中美关系出现缓和信号 两国元首同意恢复高层对话 据外交部消息，中美两国元首在通话中同意恢复高层战略沟通渠道，包括重启经济、贸易和气候变化领域的工作组对话。美国国家安全顾问表示，美方不寻求对华脱钩，愿在共同利益领域开展合作。这个消息为近期紧张...",
+            "primary_entity": "未识别主体",
+            "related_entities": [],
+            "market_scope": "BOTH",
+            "direction": "POSITIVE",
+            "materiality_score": 0.7026,
+            "novelty_score": 0.8372,
+            "urgency_score": 0.5707,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7473,
+            "risk_score": 0.2348,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:14.952750Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:14.952786Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "3137f7c2-bd0c-4b81-9815-6401355fd6f6",
+              "event_id": "998b1041-d380-4839-b7cf-dbb761b6ba14",
+              "asset_id": "68df5d40-c76c-40e0-881e-841d51eb0fdd",
+              "symbol": "601318.SH",
+              "name": "中国平安",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.6526,
+              "reason": "中国平安所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出POSITIVE反应。",
+              "confidence_score": 0.54,
+              "created_at": "2026-05-13T07:59:15.021193"
+            },
+            {
+              "id": "288a4ddb-7d53-4757-bad1-4c770adcbf40",
+              "event_id": "998b1041-d380-4839-b7cf-dbb761b6ba14",
+              "asset_id": "251db5f6-699d-48c5-a037-3deb9ae11e6b",
+              "symbol": "300001.SZ",
+              "name": "东方数据",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.4375,
+              "reason": "通过业务标签匹配，东方数据的核心业务与事件驱动因素高度重合，影响方向预计为POSITIVE。",
+              "confidence_score": 0.4668,
+              "created_at": "2026-05-13T07:59:15.021367"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "cc8fe8d0-6654-4f76-bc1a-585698981d80",
+            "event_id": "998b1041-d380-4839-b7cf-dbb761b6ba14",
+            "hypothesis_text": "中国平安、东方数据产品矩阵完善夯实竞争优势，有望复制成功产品的增长曲线。",
+            "impact_chain": [
+              "新品补充产品线",
+              "交叉销售机会",
+              "中国平安、东方数据客单价提升",
+              "ARPU增长",
+              "估值上移"
+            ],
+            "supporting_evidence": [
+              "新品与现有产品形成良好互补，不相互蚕食",
+              "品牌认知度高，新品推广成本低",
+              "渠道复用程度高，新品可快速铺开"
+            ],
+            "counter_evidence": [
+              "产品线过度扩张可能导致资源分散",
+              "新品可能蚕食原有高端产品份额"
+            ],
+            "trigger_conditions": [
+              "新品首季销售数据公布",
+              "获得行业权威评测认可"
+            ],
+            "invalidation_conditions": [
+              "新品市场反响平平",
+              "出现定价失误或定位模糊"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "产品发布到业绩兑现存在半年以上的滞后，股价炒作可能提前透支。关注首发用户的真实反馈。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:15.091497Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.651335
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_025",
+      "index": 24,
+      "title": "马士基宣布恢复红海航线 全球航运价格预期回落",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "1444a232-ce4b-419b-9a67-9e41f1d69858"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "cf5550fd-415e-41f5-bdba-606308a4aae1",
+          "event": {
+            "id": "cf5550fd-415e-41f5-bdba-606308a4aae1",
+            "raw_document_id": "1444a232-ce4b-419b-9a67-9e41f1d69858",
+            "event_type": "industry_disruption",
+            "event_summary": "[行业扰动] 马士基宣布恢复红海航线 全球航运价格预期回落：马士基宣布恢复红海航线 全球航运价格预期回落 全球航运巨头马士基集团今日宣布，在多国海军护航下将逐步恢复红海航线运输。此前因也门胡塞武装袭击商船，多家航运公司被迫绕行好望角，导致全球航运价格飙升300%以上。马士基表示，首批护航船队已安全通...",
+            "primary_entity": "全球航运巨头马士基集团",
+            "related_entities": [],
+            "market_scope": "BOTH",
+            "direction": "MIXED",
+            "materiality_score": 0.6985,
+            "novelty_score": 0.7474,
+            "urgency_score": 0.7053,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7414,
+            "risk_score": 0.6921,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:15.218106Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:15.218180Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 3,
+          "links": [
+            {
+              "id": "e5afee7c-0e58-4535-a5f0-f791a1eaf623",
+              "event_id": "cf5550fd-415e-41f5-bdba-606308a4aae1",
+              "asset_id": "68df5d40-c76c-40e0-881e-841d51eb0fdd",
+              "symbol": "601318.SH",
+              "name": "中国平安",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.488,
+              "reason": "中国平安所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出NEUTRAL反应。",
+              "confidence_score": 0.4982,
+              "created_at": "2026-05-13T07:59:15.293936"
+            },
+            {
+              "id": "35fb251e-d5af-4454-ac14-53a5680964f9",
+              "event_id": "cf5550fd-415e-41f5-bdba-606308a4aae1",
+              "asset_id": "01562991-ccb4-4919-9519-f84bcc5c7b28",
+              "symbol": "1810.HK",
+              "name": "小米集团",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.3757,
+              "reason": "综合分析小米集团的业务构成与市场定位，该事件对其营收和估值将产生NEUTRAL影响，建议关注。",
+              "confidence_score": 0.4058,
+              "created_at": "2026-05-13T07:59:15.294354"
+            },
+            {
+              "id": "bebbb7cd-f36b-45c1-9f2e-80720e210c97",
+              "event_id": "cf5550fd-415e-41f5-bdba-606308a4aae1",
+              "asset_id": "333d2edb-cd41-4354-a91a-2c05d434d4c8",
+              "symbol": "000333.SZ",
+              "name": "美的集团",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.4893,
+              "reason": "美的集团（000333.SZ）为industry_disruption事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到NEUTRAL影响。",
+              "confidence_score": 0.4294,
+              "created_at": "2026-05-13T07:59:15.294735"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "6d228e0a-c7c0-4463-83fa-752f73755f80",
+            "event_id": "cf5550fd-415e-41f5-bdba-606308a4aae1",
+            "hypothesis_text": "供应链扰动导致中国平安、小米集团、美的集团供需失衡，价格弹性带来的利润弹性远超市场预期。",
+            "impact_chain": [
+              "供应中断",
+              "产品涨价",
+              "中国平安、小米集团、美的集团毛利率跳升",
+              "季度利润大增",
+              "股价上行"
+            ],
+            "supporting_evidence": [
+              "供给缺口短期难以弥补，新产能建设周期至少12个月",
+              "下游客户对价格敏感度低，涨价传导顺畅",
+              "公司库存处于低位，直接受益于现货价格上涨"
+            ],
+            "counter_evidence": [
+              "供应链恢复速度快于预期可能迅速逆转价格",
+              "政策干预可能平抑价格"
+            ],
+            "trigger_conditions": [
+              "供应端突发停产公告",
+              "现货价格突破历史高位",
+              "公司公告产能利用率逼近上限"
+            ],
+            "invalidation_conditions": [
+              "替代产能迅速释放",
+              "需求大幅萎缩"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "供给冲击驱动的行情往往来去匆匆，追高风险大。建议在事件初期介入，注意及时止盈。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:15.367878Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.560695
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "wrong_assets": [
+          "000333.SZ",
+          "601318.SH",
+          "1810.HK"
+        ],
+        "wrong_asset_count": 3,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_026",
+      "index": 25,
+      "title": "某知名艺人演唱会门票3秒售罄 二手价格炒至万元",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "8835d68b-1d91-4cc4-8601-86690cab4706"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "8b875266-66ba-4e6e-8d0e-27e5b47b14fd",
+          "event": {
+            "id": "8b875266-66ba-4e6e-8d0e-27e5b47b14fd",
+            "raw_document_id": "8835d68b-1d91-4cc4-8601-86690cab4706",
+            "event_type": "other",
+            "event_summary": "[其他事件] 某知名艺人演唱会门票3秒售罄 二手价格炒至万元：某知名艺人演唱会门票3秒售罄 二手价格炒至万元 某华语乐坛知名歌手今日在上海举办巡回演唱会，官方售票平台开售仅3秒即告售罄。据悉，此次演唱会座位数约3万个，但购票用户超过200万人次。二手票务平台上，原价1280元的内场票已被炒至万元以上。...",
+            "primary_entity": "未识别主体",
+            "related_entities": [
+              "演出行业"
+            ],
+            "market_scope": "BOTH",
+            "direction": "NEUTRAL",
+            "materiality_score": 0.5588,
+            "novelty_score": 0.5958,
+            "urgency_score": 0.5963,
+            "credibility_score": 0.5,
+            "confidence_score": 0.5598,
+            "risk_score": 0.4405,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:15.495755Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:15.495795Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 3,
+          "links": [
+            {
+              "id": "45b38f4d-1b67-4e8e-9eaa-2a68c0d79b7d",
+              "event_id": "8b875266-66ba-4e6e-8d0e-27e5b47b14fd",
+              "asset_id": "251db5f6-699d-48c5-a037-3deb9ae11e6b",
+              "symbol": "300001.SZ",
+              "name": "东方数据",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.6654,
+              "reason": "通过业务标签匹配，东方数据的核心业务与事件驱动因素高度重合，影响方向预计为NEUTRAL。",
+              "confidence_score": 0.5964,
+              "created_at": "2026-05-13T07:59:15.571756"
+            },
+            {
+              "id": "90bd5d61-daca-44f7-bc02-171bd38a3580",
+              "event_id": "8b875266-66ba-4e6e-8d0e-27e5b47b14fd",
+              "asset_id": "c94bd865-e1b5-427d-9271-2c7ee0074ea6",
+              "symbol": "600519.SH",
+              "name": "贵州茅台",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.3503,
+              "reason": "通过业务标签匹配，贵州茅台的核心业务与事件驱动因素高度重合，影响方向预计为NEUTRAL。",
+              "confidence_score": 0.3687,
+              "created_at": "2026-05-13T07:59:15.572175"
+            },
+            {
+              "id": "a7bd8d8d-8a90-4d69-bd25-73f77f56c711",
+              "event_id": "8b875266-66ba-4e6e-8d0e-27e5b47b14fd",
+              "asset_id": "68df5d40-c76c-40e0-881e-841d51eb0fdd",
+              "symbol": "601318.SH",
+              "name": "中国平安",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.3582,
+              "reason": "综合分析中国平安的业务构成与市场定位，该事件对其营收和估值将产生NEUTRAL影响，建议关注。",
+              "confidence_score": 0.3634,
+              "created_at": "2026-05-13T07:59:15.572563"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "b4d26ada-e3a4-4303-a22e-216c371ac785",
+            "event_id": "8b875266-66ba-4e6e-8d0e-27e5b47b14fd",
+            "hypothesis_text": "东方数据、贵州茅台、中国平安受该事件影响存在一定不确定性，建议中性观望，等待更多信息明朗后再做判断。",
+            "impact_chain": [
+              "事件发生",
+              "市场消化信息",
+              "东方数据、贵州茅台、中国平安价格波动",
+              "信息明朗",
+              "方向确认"
+            ],
+            "supporting_evidence": [
+              "事件本身具有一定的市场关注度",
+              "历史同类事件对资产价格的影响存在统计规律"
+            ],
+            "counter_evidence": [
+              "事件信息尚不充分，难以准确评估影响",
+              "市场可能已经反映部分预期"
+            ],
+            "trigger_conditions": [
+              "更多关键信息披露",
+              "权威机构发布分析报告"
+            ],
+            "invalidation_conditions": [
+              "事件被证实为误读或夸大"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "信息不充分时不宜做方向性判断，建议等待信息完整后再做决策。本研究仅基于公开信息，不构成投资建议。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:15.647898Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.518245
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ],
+        "noise_alpha": 0.518245,
+        "noise_flagged_high": false
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_027",
+      "index": 26,
+      "title": "中超联赛新赛季开幕 多个城市申办2026年国际赛事",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "01d8f9ba-d477-41e8-92cd-f9242a3da473"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "1451bcd3-1274-472e-a0f7-116ee8b51130",
+          "event": {
+            "id": "1451bcd3-1274-472e-a0f7-116ee8b51130",
+            "raw_document_id": "01d8f9ba-d477-41e8-92cd-f9242a3da473",
+            "event_type": "product_launch",
+            "event_summary": "[产品发布] 中超联赛新赛季开幕 多个城市申办2026年国际赛事：中超联赛新赛季开幕 多个城市申办2026年国际赛事 2024赛季中超联赛今日在广州天河体育场正式开幕，揭幕战由广州队对阵上海海港队。中国足协主席在开幕式上表示，新赛季将加强联赛管理，提升比赛质量。同时，上海、成都、深圳等多个城市已联合向国际...",
+            "primary_entity": "事相关赞助商包括多家上市公司",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.6794,
+            "novelty_score": 0.9058,
+            "urgency_score": 0.6383,
+            "credibility_score": 0.5,
+            "confidence_score": 0.6746,
+            "risk_score": 0.2052,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:15.775747Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:15.775789Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "1eb399a4-1845-4ced-828f-7487b6da1883",
+              "event_id": "1451bcd3-1274-472e-a0f7-116ee8b51130",
+              "asset_id": "68df5d40-c76c-40e0-881e-841d51eb0fdd",
+              "symbol": "601318.SH",
+              "name": "中国平安",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.5072,
+              "reason": "基于行业分析和供应链关系，中国平安与事件描述中的关键主体高度相关，事件对其经营环境产生POSITIVE影响。",
+              "confidence_score": 0.3758,
+              "created_at": "2026-05-13T07:59:15.848670"
+            },
+            {
+              "id": "8516fe53-2bfc-4bc9-987d-03aff37f2406",
+              "event_id": "1451bcd3-1274-472e-a0f7-116ee8b51130",
+              "asset_id": "6e70d113-c5d8-4e58-8a1e-a95827f93997",
+              "symbol": "02333.HK",
+              "name": "中港汽车",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.4089,
+              "reason": "综合分析中港汽车的业务构成与市场定位，该事件对其营收和估值将产生POSITIVE影响，建议关注。",
+              "confidence_score": 0.4161,
+              "created_at": "2026-05-13T07:59:15.849068"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "37c2ef03-7e74-4024-8087-c4348f37c582",
+            "event_id": "1451bcd3-1274-472e-a0f7-116ee8b51130",
+            "hypothesis_text": "中国平安、中港汽车产品矩阵完善夯实竞争优势，有望复制成功产品的增长曲线。",
+            "impact_chain": [
+              "新品补充产品线",
+              "交叉销售机会",
+              "中国平安、中港汽车客单价提升",
+              "ARPU增长",
+              "估值上移"
+            ],
+            "supporting_evidence": [
+              "新品与现有产品形成良好互补，不相互蚕食",
+              "品牌认知度高，新品推广成本低",
+              "渠道复用程度高，新品可快速铺开"
+            ],
+            "counter_evidence": [
+              "产品线过度扩张可能导致资源分散",
+              "新品可能蚕食原有高端产品份额"
+            ],
+            "trigger_conditions": [
+              "新品首季销售数据公布",
+              "获得行业权威评测认可"
+            ],
+            "invalidation_conditions": [
+              "新品市场反响平平",
+              "出现定价失误或定位模糊"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "产品发布到业绩兑现存在半年以上的滞后，股价炒作可能提前透支。关注首发用户的真实反馈。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:15.922429Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.649205
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "direction_match": false,
+        "direction_expected": "NEUTRAL",
+        "direction_actual": "POSITIVE",
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ],
+        "noise_alpha": 0.649205,
+        "noise_flagged_high": true
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_028",
+      "index": 27,
+      "title": "台风橙色预警：强台风将在广东沿海登陆 多地停课停工",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "fd95e5ad-436b-4eda-a1f4-9a91f41ab3c2"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "c619dd65-5578-457b-b533-76e4ed195cca",
+          "event": {
+            "id": "c619dd65-5578-457b-b533-76e4ed195cca",
+            "raw_document_id": "fd95e5ad-436b-4eda-a1f4-9a91f41ab3c2",
+            "event_type": "product_launch",
+            "event_summary": "[产品发布] 台风橙色预警：强台风将在广东沿海登陆 多地停课停工：台风橙色预警：强台风将在广东沿海登陆 多地停课停工 中央气象台今日发布台风橙色预警，今年第3号强台风预计将于明日上午在广东阳江至湛江一带沿海登陆，中心最大风力达14级。广东省防汛防旱防风总指挥部已启动防台风二级应急响应，珠海、江门、阳江、茂...",
+            "primary_entity": "类天气事件可能对当地上市公司",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.7065,
+            "novelty_score": 0.864,
+            "urgency_score": 0.5746,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7768,
+            "risk_score": 0.2599,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:16.037279Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:16.037303Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "0e9d00eb-3e40-4a81-a697-13a92996b6d8",
+              "event_id": "c619dd65-5578-457b-b533-76e4ed195cca",
+              "asset_id": "2f60b7e3-98aa-4279-963f-6b05cabaa48b",
+              "symbol": "01234.HK",
+              "name": "亚洲地产服务",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.3521,
+              "reason": "亚洲地产服务所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出POSITIVE反应。",
+              "confidence_score": 0.3629,
+              "created_at": "2026-05-13T07:59:16.104505"
+            },
+            {
+              "id": "40f71bc9-af6a-4091-81fe-e1239f053c46",
+              "event_id": "c619dd65-5578-457b-b533-76e4ed195cca",
+              "asset_id": "c94bd865-e1b5-427d-9271-2c7ee0074ea6",
+              "symbol": "600519.SH",
+              "name": "贵州茅台",
+              "impact_direction": "POSITIVE",
+              "impact_strength": 0.3579,
+              "reason": "基于行业分析和供应链关系，贵州茅台与事件描述中的关键主体高度相关，事件对其经营环境产生POSITIVE影响。",
+              "confidence_score": 0.3754,
+              "created_at": "2026-05-13T07:59:16.104757"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "909895b3-f82c-4ad9-b289-67d758e281c5",
+            "event_id": "c619dd65-5578-457b-b533-76e4ed195cca",
+            "hypothesis_text": "重磅新品打开亚洲地产服务、贵州茅台成长空间，产品周期驱动业绩加速，建议在量产爬坡阶段布局。",
+            "impact_chain": [
+              "新品发布",
+              "预订/订单数据验证需求",
+              "亚洲地产服务、贵州茅台产能爬坡",
+              "收入增量兑现",
+              "估值切换"
+            ],
+            "supporting_evidence": [
+              "新品性能/价格相比竞品有明显优势",
+              "市场空间测算显示增量收入可达当前营收的30%+",
+              "供应链储备充足，量产爬坡确定性较高",
+              "客户反馈积极，首批预订数据超预期"
+            ],
+            "counter_evidence": [
+              "新品爬坡存在技术和良率风险",
+              "竞品可能快速跟进推出类似产品"
+            ],
+            "trigger_conditions": [
+              "首批交付完成且口碑发酵",
+              "月度产销数据持续超预期",
+              "获得重大客户认证或订单"
+            ],
+            "invalidation_conditions": [
+              "良率迟迟未达经济性水平",
+              "出现严重质量问题或召回"
+            ],
+            "time_horizon": "MEDIUM_TERM",
+            "risk_notes": "新产品放量节奏是影响股价的关键变量，需逐月跟踪。警惕PPT产品（仅发布不落地）。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:16.173267Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.63599
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "direction_match": false,
+        "direction_expected": "NEUTRAL",
+        "direction_actual": "POSITIVE",
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [],
+        "noise_alpha": 0.63599,
+        "noise_flagged_high": true
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_029",
+      "index": 28,
+      "title": "股吧热帖：某上市公司即将被借壳 股价将翻倍",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "31350861-46d4-426c-91c5-49fbaeb44b00"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "2265a47d-002f-425c-a1ad-50dc23694be8",
+          "event": {
+            "id": "2265a47d-002f-425c-a1ad-50dc23694be8",
+            "raw_document_id": "31350861-46d4-426c-91c5-49fbaeb44b00",
+            "event_type": "policy_change",
+            "event_summary": "[政策变动] 股吧热帖：某上市公司即将被借壳 股价将翻倍：股吧热帖：某上市公司即将被借壳 股价将翻倍 今日在多个股票论坛和微信群中流传一条消息，称某中小市值上市公司即将被一家知名科技企业借壳上市，股价至少翻倍。该帖子未提供具体信息来源，仅以据内部人士透露的口吻描述。经查证，相关上市公司并未发布任何...",
+            "primary_entity": "某上市公司",
+            "related_entities": [],
+            "market_scope": "A_SHARE",
+            "direction": "NEUTRAL",
+            "materiality_score": 0.8704,
+            "novelty_score": 0.5396,
+            "urgency_score": 0.7164,
+            "credibility_score": 0.5,
+            "confidence_score": 0.782,
+            "risk_score": 0.4698,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:16.298672Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:16.298714Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 2,
+          "links": [
+            {
+              "id": "97934fdb-1f9f-4f09-a09c-4c0ff18dff29",
+              "event_id": "2265a47d-002f-425c-a1ad-50dc23694be8",
+              "asset_id": "0b81fde6-e16b-436e-a97c-d4cbf26dfd29",
+              "symbol": "688001.SH",
+              "name": "华算科技",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.511,
+              "reason": "华算科技（688001.SH）为policy_change事件的直接关联标的，与事件核心实体存在业务协同关系，预计将受到NEUTRAL影响。",
+              "confidence_score": 0.4876,
+              "created_at": "2026-05-13T07:59:16.373477"
+            },
+            {
+              "id": "0cd92fb2-05de-4dab-8ce1-ba22d95d6107",
+              "event_id": "2265a47d-002f-425c-a1ad-50dc23694be8",
+              "asset_id": "333d2edb-cd41-4354-a91a-2c05d434d4c8",
+              "symbol": "000333.SZ",
+              "name": "美的集团",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.4235,
+              "reason": "美的集团所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出NEUTRAL反应。",
+              "confidence_score": 0.3229,
+              "created_at": "2026-05-13T07:59:16.373870"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "eba4fce3-b687-4939-a453-1390f9b08232",
+            "event_id": "2265a47d-002f-425c-a1ad-50dc23694be8",
+            "hypothesis_text": "政策红利驱动华算科技、美的集团进入新一轮增长周期，中长期配置价值突出，建议超配。",
+            "impact_chain": [
+              "顶层设计定调",
+              "产业规划落地",
+              "需求爆发",
+              "华算科技、美的集团收入加速",
+              "戴维斯双击"
+            ],
+            "supporting_evidence": [
+              "写入五年规划/政府工作报告，政策优先级最高",
+              "国际比较显示国内渗透率提升空间大",
+              "产业链上下游配套日渐成熟，形成正向循环",
+              "地方政府积极响应，招商引资力度加大"
+            ],
+            "counter_evidence": [
+              "技术路线存在不确定性，可能出现替代方案",
+              "产能扩张过快可能导致阶段性过剩"
+            ],
+            "trigger_conditions": [
+              "重大示范项目开标或投产",
+              "行业技术标准正式发布",
+              "关键成本突破使商业模式跑通"
+            ],
+            "invalidation_conditions": [
+              "技术路线被颠覆",
+              "国际环境变化导致供应链受阻"
+            ],
+            "time_horizon": "LONG_TERM",
+            "risk_notes": "长期逻辑确定性较高但过程波动较大，适合在调整时分批建仓。政策节奏和力度变化需持续跟踪。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:16.446904Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.5837
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [],
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "建仓",
+          "long"
+        ],
+        "noise_alpha": 0.5837,
+        "noise_flagged_high": false
+      },
+      "errors": []
+    },
+    {
+      "sample_id": "sample_030",
+      "index": 29,
+      "title": "贵州茅台提价获市场看好 多家券商上调目标价",
+      "steps": {
+        "ingest": {
+          "ok": true,
+          "document_id": "64feb796-e3ba-44e0-9a43-ea000184bbc6"
+        },
+        "extract": {
+          "ok": true,
+          "event_id": "03d72ae6-ed49-4ab6-9d35-113b075d67d9",
+          "event": {
+            "id": "03d72ae6-ed49-4ab6-9d35-113b075d67d9",
+            "raw_document_id": "64feb796-e3ba-44e0-9a43-ea000184bbc6",
+            "event_type": "earnings_surprise",
+            "event_summary": "[业绩变动] 贵州茅台提价获市场看好 多家券商上调目标价：贵州茅台提价获市场看好 多家券商上调目标价 继昨日贵州茅台宣布上调出厂价20%之后，今日多家券商发布研报跟进。中信证券将茅台目标价上调至2200元，维持买入评级；国泰君安认为提价效应将在2024年第二季度开始体现。茅台昨日公告提价后股价已经...",
+            "primary_entity": "中信证券",
+            "related_entities": [
+              "指出当前白酒行业"
+            ],
+            "market_scope": "A_SHARE",
+            "direction": "POSITIVE",
+            "materiality_score": 0.8017,
+            "novelty_score": 0.6467,
+            "urgency_score": 0.7824,
+            "credibility_score": 0.5,
+            "confidence_score": 0.7688,
+            "risk_score": 0.3439,
+            "event_alpha_score": 0.0,
+            "first_seen_at": "2026-05-13T07:59:16.571478Z",
+            "status": "EXTRACTED",
+            "created_at": "2026-05-13T07:59:16.571520Z"
+          }
+        },
+        "map": {
+          "ok": true,
+          "asset_count": 1,
+          "links": [
+            {
+              "id": "17694256-ccdd-49c5-9178-e38722bdb71c",
+              "event_id": "03d72ae6-ed49-4ab6-9d35-113b075d67d9",
+              "asset_id": "c94bd865-e1b5-427d-9271-2c7ee0074ea6",
+              "symbol": "600519.SH",
+              "name": "贵州茅台",
+              "impact_direction": "NEUTRAL",
+              "impact_strength": 0.8676,
+              "reason": "贵州茅台所处行业与事件类型匹配度高，历史类似事件中该标的通常表现出NEUTRAL反应。",
+              "confidence_score": 0.7324,
+              "created_at": "2026-05-13T07:59:16.647877"
+            }
+          ]
+        },
+        "hypothesis": {
+          "ok": true,
+          "hypothesis": {
+            "id": "2f306e47-8eba-4f01-8fae-b6e59377b18e",
+            "event_id": "03d72ae6-ed49-4ab6-9d35-113b075d67d9",
+            "hypothesis_text": "贵州茅台受益于成本改善，业绩弹性释放，具备波段交易机会。",
+            "impact_chain": [
+              "原材料降价",
+              "生产成本下行",
+              "毛利率扩张",
+              "贵州茅台季度利润大增",
+              "股价反弹"
+            ],
+            "supporting_evidence": [
+              "主要原材料价格同比降幅超过20%",
+              "公司产品定价相对刚性，成本下降直接转化为利润",
+              "同板块成本敏感型公司已率先反应"
+            ],
+            "counter_evidence": [
+              "成本下降可能伴随需求走弱，量减抵消价增",
+              "公司可能通过降价让利下游，利润转化不充分"
+            ],
+            "trigger_conditions": [
+              "下一季报毛利率明显提升",
+              "原材料价格继续下行"
+            ],
+            "invalidation_conditions": [
+              "原材料价格反弹",
+              "下游客户要求降价分成"
+            ],
+            "time_horizon": "SHORT_TERM",
+            "risk_notes": "成本驱动的利润弹性持续性存疑，一旦原材料价格反弹逻辑即刻逆转。适合短线操作。",
+            "model_used": "mock",
+            "status": "ACTIVE",
+            "created_at": "2026-05-13T07:59:16.721340Z"
+          }
+        },
+        "score": {
+          "ok": true,
+          "alpha_score": 0.62514
+        },
+        "price": {
+          "ok": false,
+          "error": "{'error': 'Internal Server Error'}"
+        }
+      },
+      "checks": {
+        "json_parse_ok": true,
+        "field_completeness": true,
+        "has_buy_sell": [
+          "买入",
+          "买入评级"
+        ],
+        "wrong_assets": [],
+        "wrong_asset_count": 0,
+        "hypothesis_field_ok": true,
+        "has_counter_evidence": true,
+        "has_trigger_conditions": true,
+        "has_invalidation_conditions": true,
+        "has_impact_chain": true,
+        "hypo_has_buy_sell": [
+          "short"
+        ]
+      },
+      "errors": []
+    }
+  ]
+}

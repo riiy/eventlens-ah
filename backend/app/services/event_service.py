@@ -303,6 +303,8 @@ class EventService:
                     impact_strength=link_output.impact_strength,
                     reason=link_output.reason,
                     confidence_score=link_output.confidence_score,
+                    asset_name=asset.name,
+                    asset_symbol=asset.symbol,
                 )
                 session.add(link)
                 links.append(link)
