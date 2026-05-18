@@ -1,7 +1,5 @@
 import hashlib
 import json
-import logging
-import time
 from abc import ABC, abstractmethod
 
 from app.schemas.llm_outputs import (
@@ -9,8 +7,6 @@ from app.schemas.llm_outputs import (
     ExtractedEventOutput,
     HypothesisOutput,
 )
-
-logger = logging.getLogger(__name__)
 
 
 class BaseLLMProvider(ABC):

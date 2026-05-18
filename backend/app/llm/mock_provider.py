@@ -1,5 +1,4 @@
 import asyncio
-import logging
 import random
 import re
 
@@ -10,8 +9,6 @@ from app.schemas.llm_outputs import (
     ExtractedEventOutput,
     HypothesisOutput,
 )
-
-logger = logging.getLogger(__name__)
 
 
 class MockLLMProvider(BaseLLMProvider):

@@ -1,10 +1,7 @@
-import hashlib
 import json
-import logging
-import time
-from typing import Optional
 
 import httpx
+from loguru import logger
 
 from app.core.config import settings
 from app.llm.base import BaseLLMProvider
@@ -13,8 +10,6 @@ from app.schemas.llm_outputs import (
     ExtractedEventOutput,
     HypothesisOutput,
 )
-
-logger = logging.getLogger(__name__)
 
 
 class DeepSeekProvider(BaseLLMProvider):

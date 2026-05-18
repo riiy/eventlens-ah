@@ -1,7 +1,7 @@
 import hashlib
-import logging
 from uuid import UUID
 
+from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -9,8 +9,6 @@ from app.models.raw_document import RawDocument
 from app.schemas.raw_document import RawDocumentCreate
 from app.services.document_service import DocumentService
 from app.services.event_service import EventService
-
-logger = logging.getLogger(__name__)
 
 
 class IngestionPipeline:
@@ -45,7 +43,9 @@ class IngestionPipeline:
         existing = result.scalar_one_or_none()
         if existing is not None:
             logger.debug(
-                "Document with hash=%s already exists (id=%s)", content_hash, existing.id
+                "Document with hash={} already exists (id={})",
+                content_hash,
+                existing.id,
             )
             return existing
 
@@ -74,7 +74,7 @@ class IngestionPipeline:
         )
         self.session.add(doc)
         await self.session.flush()
-        logger.info("Ingested document id=%s hash=%s", doc.id, content_hash)
+        logger.info("Ingested document id={} hash={}", doc.id, content_hash)
         return doc
 
     async def run_demo(self) -> dict:
@@ -109,13 +109,7 @@ class IngestionPipeline:
             existing = result.scalar_one_or_none()
 
             if existing is not None:
-                logger.debug("Skipping existing document hash=%s", content_hash)
-                # Check if events already exist for this document
-                existing_events_result = await self.session.execute(
-                    select(RawDocument).where(
-                        RawDocument.id == existing.id
-                    )
-                )
+                logger.debug("Skipping existing document hash={}", content_hash)
                 # If document already has processed events, skip pipeline stages
                 continue
 
@@ -129,15 +123,12 @@ class IngestionPipeline:
                 if pipeline_result.get("event_id") is not None:
                     events_extracted += 1
             except Exception:
-                logger.exception(
-                    "Pipeline failed for document %s, continuing with next",
-                    doc.id,
-                )
+                logger.exception("Pipeline failed for document {}, continuing with next", doc.id)
 
         await self.session.commit()
 
         logger.info(
-            "Demo ingestion complete: %d documents ingested, %d events extracted",
+            "Demo ingestion complete: {} documents ingested, {} events extracted",
             documents_ingested,
             events_extracted,
         )
@@ -179,7 +170,7 @@ class IngestionPipeline:
                 return result
             result["event_id"] = str(event.id)
         except Exception as e:
-            logger.exception("Event extraction failed for doc %s", document_id)
+            logger.exception("Event extraction failed for doc {}", document_id)
             result["errors"].append(f"event_extraction_error: {e}")
             return result
 
@@ -190,7 +181,7 @@ class IngestionPipeline:
             )
             result["asset_link_count"] = len(links)
         except Exception as e:
-            logger.exception("Asset mapping failed for event %s", event.id)
+            logger.exception("Asset mapping failed for event {}", event.id)
             result["errors"].append(f"asset_mapping_error: {e}")
 
         # Stage 3: Score
@@ -199,7 +190,7 @@ class IngestionPipeline:
             if scored is not None:
                 result["alpha_score"] = scored.event_alpha_score
         except Exception as e:
-            logger.exception("Scoring failed for event %s", event.id)
+            logger.exception("Scoring failed for event {}", event.id)
             result["errors"].append(f"scoring_error: {e}")
 
         # Stage 4: Generate hypothesis
@@ -210,9 +201,7 @@ class IngestionPipeline:
             if hypothesis is not None:
                 result["hypothesis_id"] = str(hypothesis.id)
         except Exception as e:
-            logger.exception(
-                "Hypothesis generation failed for event %s", event.id
-            )
+            logger.exception("Hypothesis generation failed for event {}", event.id)
             result["errors"].append(f"hypothesis_error: {e}")
 
         return result
