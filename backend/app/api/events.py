@@ -1,9 +1,9 @@
 """API routes for market event management and the event extraction pipeline."""
 
-import logging
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -25,8 +25,6 @@ from app.schemas.market_event import (
 from app.schemas.research_hypothesis import ResearchHypothesisResponse
 from app.services.event_service import EventService
 from app.services.hypothesis_service import HypothesisService
-
-logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/events", tags=["Events"])
 
@@ -145,6 +143,7 @@ async def generate_hypothesis(
     service: EventService = Depends(get_event_service),
 ):
     """Generate an investment research hypothesis for an event using the LLM."""
+    logger.info("API call: generate_hypothesis for event_id={}", event_id)
     hypothesis = await service.generate_hypothesis(session, event_id)
     if hypothesis is None:
         raise HTTPException(

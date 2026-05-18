@@ -1,16 +1,13 @@
 """API routes for the ingestion pipeline."""
 
-import logging
-
 from fastapi import APIRouter, Depends
+from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_db, get_pipeline
 from app.ingestion.pipeline import IngestionPipeline
 from app.schemas.ingestion import DemoIngestionResponse, ManualIngestionRequest
 from app.schemas.raw_document import RawDocumentResponse
-
-logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/ingestion", tags=["Ingestion"])
 
@@ -48,9 +45,7 @@ async def manual_ingestion(
         await session.commit()
         await session.refresh(doc)
     except Exception:
-        logger.exception(
-            "Pipeline failed for manually ingested document %s", doc.id
-        )
+        logger.exception("Pipeline failed for manually ingested document {}", doc.id)
 
     return doc
 

@@ -1,15 +1,16 @@
-import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from loguru import logger
 
 from app.api.router import api_router
 from app.core.config import settings
 from app.core.database import init_db
+from app.core.logging import setup_logging
 from app.core.redis import close_redis, get_redis
 
-logger = logging.getLogger(__name__)
+setup_logging()
 
 
 @asynccontextmanager
@@ -23,7 +24,7 @@ async def lifespan(app: FastAPI):
 
         async with async_session_factory() as session:
             result = await seed_database(session)
-            logger.info(f"Seed complete: {result}")
+            logger.info("Seed complete: {}", result)
 
     yield
     await close_redis()
