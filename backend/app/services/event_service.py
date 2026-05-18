@@ -2,28 +2,39 @@ from __future__ import annotations
 
 import hashlib
 import json
-import logging
 import time
 from datetime import datetime
 from uuid import UUID
 
-from sqlalchemy import select, func
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.llm import get_llm_provider
+from app.llm.mock_provider import MockLLMProvider
 from app.models.asset import Asset
 from app.models.event_asset_link import EventAssetLink
 from app.models.llm_run_log import LLMRunLog
 from app.models.market_event import MarketEvent
 from app.models.research_hypothesis import ResearchHypothesis
-from app.scoring import score_event
+from app.schemas.llm_outputs import ExtractedEventOutput
 from app.schemas.market_event import MarketEventCreate
+from app.scoring import score_event
 
-logger = logging.getLogger(__name__)
+from loguru import logger
 
 
 class EventService:
     """Service for MarketEvent CRUD and the event extraction pipeline."""
+
+    @staticmethod
+    def _fallback_llm_provider(llm: object, exc: Exception) -> MockLLMProvider | None:
+        if isinstance(exc, NotImplementedError) and not isinstance(llm, MockLLMProvider):
+            logger.warning(
+                "Configured LLM provider {} is not implemented; falling back to MockLLMProvider",
+                type(llm).__name__,
+            )
+            return MockLLMProvider()
+        return None
 
     async def create(
         self, session: AsyncSession, data: MarketEventCreate
@@ -40,7 +51,7 @@ class EventService:
         )
         session.add(event)
         await session.flush()
-        logger.info("Created MarketEvent id=%s type=%s", event.id, event.event_type)
+        logger.info("Created MarketEvent id={} type={}", event.id, event.event_type)
         return event
 
     async def get(
@@ -133,6 +144,12 @@ class EventService:
         input_hash = hashlib.sha256(
             json.dumps(input_data, sort_keys=True, ensure_ascii=False).encode()
         ).hexdigest()
+        logger.info(
+            "Recording LLM run log: task_type={}, model_name={}, prompt_version={}",
+            task_type,
+            model_name,
+            prompt_version,
+        )
         log = LLMRunLog(
             task_type=task_type,
             model_name=model_name,
@@ -144,6 +161,82 @@ class EventService:
         )
         session.add(log)
 
+    async def _extract_event_output(
+        self,
+        session: AsyncSession,
+        document_id: UUID,
+        task_type: str = "extract_event",
+        prompt_version: str = "v1",
+    ) -> tuple[object | None, ExtractedEventOutput | None]:
+        from app.models.raw_document import RawDocument
+
+        doc_result = await session.execute(
+            select(RawDocument).where(RawDocument.id == document_id)
+        )
+        doc = doc_result.scalar_one_or_none()
+        if doc is None:
+            logger.warning("Document not found: {}", document_id)
+            return None, None
+
+        published_at_str = ""
+        if doc.published_at is not None:
+            published_at_str = doc.published_at.isoformat()
+
+        llm = get_llm_provider()
+        input_data = {
+            "title": doc.title,
+            "content": doc.content,
+            "source": doc.source,
+            "published_at": published_at_str,
+        }
+        start = time.monotonic()
+
+        try:
+            try:
+                extracted = await llm.extract_event(
+                    title=doc.title,
+                    content=doc.content,
+                    source=doc.source,
+                    published_at=published_at_str,
+                )
+            except Exception as exc:
+                fallback_llm = self._fallback_llm_provider(llm, exc)
+                if fallback_llm is None:
+                    raise
+                llm = fallback_llm
+                extracted = await llm.extract_event(
+                    title=doc.title,
+                    content=doc.content,
+                    source=doc.source,
+                    published_at=published_at_str,
+                )
+            latency_ms = int((time.monotonic() - start) * 1000)
+            await self._record_llm_run_log(
+                session,
+                task_type,
+                llm.model_name,
+                prompt_version,
+                input_data,
+                extracted.model_dump(),
+                None,
+                latency_ms,
+            )
+            return doc, extracted
+        except Exception as exc:
+            latency_ms = int((time.monotonic() - start) * 1000)
+            await self._record_llm_run_log(
+                session,
+                task_type,
+                llm.model_name,
+                prompt_version,
+                input_data,
+                None,
+                str(exc),
+                latency_ms,
+            )
+            logger.exception("Failed to extract event from document {}", document_id)
+            return doc, None
+
     async def extract_from_document(
         self, session: AsyncSession, document_id: UUID
     ) -> MarketEvent | None:
@@ -152,79 +245,106 @@ class EventService:
         Loads the document, calls the LLM to extract structured event data,
         and persists a new MarketEvent.
         """
-        from app.models.raw_document import RawDocument
+        doc, extracted = await self._extract_event_output(session, document_id)
+        if doc is None or extracted is None:
+            return None
 
-        # Load the document
-        doc_result = await session.execute(
-            select(RawDocument).where(RawDocument.id == document_id)
+        event = MarketEvent(
+            raw_document_id=doc.id,
+            event_type=extracted.event_type,
+            event_summary=extracted.event_summary,
+            primary_entity=extracted.primary_entity,
+            related_entities=extracted.related_entities,
+            market_scope=extracted.market_scope,
+            direction=extracted.direction,
+            materiality_score=extracted.materiality_score,
+            novelty_score=extracted.novelty_score,
+            urgency_score=extracted.urgency_score,
+            credibility_score=doc.credibility_score,
+            confidence_score=extracted.confidence_score,
+            risk_score=extracted.risk_score,
+            status="EXTRACTED",
         )
-        doc = doc_result.scalar_one_or_none()
-        if doc is None:
-            logger.warning("Document not found: %s", document_id)
+        session.add(event)
+        await session.flush()
+        logger.info(
+            "Extracted MarketEvent id={} type={} from document {}",
+            event.id,
+            event.event_type,
+            document_id,
+        )
+        return event
+
+    async def enrich_imported_event(
+        self,
+        session: AsyncSession,
+        event_id: UUID,
+        preserve_event_type: bool = True,
+        preserve_market_scope: bool = True,
+        preserve_asset_links: bool = True,
+    ) -> MarketEvent | None:
+        event_result = await session.execute(
+            select(MarketEvent).where(MarketEvent.id == event_id)
+        )
+        event = event_result.scalar_one_or_none()
+        if event is None:
+            logger.warning("Event not found for enrichment: {}", event_id)
             return None
 
-        # Prepare published_at as string for LLM
-        published_at_str = ""
-        if doc.published_at is not None:
-            published_at_str = doc.published_at.isoformat()
-
-        try:
-            llm = get_llm_provider()
-            input_data = {
-                "title": doc.title,
-                "content": doc.content,
-                "source": doc.source,
-                "published_at": published_at_str,
-            }
-            start = time.monotonic()
-            extracted = await llm.extract_event(
-                title=doc.title,
-                content=doc.content,
-                source=doc.source,
-                published_at=published_at_str,
-            )
-            latency_ms = int((time.monotonic() - start) * 1000)
-            await self._record_llm_run_log(
-                session, "extract_event", llm.model_name, "v1",
-                input_data, extracted.model_dump(), None, latency_ms,
-            )
-
-            event = MarketEvent(
-                raw_document_id=doc.id,
-                event_type=extracted.event_type,
-                event_summary=extracted.event_summary,
-                primary_entity=extracted.primary_entity,
-                related_entities=extracted.related_entities,
-                market_scope=extracted.market_scope,
-                direction=extracted.direction,
-                materiality_score=extracted.materiality_score,
-                novelty_score=extracted.novelty_score,
-                urgency_score=extracted.urgency_score,
-                credibility_score=doc.credibility_score,
-                confidence_score=extracted.confidence_score,
-                risk_score=extracted.risk_score,
-                status="EXTRACTED",
-            )
-            session.add(event)
-            await session.flush()
-            logger.info(
-                "Extracted MarketEvent id=%s type=%s from document %s",
-                event.id,
-                event.event_type,
-                document_id,
-            )
-            return event
-
-        except Exception as exc:
-            latency_ms = int((time.monotonic() - start) * 1000)
-            await self._record_llm_run_log(
-                session, "extract_event", llm.model_name, "v1",
-                input_data, None, str(exc), latency_ms,
-            )
-            logger.exception(
-                "Failed to extract event from document %s", document_id
-            )
+        doc, extracted = await self._extract_event_output(
+            session,
+            event.raw_document_id,
+            task_type="extract_event_import_merge",
+            prompt_version="import-merge-v1",
+        )
+        if doc is None or extracted is None:
             return None
+
+        if not preserve_event_type and extracted.event_type:
+            event.event_type = extracted.event_type
+        if extracted.event_summary and (
+            not event.event_summary
+            or event.event_type == "UNKNOWN"
+            or event.event_summary == doc.title
+        ):
+            event.event_summary = extracted.event_summary
+        if extracted.primary_entity and not event.primary_entity:
+            event.primary_entity = extracted.primary_entity
+        if extracted.related_entities and not event.related_entities:
+            event.related_entities = extracted.related_entities
+        if not preserve_market_scope and extracted.market_scope:
+            event.market_scope = extracted.market_scope
+        if extracted.direction and event.direction == "UNKNOWN":
+            event.direction = extracted.direction
+        if not event.materiality_score:
+            event.materiality_score = extracted.materiality_score
+        if not event.novelty_score:
+            event.novelty_score = extracted.novelty_score
+        if not event.urgency_score:
+            event.urgency_score = extracted.urgency_score
+        if not event.confidence_score:
+            event.confidence_score = extracted.confidence_score
+        if not event.risk_score:
+            event.risk_score = extracted.risk_score
+
+        event.credibility_score = doc.credibility_score
+        event.status = "EXTRACTED"
+        session.add(event)
+        await session.flush()
+
+        if not preserve_asset_links:
+            await self.map_assets(session, event.id)
+
+        logger.info(
+            "Merged enrichment into imported event {} "
+            "(preserve_event_type={} preserve_market_scope={} "
+            "preserve_asset_links={})",
+            event_id,
+            preserve_event_type,
+            preserve_market_scope,
+            preserve_asset_links,
+        )
+        return event
 
     async def map_assets(
         self, session: AsyncSession, event_id: UUID
@@ -240,7 +360,7 @@ class EventService:
         )
         event = event_result.scalar_one_or_none()
         if event is None:
-            logger.warning("Event not found: %s", event_id)
+            logger.warning("Event not found: {}", event_id)
             return []
 
         # Load all assets
@@ -269,12 +389,24 @@ class EventService:
                 "assets": asset_dicts,
             }
             start = time.monotonic()
-            mapping = await llm.map_event_to_assets(
-                event_summary=event.event_summary,
-                event_type=event.event_type,
-                primary_entity=event.primary_entity or "",
-                assets=asset_dicts,
-            )
+            try:
+                mapping = await llm.map_event_to_assets(
+                    event_summary=event.event_summary,
+                    event_type=event.event_type,
+                    primary_entity=event.primary_entity or "",
+                    assets=asset_dicts,
+                )
+            except Exception as exc:
+                fallback_llm = self._fallback_llm_provider(llm, exc)
+                if fallback_llm is None:
+                    raise
+                llm = fallback_llm
+                mapping = await llm.map_event_to_assets(
+                    event_summary=event.event_summary,
+                    event_type=event.event_type,
+                    primary_entity=event.primary_entity or "",
+                    assets=asset_dicts,
+                )
             latency_ms = int((time.monotonic() - start) * 1000)
             await self._record_llm_run_log(
                 session, "map_assets", llm.model_name, "v1",
@@ -291,7 +423,7 @@ class EventService:
                 asset = asset_by_symbol.get(link_output.symbol)
                 if asset is None:
                     logger.warning(
-                        "Asset symbol %s not found in database, skipping",
+                        "Asset symbol {} not found in database, skipping",
                         link_output.symbol,
                     )
                     continue
@@ -310,9 +442,7 @@ class EventService:
                 links.append(link)
 
             await session.flush()
-            logger.info(
-                "Mapped %d assets to event %s", len(links), event_id
-            )
+            logger.info("Mapped {} assets to event {}", len(links), event_id)
             return links
 
         except Exception as exc:
@@ -321,7 +451,7 @@ class EventService:
                 session, "map_assets", llm.model_name, "v1",
                 input_data, None, str(exc), latency_ms,
             )
-            logger.exception("Failed to map assets for event %s", event_id)
+            logger.exception("Failed to map assets for event {}", event_id)
             return []
 
     async def generate_hypothesis(
@@ -338,9 +468,11 @@ class EventService:
         )
         event = event_result.scalar_one_or_none()
         if event is None:
-            logger.warning("Event not found: %s", event_id)
+            logger.warning("Event not found: {}", event_id)
             return None
-
+        logger.info(
+            "Generating hypothesis for event {} type={}", event_id, event.event_type
+        )
         # Load linked assets
         links_result = await session.execute(
             select(EventAssetLink).where(EventAssetLink.event_id == event_id)
@@ -349,7 +481,7 @@ class EventService:
 
         if not links:
             logger.warning(
-                "No linked assets found for event %s, cannot generate hypothesis",
+                "No linked assets found for event {}, cannot generate hypothesis",
                 event_id,
             )
             return None
@@ -376,17 +508,29 @@ class EventService:
 
         try:
             llm = get_llm_provider()
+            logger.info("Using hypothesis provider model {}", llm.model_name)
             input_data = {
                 "event_summary": event.event_summary,
                 "event_type": event.event_type,
                 "linked_assets": linked_asset_dicts,
             }
             start = time.monotonic()
-            hypothesis_output = await llm.generate_hypothesis(
-                event_summary=event.event_summary,
-                event_type=event.event_type,
-                linked_assets=linked_asset_dicts,
-            )
+            try:
+                hypothesis_output = await llm.generate_hypothesis(
+                    event_summary=event.event_summary,
+                    event_type=event.event_type,
+                    linked_assets=linked_asset_dicts,
+                )
+            except Exception as exc:
+                fallback_llm = self._fallback_llm_provider(llm, exc)
+                if fallback_llm is None:
+                    raise
+                llm = fallback_llm
+                hypothesis_output = await llm.generate_hypothesis(
+                    event_summary=event.event_summary,
+                    event_type=event.event_type,
+                    linked_assets=linked_asset_dicts,
+                )
             latency_ms = int((time.monotonic() - start) * 1000)
             await self._record_llm_run_log(
                 session, "generate_hypothesis", llm.model_name, "v1",
@@ -416,7 +560,7 @@ class EventService:
 
             await session.flush()
             logger.info(
-                "Generated hypothesis for event %s, status updated to HYPOTHESIZED",
+                "Generated hypothesis for event {}, status updated to HYPOTHESIZED",
                 event_id,
             )
             return hypothesis
@@ -427,9 +571,7 @@ class EventService:
                 session, "generate_hypothesis", llm.model_name, "v1",
                 input_data, None, str(exc), latency_ms,
             )
-            logger.exception(
-                "Failed to generate hypothesis for event %s", event_id
-            )
+            logger.exception("Failed to generate hypothesis for event {}", event_id)
             return None
 
     async def score(
@@ -444,7 +586,7 @@ class EventService:
         )
         event = event_result.scalar_one_or_none()
         if event is None:
-            logger.warning("Event not found for scoring: %s", event_id)
+            logger.warning("Event not found for scoring: {}", event_id)
             return None
 
         try:
@@ -453,11 +595,11 @@ class EventService:
             session.add(scored)
             await session.flush()
             logger.info(
-                "Scored event %s alpha=%.4f status=SCORED",
+                "Scored event {} alpha={:.4f} status=SCORED",
                 event_id,
                 scored.event_alpha_score,
             )
             return scored
         except Exception:
-            logger.exception("Failed to score event %s", event_id)
+            logger.exception("Failed to score event {}", event_id)
             return None

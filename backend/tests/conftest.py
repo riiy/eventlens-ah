@@ -6,8 +6,20 @@ from sqlmodel import SQLModel
 from app.core.config import settings
 from app.main import app
 
-
 TEST_DATABASE_URL = "sqlite+aiosqlite:///./test.db"
+
+
+@pytest_asyncio.fixture(autouse=True)
+async def force_mock_llm():
+    original_mock_enabled = settings.MOCK_LLM_ENABLED
+    original_provider = settings.LLM_PROVIDER
+    settings.MOCK_LLM_ENABLED = True
+    settings.LLM_PROVIDER = "mock"
+    try:
+        yield
+    finally:
+        settings.MOCK_LLM_ENABLED = original_mock_enabled
+        settings.LLM_PROVIDER = original_provider
 
 
 @pytest_asyncio.fixture

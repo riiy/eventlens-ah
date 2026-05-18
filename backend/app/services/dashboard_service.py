@@ -1,12 +1,8 @@
-import logging
-
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.market_event import MarketEvent
 from app.models.raw_document import RawDocument
-
-logger = logging.getLogger(__name__)
 
 
 class DashboardService:

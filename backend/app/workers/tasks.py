@@ -1,11 +1,10 @@
 """Celery task definitions for asynchronous ingestion and extraction pipelines."""
 
 import asyncio
-import logging
+
+from loguru import logger
 
 from app.workers.celery_app import celery_app
-
-logger = logging.getLogger(__name__)
 
 
 @celery_app.task(name="run_extraction_pipeline")
@@ -28,9 +27,7 @@ def run_extraction_pipeline(document_ids: list[str]) -> dict:
                         result = await pipeline.run_full_pipeline(doc_id)
                         results.append(result)
                     except Exception:
-                        logger.exception(
-                            "Pipeline failed for document %s", doc_id
-                        )
+                        logger.exception("Pipeline failed for document {}", doc_id)
                         results.append(
                             {
                                 "document_id": doc_id,

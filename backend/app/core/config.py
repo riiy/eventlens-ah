@@ -10,11 +10,17 @@ class Settings(BaseSettings):
     CELERY_BROKER_URL: str = ""
 
     QWEN_API_KEY: str | None = None
+    QWEN_BASE_URL: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    QWEN_MODEL_NAME: str = "qwen-max"
+    GEMMA4_API_KEY: str | None = None
+    GEMMA4_BASE_URL: str = "https://chat.acquirecord.top/v1/chat/completions"
+    GEMMA4_MODEL_NAME: str = "gemma4:31b"
     DEEPSEEK_API_KEY: str | None = None
     OPENAI_API_KEY: str | None = None
 
     MOCK_LLM_ENABLED: bool = True
     LLM_PROVIDER: str = "mock"
+    LOG_LEVEL: str = "INFO"
 
     SEED_ON_STARTUP: bool = False
 

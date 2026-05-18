@@ -1,15 +1,13 @@
 import hashlib
-import logging
 from datetime import datetime
 from uuid import UUID
 
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
+from loguru import logger
 
 from app.models.raw_document import RawDocument
 from app.schemas.raw_document import RawDocumentCreate
-
-logger = logging.getLogger(__name__)
 
 
 class DocumentService:
@@ -32,7 +30,7 @@ class DocumentService:
         existing = result.scalar_one_or_none()
         if existing is not None:
             logger.debug(
-                "Document with content_hash=%s already exists (id=%s), skipping",
+                "Document with content_hash={} already exists (id={}), skipping",
                 content_hash,
                 existing.id,
             )
@@ -50,7 +48,7 @@ class DocumentService:
         )
         session.add(doc)
         await session.flush()
-        logger.info("Created RawDocument id=%s hash=%s", doc.id, content_hash)
+        logger.info("Created RawDocument id={} hash={}", doc.id, content_hash)
         return doc
 
     async def get(

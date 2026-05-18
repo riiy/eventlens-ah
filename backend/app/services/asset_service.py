@@ -1,13 +1,11 @@
-import logging
 from uuid import UUID
 
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
+from loguru import logger
 
 from app.models.asset import Asset
 from app.schemas.asset import AssetCreate
-
-logger = logging.getLogger(__name__)
 
 
 class AssetService:
@@ -28,7 +26,7 @@ class AssetService:
         )
         session.add(asset)
         await session.flush()
-        logger.info("Created Asset id=%s symbol=%s", asset.id, asset.symbol)
+        logger.info("Created Asset id={} symbol={}", asset.id, asset.symbol)
         return asset
 
     async def get(

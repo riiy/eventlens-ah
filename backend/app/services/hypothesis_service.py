@@ -1,15 +1,13 @@
-import logging
 import random
 from uuid import UUID
 
+from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.event_asset_link import EventAssetLink
 from app.models.event_price_reaction import EventPriceReaction
 from app.models.research_hypothesis import ResearchHypothesis
-
-logger = logging.getLogger(__name__)
 
 
 class HypothesisService:
@@ -46,7 +44,9 @@ class HypothesisService:
         )
         links = list(links_result.scalars().all())
         if not links:
-            logger.warning("No linked assets for event %s, cannot generate reactions", event_id)
+            logger.warning(
+                "No linked assets for event {}, cannot generate reactions", event_id
+            )
             return []
 
         reactions = []
@@ -73,5 +73,7 @@ class HypothesisService:
             reactions.append(reaction)
 
         await session.flush()
-        logger.info("Generated %d mock price reactions for event %s", len(reactions), event_id)
+        logger.info(
+            "Generated {} mock price reactions for event {}", len(reactions), event_id
+        )
         return reactions

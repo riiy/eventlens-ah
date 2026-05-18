@@ -1,9 +1,6 @@
-import logging
-from typing import Optional
+from loguru import logger
 
 from app.models.market_event import MarketEvent
-
-logger = logging.getLogger(__name__)
 
 
 class EventAlphaScorer:
@@ -108,7 +105,7 @@ async def score_event(event: MarketEvent) -> MarketEvent:
 
         event.event_alpha_score = alpha
         logger.debug(
-            "Computed alpha score %.4f for event %s (type=%s)",
+            "Computed alpha score {:.4f} for event {} (type={})",
             alpha,
             event.id,
             event.event_type,
@@ -116,7 +113,10 @@ async def score_event(event: MarketEvent) -> MarketEvent:
         return event
 
     except Exception:
-        logger.exception("Failed to compute alpha score for event %s", getattr(event, "id", "unknown"))
+        logger.exception(
+            "Failed to compute alpha score for event {}",
+            getattr(event, "id", "unknown"),
+        )
         # Set a safe default rather than crashing
         event.event_alpha_score = 0.30
         return event
