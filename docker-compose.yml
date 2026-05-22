@@ -34,9 +34,7 @@ services:
       DATABASE_URL_SYNC: postgresql+psycopg2://eventlens:eventlens@postgres:5432/eventlens
       REDIS_URL: redis://redis:6379/0
       CELERY_BROKER_URL: redis://redis:6379/1
-      MOCK_LLM_ENABLED: "true"
-      LLM_PROVIDER: mock
-      SEED_ON_STARTUP: "true"
+
     depends_on:
       postgres:
         condition: service_healthy
