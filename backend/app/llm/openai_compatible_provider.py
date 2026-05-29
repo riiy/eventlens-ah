@@ -1,3 +1,4 @@
+import asyncio
 import json
 import re
 
@@ -187,22 +188,48 @@ class OpenAICompatibleProvider(BaseLLMProvider):
             "response_format": {"type": "json_object"},
         }
 
-        async with httpx.AsyncClient(timeout=90.0) as client:
-            response = await client.post(
-                f"{self.base_url}/chat/completions",
-                headers=headers,
-                json=payload,
-            )
-            response.raise_for_status()
-            data = response.json()
-            content = data["choices"][0]["message"]["content"]
-            if isinstance(content, list):
-                content = "".join(
-                    part.get("text", "") for part in content if isinstance(part, dict)
-                )
-            if not isinstance(content, str):
-                raise ValueError("LLM response content is not a string")
-            return self._extract_json_object(content)
+        timeout = httpx.Timeout(connect=20.0, read=180.0, write=60.0, pool=20.0)
+        last_error: Exception | None = None
+        async with httpx.AsyncClient(timeout=timeout) as client:
+            for attempt in range(3):
+                try:
+                    response = await client.post(
+                        f"{self.base_url}/chat/completions",
+                        headers=headers,
+                        json=payload,
+                    )
+                    response.raise_for_status()
+                    data = response.json()
+                    content = data["choices"][0]["message"]["content"]
+                    if isinstance(content, list):
+                        content = "".join(
+                            part.get("text", "")
+                            for part in content
+                            if isinstance(part, dict)
+                        )
+                    if not isinstance(content, str):
+                        raise ValueError("LLM response content is not a string")
+                    return self._extract_json_object(content)
+                except httpx.TransportError as exc:
+                    last_error = exc
+                    if attempt == 2:
+                        break
+                    logger.warning(
+                        "LLM transport error on attempt {}/3: {}",
+                        attempt + 1,
+                        exc,
+                    )
+                    await asyncio.sleep(0.5 * (attempt + 1))
+                except json.JSONDecodeError as exc:
+                    raise ValueError(
+                        "LLM response was not valid JSON or was truncated"
+                    ) from exc
+
+        if last_error is not None:
+            raise RuntimeError(
+                "LLM provider connection failed before a complete response was read"
+            ) from last_error
+        raise RuntimeError("LLM provider returned no response")
 
     async def extract_event(
         self, title: str, content: str, source: str, published_at: str
